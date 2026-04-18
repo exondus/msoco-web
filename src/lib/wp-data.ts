@@ -12,7 +12,7 @@ export async function getWeddings(category?: string) {
       query: GET_WEDDING_GALLERY,
       variables: { category },
     });
-    return data?.posts?.nodes || [];
+    return (data as Record<string, any>)?.posts?.nodes || [];
   } catch (error) {
     console.error('Error fetching weddings:', error);
     return [];
@@ -28,7 +28,7 @@ export async function getCorporateServices() {
     const { data } = await client.query({
       query: GET_CORPORATE_SERVICES,
     });
-    return data?.posts?.nodes || [];
+    return (data as Record<string, any>)?.posts?.nodes || [];
   } catch (error) {
     console.error('Error fetching corporate services:', error);
     return [];
@@ -50,7 +50,7 @@ export async function getAboutContent(): Promise<AboutContent | null> {
   "use cache";
   try {
     const { data } = await client.query({ query: GET_ABOUT_CONTENT });
-    const page = data?.page;
+    const page = (data as Record<string, any>)?.page;
     if (!page) return null;
     return {
       founderName: page.aboutMeta.founderName,
