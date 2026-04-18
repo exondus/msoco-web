@@ -57,7 +57,7 @@ export const GET_CORPORATE_SERVICES = gql`
 
 export const GET_WEDDING_PORTFOLIO = gql`
   query GetWeddingPortfolio {
-    posts(where: { categoryIn: "weddings" }, first: 50) {
+    posts(where: { categoryName: "weddings" }, first: 50) {
       nodes {
         id
         title
@@ -82,6 +82,7 @@ export const GET_CORPORATE_TESTIMONIALS = gql`
     posts(where: { categoryName: "testimonials" }, first: 10) {
       nodes {
         id
+        title
         corporateTestimonialMeta {
           clientName
           clientTitle
