@@ -1,0 +1,181 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import ServiceCard from '@/components/corporate/ServiceCard';
+import TechInfrastructure from '@/components/corporate/TechInfrastructure';
+import QuickQuote from '@/components/corporate/QuickQuote';
+import ClientTestimonials from '@/components/corporate/ClientTestimonials';
+import CaseStudies from '@/components/corporate/CaseStudies';
+import ZakesTeaser from '@/components/shared/ZakesTeaser';
+import MsocoLogo from '@/components/ui/MsocoLogo';
+import CoreButton from '@/components/ui/CoreButton';
+
+const CORPORATE_SERVICES = [
+  {
+    title: 'Technical Staging',
+    category: 'Production',
+    benefit: 'Your stage sets the tone before a word is spoken.',
+    outcome: 'Intelligent lighting rigs, line arrays, and custom builds that make your brand unmissable.',
+    specs: ['Intelligent Lighting Rigs', 'Line Array Audio', 'Custom Stage Builds', 'LED Video Walls'],
+  },
+  {
+    title: 'Broadcast Media',
+    category: 'Videography',
+    benefit: 'Your message reaches 10,000 people simultaneously.',
+    outcome: '4K multi-cam livestream with no venue limits — from Durban to the world.',
+    specs: ['4K Multi-cam Livestream', 'Corporate Highlights', 'Executive Interviews', 'Aerial Drone Ops'],
+  },
+  {
+    title: 'Brand Activations',
+    category: 'Events',
+    benefit: "Create moments your attendees can't stop sharing.",
+    outcome: '360 experiences, photo booths, and sound management that become the story.',
+    specs: ['Photo Booth Systems', '360 Video Experiences', 'Sound Management', 'Technical Direction'],
+  },
+  {
+    title: 'Corporate Identity',
+    category: 'Photography',
+    benefit: 'The assets your PR team will use for years.',
+    outcome: 'Executive headshots, event documentation, and PR kits delivered at scale.',
+    specs: ['Bulk Executive Headshots', 'Product Photography', 'Event Documentation', 'PR Asset Kits'],
+  },
+];
+
+export default function CorporatePage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white text-black font-inter scroll-smooth">
+      {/* Navbar */}
+      <nav className="fixed w-full flex justify-between items-center p-8 z-[100] bg-white/80 backdrop-blur-xl border-b border-gray-100">
+        <MsocoLogo className="h-10 w-44" />
+        <div className="hidden md:flex space-x-12 text-[9px] font-black uppercase tracking-[0.4em] text-black/30 items-center">
+          <a href="#solutions" className="hover:text-corporate-blue transition-colors">Solutions</a>
+          <a href="#infrastructure" className="hover:text-corporate-blue transition-colors">Infrastructure</a>
+          <a href="/about" className="hover:text-corporate-blue transition-colors">About</a>
+          <CoreButton variant="outline" className="py-2 px-6 border-gray-200 text-black">Get Quote</CoreButton>
+        </div>
+      </nav>
+
+      <main>
+        {/* Hero */}
+        <section className="relative h-screen flex items-center px-8 md:px-16 overflow-hidden bg-white">
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{ backgroundImage: 'linear-gradient(#0052FF 1px, transparent 1px), linear-gradient(90deg, #0052FF 1px, transparent 1px)', backgroundSize: '60px 60px' }}
+          />
+          <div className="max-w-7xl relative z-10">
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <span className="inline-block px-4 py-1.5 border-2 border-corporate-blue text-corporate-blue text-[10px] font-black uppercase tracking-[0.5em] mb-10">
+                The Technical Backbone
+              </span>
+              <h1 className="text-8xl md:text-[13rem] font-black uppercase tracking-tighter leading-[0.75] mb-8 text-black">
+                Engineered <br />
+                <span className="text-corporate-blue italic">Impact.</span>
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="flex flex-col md:flex-row md:items-end justify-between gap-12"
+            >
+              <div className="flex flex-col gap-8 max-w-2xl">
+                <p className="text-2xl md:text-3xl text-black/40 font-light leading-tight">
+                  One Call. One Partner. Zero Technical Anxiety.
+                </p>
+                <ZakesTeaser persona="corporate" />
+              </div>
+              <div className="flex gap-4">
+                <CoreButton onClick={() => { window.location.hash = '#solutions'; }}>View Services</CoreButton>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Client Trust — replaces placeholder text logos */}
+        <ClientTestimonials />
+
+        {/* Service Matrix */}
+        <section id="solutions" className="py-40 px-8 md:px-16 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-24">
+              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 text-black">Solution <br />Matrix.</h2>
+              <div className="w-20 h-1 bg-corporate-blue" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {CORPORATE_SERVICES.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <ServiceCard {...service} />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Case Studies */}
+        <CaseStudies />
+
+        {/* Technical Deep-Dive */}
+        <div id="infrastructure">
+          <TechInfrastructure />
+        </div>
+
+        {/* Technical Specs Banner */}
+        <section className="bg-corporate-blue py-16 px-8 overflow-hidden whitespace-nowrap">
+          <div className="flex space-x-24 items-center animate-marquee">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex space-x-24 items-center">
+                <span className="text-6xl font-black uppercase tracking-tighter text-white">4K Multi-Cam</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-white/40">Line Array Audio</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-white">DMX Lighting</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-white/40">LED Video Walls</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <footer className="p-32 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-24">
+          <div className="max-w-xl">
+            <MsocoLogo className="h-12 w-48 mb-12" />
+            <h4 className="text-5xl font-black uppercase tracking-tighter mb-8 leading-none text-black">Ready to <br /><span className="text-corporate-blue">Deploy?</span></h4>
+            <p className="text-black/40 text-xl font-light mb-4 font-inter">
+              Partner with Durban&apos;s leading technical production house for your 2026 events.
+            </p>
+            <div className="mb-12">
+              <ZakesTeaser persona="corporate" />
+            </div>
+            <div className="flex gap-4">
+              <CoreButton>Initialize Quote</CoreButton>
+              <CoreButton variant="outline" className="border-gray-200 text-black/60 font-inter">Technical Catalog</CoreButton>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-16 text-[10px] font-black uppercase tracking-[0.4em] text-black/20">
+            <div className="space-y-6">
+              <p className="text-black/40">Division</p>
+              <p className="hover:text-corporate-blue cursor-pointer transition-colors">Weddings</p>
+              <p className="text-corporate-blue">Corporate</p>
+            </div>
+            <div className="space-y-6">
+              <p className="text-black/40">Office</p>
+              <p>Durban, KZN</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <QuickQuote />
+    </div>
+  );
+}
