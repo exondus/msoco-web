@@ -11,7 +11,7 @@ const CEREMONIES = [
 
 export default function KZNAuthority() {
   return (
-    <section className="py-40 bg-white border-y border-gray-100 relative overflow-hidden">
+    <section className="py-40 bg-wedding-bg border-y border-wedding-gold/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex flex-col lg:flex-row justify-between items-start gap-24">
           <div className="w-full lg:w-1/3">

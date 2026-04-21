@@ -5,7 +5,7 @@ import CoreButton from '../ui/CoreButton';
 
 const PACKAGES = [
   {
-    name: 'The Foundation',
+    name: 'The Heritage',
     price: 'R12,500',
     duration: '8 hours coverage',
     features: [
@@ -18,7 +18,7 @@ const PACKAGES = [
     highlighted: false,
   },
   {
-    name: 'The Signature',
+    name: 'The Legacy',
     price: 'R22,000',
     duration: '12 hours coverage',
     features: [
@@ -33,7 +33,7 @@ const PACKAGES = [
     highlighted: true,
   },
   {
-    name: 'The Legacy',
+    name: 'The Dynasty',
     price: 'Custom',
     duration: 'Full-day + post-production',
     features: [
@@ -51,7 +51,7 @@ const PACKAGES = [
 
 export default function WeddingPackages() {
   return (
-    <section className="py-40 px-8 bg-white">
+    <section className="py-40 px-8 bg-wedding-bg">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -78,8 +78,8 @@ export default function WeddingPackages() {
               viewport={{ once: true }}
               className={`relative rounded-lg p-8 transition-all duration-500 ${
                 pkg.highlighted
-                  ? 'border-2 border-wedding-gold bg-wedding-gold/5 md:scale-105'
-                  : 'border-2 border-gray-200 hover:border-wedding-gold/50'
+                  ? 'border-2 border-wedding-gold bg-wedding-gold/5 md:scale-105 shadow-2xl'
+                  : 'border border-wedding-gold/20 hover:border-wedding-gold/50 bg-white/50'
               }`}
             >
               {pkg.highlighted && (

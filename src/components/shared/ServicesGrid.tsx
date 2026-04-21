@@ -30,19 +30,22 @@ export default function ServicesGrid({
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   const isWedding = theme === 'wedding';
-  const cardBg = isWedding ? 'bg-white border border-gray-100' : 'bg-black/40 border border-white/10';
+  const cardBg = isWedding ? 'bg-white border border-gray-100' : 'glass-corporate border border-white/5';
   const textColor = isWedding ? 'text-wedding-charcoal' : 'text-white';
-  const secondaryText = isWedding ? 'text-wedding-charcoal/60' : 'text-white/70';
-  const accentText = isWedding ? 'text-wedding-gold' : 'text-corporate-blue';
+  const secondaryText = isWedding ? 'text-wedding-charcoal/60' : 'text-white/40';
+  const accentText = isWedding ? 'text-wedding-gold' : 'text-corporate-copper';
   const buttonClass = isWedding
     ? 'bg-wedding-gold text-white hover:bg-wedding-gold/80'
-    : 'bg-corporate-blue text-white hover:bg-corporate-blue/80';
+    : 'bg-corporate-copper text-black hover:bg-corporate-orange';
 
   const gridCols = columns === 4 ? 'md:grid-cols-4' : 'md:grid-cols-2';
 
   return (
-    <section ref={ref} className={`${bgColor} py-40 px-8`}>
-      <div className="max-w-7xl mx-auto">
+    <section ref={ref} className={`${bgColor} py-40 px-8 relative overflow-hidden`}>
+      {!isWedding && (
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-corporate-copper/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4" />
+      )}
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -50,10 +53,10 @@ export default function ServicesGrid({
           className="mb-24"
         >
           <p className={`font-montserrat text-[10px] uppercase tracking-[0.5em] ${accentText} font-black mb-6 block`}>
-            Our Expertise
+            {isWedding ? 'Our Expertise' : 'Service Infrastructure'}
           </p>
-          <h2 className={`font-playfair text-6xl md:text-8xl ${textColor} tracking-tighter leading-tight`}>
-            Comprehensive <span className="italic font-light">Services</span>
+          <h2 className={`${isWedding ? 'font-playfair' : 'font-inter font-black uppercase'} text-6xl md:text-8xl ${textColor} tracking-tighter leading-tight`}>
+            {isWedding ? 'Comprehensive' : 'Technical'} <span className={`${isWedding ? 'italic font-light' : 'text-corporate-copper italic'}`}>{isWedding ? 'Services' : 'Ecosystem'}</span>
           </h2>
         </motion.div>
 
@@ -66,26 +69,28 @@ export default function ServicesGrid({
               transition={{ delay: index * 0.08, duration: 0.6 }}
               className="h-full"
             >
-              <div className={`${cardBg} rounded-lg p-8 h-full flex flex-col justify-between group hover:shadow-xl transition-all duration-500 relative overflow-hidden`}>
+              <div className={`${cardBg} rounded-lg p-8 h-full flex flex-col justify-between group hover:border-corporate-copper/50 transition-all duration-500 relative overflow-hidden`}>
                 {/* Icon or Number */}
-                {service.icon ? (
-                  <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-500">
-                    {service.icon}
-                  </div>
-                ) : (
-                  <p className={`font-playfair text-6xl font-light ${textColor} mb-4 transition-colors duration-500`}>
-                    {service.number}
-                  </p>
-                )}
+                <div className="relative">
+                  {service.icon ? (
+                    <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-500">
+                      {service.icon}
+                    </div>
+                  ) : (
+                    <p className={`${isWedding ? 'font-playfair' : 'font-inter font-black'} text-6xl font-light ${textColor} mb-4 transition-colors duration-500 opacity-20 group-hover:opacity-100`}>
+                      {service.number}
+                    </p>
+                  )}
+                </div>
 
                 {/* Title */}
-                <h3 className={`font-montserrat text-lg md:text-xl font-black uppercase tracking-tight ${textColor} mb-3`}>
+                <h3 className={`font-montserrat text-lg md:text-xl font-black uppercase tracking-tight ${textColor} mb-3 group-hover:text-corporate-copper transition-colors`}>
                   {service.title}
                 </h3>
 
                 {/* Description */}
                 {service.description && (
-                  <p className={`font-montserrat text-sm ${secondaryText} mb-6 flex-grow`}>
+                  <p className={`font-montserrat text-sm ${secondaryText} mb-6 flex-grow leading-relaxed`}>
                     {service.description}
                   </p>
                 )}
@@ -107,7 +112,7 @@ export default function ServicesGrid({
                   style={{
                     background: isWedding
                       ? 'linear-gradient(to right, rgba(212, 175, 55, 1), transparent)'
-                      : 'linear-gradient(to right, rgba(0, 82, 255, 1), transparent)'
+                      : 'linear-gradient(to right, rgba(230, 126, 34, 1), transparent)'
                   }}
                 />
               </div>

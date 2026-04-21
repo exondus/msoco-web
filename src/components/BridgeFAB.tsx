@@ -33,7 +33,11 @@ export default function BridgeFAB() {
   return (
     <button
       onClick={toggleMode}
-      className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl transition-all hover:scale-110 active:scale-95 group"
+      className={`fixed bottom-8 right-8 z-[100] flex h-14 w-14 items-center justify-center rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all hover:scale-110 active:scale-95 group border-2 ${
+        mode === 'wedding' 
+          ? 'bg-wedding-charcoal border-wedding-gold/30' 
+          : 'bg-corporate-copper border-white/20'
+      }`}
       aria-label="Switch Persona"
     >
       <div className="relative h-6 w-6">
@@ -44,16 +48,22 @@ export default function BridgeFAB() {
           </svg>
         ) : (
           /* Wedding Icon (Celebration) */
-          <svg className="text-white group-hover:text-wedding-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="text-black group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h6a2 2 0 012 2v11a2 2 0 01-2 2H9a2 2 0 01-2-2V5a2 2 0 012-2z" />
           </svg>
         )}
       </div>
       
       {/* Tooltip */}
-      <span className="absolute right-16 scale-0 group-hover:scale-100 transition-all origin-right bg-white text-black text-xs font-bold py-1 px-3 rounded shadow-lg whitespace-nowrap">
-        Switch to {mode === 'wedding' ? 'Corporate' : 'Weddings'}
-      </span>
+      <div className="absolute right-20 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none translate-x-4 group-hover:translate-x-0">
+        <div className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] shadow-xl whitespace-nowrap border ${
+          mode === 'wedding'
+            ? 'bg-wedding-charcoal text-white border-wedding-gold/20'
+            : 'bg-corporate-copper text-black border-white/20'
+        }`}>
+          Switch to {mode === 'wedding' ? 'Corporate' : 'Weddings'}
+        </div>
+      </div>
     </button>
   );
 }

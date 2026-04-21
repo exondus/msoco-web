@@ -1,9 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function MsocoLogo({ className = "h-20 w-auto" }: { className?: string }) {
+export default function MsocoLogo({ className = "h-20 w-auto", invert = false }: { className?: string; invert?: boolean }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -11,15 +12,15 @@ export default function MsocoLogo({ className = "h-20 w-auto" }: { className?: s
   }, []);
 
   return (
-    <div className={`relative ${className} transition-all duration-500 z-[110]`}>
+    <Link href="/" className={`relative block ${className} transition-all duration-500 z-[110] hover:scale-105 active:scale-95 cursor-pointer`}>
       <Image
         src="/logo.png"
         alt="Msoco Rockers Production"
         fill
-        className={`object-contain transition-all duration-500 brightness-0 ${isLoaded ? 'opacity-100' : 'opacity-0'
+        className={`object-contain transition-all duration-500 brightness-0 ${invert ? 'invert' : ''} ${isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         priority
       />
-    </div>
+    </Link>
   );
 }

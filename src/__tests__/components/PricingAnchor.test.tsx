@@ -14,6 +14,6 @@ describe('PricingAnchor', () => {
 
   it('renders a quote CTA link', () => {
     render(<PricingAnchor startingPrice="R25,000" premiumPrice="R50,000" />);
-    expect(screen.getByRole('link', { name: /custom quote/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Explore Tiers & Specifications/i })).toBeInTheDocument();
   });
 });

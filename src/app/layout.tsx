@@ -4,6 +4,7 @@ import ThemeInitializer from "@/components/ThemeInitializer";
 import BridgeFAB from "@/components/BridgeFAB";
 import WhatsAppFAB from "@/components/ui/WhatsAppFAB";
 import ApolloProvider from "@/components/shared/ApolloProvider";
+import { PostHogProvider } from "@/providers/PostHogProvider";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -38,14 +39,16 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full font-montserrat relative">
-        <ApolloProvider>
-          <ThemeInitializer />
-          <div className="animate-page-fade">
-            {children}
-          </div>
-          <BridgeFAB />
-          <WhatsAppFAB />
-        </ApolloProvider>
+        <PostHogProvider>
+          <ApolloProvider>
+            <ThemeInitializer />
+            <div className="animate-page-fade">
+              {children}
+            </div>
+            <BridgeFAB />
+            <WhatsAppFAB />
+          </ApolloProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

@@ -47,9 +47,9 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
 
   // Regular pages navbar
   return (
-    <nav className="fixed w-full flex justify-between items-center px-12 py-6 z-[100] bg-white/95 backdrop-blur-xl border-b border-gray-100">
+    <nav className="fixed w-full flex justify-between items-center px-12 py-6 z-[100] glass-wedding border-b border-wedding-gold/10">
       <a href="/weddings">
-        <MsocoLogo className="h-10 w-40" />
+        <MsocoLogo className="h-10 w-40" invert={false} />
       </a>
       <div className="hidden md:flex space-x-8 font-montserrat uppercase tracking-[0.3em] text-[10px] font-black items-center gap-2">
         {navItems.map((item) => (
@@ -65,7 +65,7 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
             {item.label}
           </a>
         ))}
-        <CoreButton variant="outline" className="py-2 px-6 border-wedding-gold text-wedding-gold ml-4">
+        <CoreButton variant="outline" className="py-2 px-6 border-wedding-gold text-wedding-gold ml-4 hover:bg-wedding-gold/5">
           Inquire
         </CoreButton>
       </div>

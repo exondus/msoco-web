@@ -40,7 +40,7 @@ const STEPS = [
 
 export default function WeddingsPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-wedding-bg scroll-smooth">
+    <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
       {/* Scarcity Bar — above everything */}
       <ScarcityBar remainingDates={4} year={2026} />
 
@@ -57,7 +57,7 @@ export default function WeddingsPage() {
             loop
             playsInline
             className="w-full h-full object-cover grayscale"
-            poster="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg"
+            poster="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05685.jpg"
           >
             <source src="https://www.msocorockers.co.za/wp-content/uploads/2025/07/DJI_0455_1.mp4" type="video/mp4" />
           </video>
@@ -73,11 +73,12 @@ export default function WeddingsPage() {
             KwaZulu-Natal&apos;s Premier Production House
           </span>
           <h1 className="font-playfair text-7xl md:text-[11rem] text-white leading-[0.75] tracking-tighter">
-            Authentic <br />
-            <span className="italic font-light">Legacies.</span>
+            Heritage <br />
+            <span className="italic font-light">Legacy.</span>
           </h1>
           <p className="font-playfair text-2xl md:text-3xl text-white/80 italic max-w-3xl mx-auto font-light leading-relaxed">
-            Umembeso. White Wedding. Both Flawless. That&apos;s Msoco.
+            Preserving KwaZulu-Natal&apos;s most sacred unions. <br />
+            Umembeso. White Wedding. Both Flawless.
           </p>
           <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-6">
             <CoreButton onClick={() => { window.location.hash = '#gallery'; }}>View the Portfolio</CoreButton>
@@ -95,7 +96,7 @@ export default function WeddingsPage() {
         </div>
 
         {/* 1.5. Stats Section */}
-        <CompanyStats stats={WEDDING_STATS} theme="wedding" bgColor="bg-white" textColor="text-wedding-charcoal" />
+        <CompanyStats stats={WEDDING_STATS} theme="wedding" bgColor="bg-wedding-bg" textColor="text-wedding-charcoal" />
 
         {/* 2. Social proof — before gallery */}
         <WeddingTestimonials />
@@ -133,10 +134,10 @@ export default function WeddingsPage() {
         </div>
 
         {/* 5. Process */}
-        <section className="py-40 bg-white border-b border-gray-100">
+        <section className="py-40 bg-wedding-bg border-y border-wedding-gold/10">
           <div className="max-w-7xl mx-auto px-8">
             <div className="text-center mb-32">
-              <span className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black mb-6 block">Our Hands-On Approach</span>
+              <span className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black mb-6 block">Our Ceremonial Approach</span>
               <h2 className="font-playfair text-6xl md:text-8xl text-wedding-charcoal tracking-tighter">The Journey.</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
@@ -157,33 +158,33 @@ export default function WeddingsPage() {
         <WeddingPackages />
 
         {/* 7. Pricing anchor — filters leads before final CTA */}
-        <PricingAnchor startingPrice="R12,500" premiumPrice="R22,000" />
+        <PricingAnchor startingPrice="R12,500" premiumPrice="R28,000" />
       </main>
 
       {/* Footer */}
-      <footer id="contact" className="bg-white py-40 px-12 border-t border-gray-100">
+      <footer id="contact" className="bg-wedding-bg py-40 px-12 border-t border-wedding-gold/10">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-32">
           <div className="max-w-2xl space-y-12">
-            <MsocoLogo className="h-16 w-64 mb-16" />
+            <MsocoLogo className="h-16 w-64 mb-16" invert={false} />
             <h3 className="font-playfair text-6xl md:text-8xl text-wedding-charcoal tracking-tighter leading-none">
-              Your Story <br /><span className="italic font-light text-wedding-gold">is Next.</span>
+              Your Legacy <br /><span className="italic font-light text-wedding-gold">Starts Here.</span>
             </h3>
-            <p className="font-montserrat text-sm text-wedding-charcoal/50 uppercase tracking-[0.2em] font-bold max-w-md">
+            <p className="font-montserrat text-[10px] text-wedding-charcoal/50 uppercase tracking-[0.3em] font-bold max-w-md">
               Secure KwaZulu-Natal&apos;s authority in traditional and modern wedding production.
             </p>
             <div className="pt-8 flex flex-col sm:flex-row gap-6">
-              <CoreButton>Book a Consultation</CoreButton>
-              <CoreButton variant="outline" className="border-gray-200 text-wedding-charcoal">View Full Portfolio</CoreButton>
+              <CoreButton className="bg-wedding-gold text-white hover:bg-wedding-gold/90">Book a Consultation</CoreButton>
+              <CoreButton variant="outline" className="border-wedding-gold/20 text-wedding-charcoal hover:bg-wedding-gold/5">View Full Portfolio</CoreButton>
             </div>
           </div>
 
           <div className="flex flex-col justify-end text-right space-y-12">
             <div className="space-y-4">
-              <p className="font-montserrat text-[10px] font-black uppercase tracking-widest text-wedding-gold">Head Office</p>
+              <p className="font-montserrat text-[10px] font-black uppercase tracking-widest text-wedding-gold">Headquarters</p>
               <p className="font-playfair text-2xl text-wedding-charcoal italic">Durban, KwaZulu-Natal</p>
             </div>
             <div className="space-y-4">
-              <p className="font-montserrat text-[10px] font-black uppercase tracking-widest text-wedding-gold">Contact</p>
+              <p className="font-montserrat text-[10px] font-black uppercase tracking-widest text-wedding-gold">Direct Contact</p>
               <p className="font-playfair text-2xl text-wedding-charcoal italic">+27 12 345 6789</p>
               <p className="font-playfair text-2xl text-wedding-charcoal italic">info@msocorockers.co.za</p>
             </div>
@@ -195,9 +196,9 @@ export default function WeddingsPage() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto mt-40 pt-12 border-t border-gray-100 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto mt-40 pt-12 border-t border-wedding-gold/10 flex justify-between items-center">
           <p className="font-montserrat text-[9px] font-bold text-wedding-charcoal/30 uppercase tracking-[0.2em]">© 2026 Msoco Rockers Production. All Rights Reserved.</p>
-          <p className="font-montserrat text-[9px] font-bold text-wedding-charcoal/30 uppercase tracking-[0.2em]">Crafted in KZN.</p>
+          <p className="font-montserrat text-[9px] font-bold text-wedding-charcoal/30 uppercase tracking-[0.2em]">Heirloom Quality. Durban Proud.</p>
         </div>
       </footer>
     </div>

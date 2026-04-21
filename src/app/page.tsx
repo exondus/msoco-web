@@ -13,26 +13,26 @@ import CoreButton from '@/components/ui/CoreButton';
 const FEATURED_IMAGES = [
   {
     id: 1,
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05685.jpg',
     alt: 'Wedding ceremony',
     type: 'Weddings',
   },
   {
     id: 2,
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05685.jpg',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg',
     alt: 'Corporate event',
     type: 'Corporate',
   },
   {
     id: 3,
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg',
-    alt: 'Bride portrait',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05410.jpg',
+    alt: 'Traditional event',
     type: 'Weddings',
   },
   {
     id: 4,
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05438.jpg',
-    alt: 'Broadcast setup',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg',
+    alt: 'Technical production',
     type: 'Corporate',
   },
 ];
@@ -170,7 +170,7 @@ export default function HomePage() {
               >
                 <div className="relative h-96 rounded-lg overflow-hidden mb-8 shadow-lg">
                   <Image
-                    src="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg"
+                    src="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05438.jpg"
                     alt="Wedding ceremony"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -206,7 +206,7 @@ export default function HomePage() {
               >
                 <div className="relative h-96 rounded-lg overflow-hidden mb-8 shadow-lg">
                   <Image
-                    src="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05438.jpg"
+                    src="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg"
                     alt="Corporate event"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
