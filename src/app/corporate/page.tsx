@@ -6,9 +6,29 @@ import TechInfrastructure from '@/components/corporate/TechInfrastructure';
 import QuickQuote from '@/components/corporate/QuickQuote';
 import ClientTestimonials from '@/components/corporate/ClientTestimonials';
 import CaseStudies from '@/components/corporate/CaseStudies';
+import CorporateGalleryLive from '@/components/corporate/CorporateGalleryLive';
 import ZakesTeaser from '@/components/shared/ZakesTeaser';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
+import CompanyStats from '@/components/shared/CompanyStats';
+
+const CORPORATE_STATS = [
+  { value: '260+', label: 'Corporate Videos' },
+  { value: '210+', label: 'Live Events Streamed' },
+  { value: '1,800+', label: 'Digital Assets' },
+  { value: '100%', label: 'On-time Delivery' },
+];
+
+const CORPORATE_SERVICES_GRID = [
+  { id: 'studio-photo', number: '01', title: 'Studio Photography', description: 'Executive portraits, product photography, and branded content', ctaText: 'View Packages' },
+  { id: 'studio-video', number: '02', title: 'Studio Videography', description: 'Commercial production, corporate interviews, and brand films', ctaText: 'View Packages' },
+  { id: 'live-stream', number: '03', title: 'Live Streaming', description: 'Multi-camera broadcast to unlimited global viewers', ctaText: 'View Packages' },
+  { id: 'drones', number: '04', title: 'Flying Drones', description: 'Aerial cinematography for venues, properties, and events', ctaText: 'View Packages' },
+  { id: 'sound', number: '05', title: 'PA & Sound System', description: 'Professional audio engineering and conference management', ctaText: 'View Packages' },
+  { id: 'projection', number: '06', title: 'LED Screens & Projections', description: 'Large-scale video walls and projection mapping', ctaText: 'View Packages' },
+  { id: 'lighting', number: '07', title: 'Stage & Lighting', description: 'Intelligent lighting rigs and custom stage design', ctaText: 'View Packages' },
+  { id: 'product-photo', number: '08', title: 'Product Photography', description: 'Detail photography and commercial product imaging', ctaText: 'View Packages' },
+];
 
 const CORPORATE_SERVICES = [
   {
@@ -99,6 +119,9 @@ export default function CorporatePage() {
         {/* Client Trust — replaces placeholder text logos */}
         <ClientTestimonials />
 
+        {/* Stats Section */}
+        <CompanyStats stats={CORPORATE_STATS} theme="corporate" bgColor="bg-black" textColor="text-white" />
+
         {/* Service Matrix */}
         <section id="solutions" className="py-40 px-8 md:px-16 bg-white">
           <div className="max-w-7xl mx-auto">
@@ -124,6 +147,17 @@ export default function CorporatePage() {
 
         {/* Case Studies */}
         <CaseStudies />
+
+        {/* Portfolio Gallery */}
+        <section className="py-40 px-8 md:px-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-24">
+              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 text-black">Work <br />Samples.</h2>
+              <p className="text-black/40 text-lg">Real projects. Real results. Real clients.</p>
+            </div>
+            <CorporateGalleryLive />
+          </div>
+        </section>
 
         {/* Technical Deep-Dive */}
         <div id="infrastructure">

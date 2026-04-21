@@ -1,6 +1,7 @@
 /**
- * Landing Page - Simple Navigation
- * Main homepage with links to Weddings, Corporate, and About
+ * Home/Landing Page
+ * Showcases both wedding and corporate capabilities
+ * Features curated images from WordPress media library
  */
 
 'use client';
@@ -83,16 +84,12 @@ export default function HomePage() {
                 From traditional Zulu ceremonies to corporate broadcasts. We bring your vision to life with precision and artistry.
               </p>
               <div className="flex gap-6 flex-wrap">
-                <a href="/weddings">
-                  <CoreButton className="bg-wedding-gold hover:bg-yellow-400 text-black">
-                    Explore Weddings
-                  </CoreButton>
-                </a>
-                <a href="/corporate">
-                  <CoreButton variant="outline" className="border-white text-white hover:bg-white hover:text-black">
-                    Explore Corporate
-                  </CoreButton>
-                </a>
+                <CoreButton className="bg-wedding-gold hover:bg-yellow-400 text-black">
+                  Explore Weddings
+                </CoreButton>
+                <CoreButton variant="outline" className="border-white text-white hover:bg-white hover:text-black">
+                  Explore Corporate
+                </CoreButton>
               </div>
             </motion.div>
           </div>
@@ -108,7 +105,7 @@ export default function HomePage() {
               className="text-center mb-24"
             >
               <h2 className="text-5xl md:text-7xl font-black text-black mb-6">Featured Work</h2>
-              <p className="text-black/50 text-lg">Sample of our portfolio (567 images available from WordPress)</p>
+              <p className="text-black/50 text-lg">Sample of our portfolio (567 images available)</p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -127,7 +124,6 @@ export default function HomePage() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <span className={`text-xs font-black uppercase tracking-wider ${
@@ -141,11 +137,9 @@ export default function HomePage() {
             </div>
 
             <div className="mt-20 text-center">
-              <a href="/weddings">
-                <CoreButton className="bg-black hover:bg-gray-900 text-white px-12 py-4 text-lg">
-                  View Full Portfolio
-                </CoreButton>
-              </a>
+              <CoreButton className="bg-black hover:bg-gray-900 text-white px-12 py-4 text-lg">
+                View Full Portfolio
+              </CoreButton>
             </div>
           </div>
         </section>
@@ -175,7 +169,6 @@ export default function HomePage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    unoptimized
                   />
                 </div>
                 <h3 className="text-4xl font-black text-wedding-charcoal mb-4">
@@ -190,11 +183,9 @@ export default function HomePage() {
                   <li>✓ Drone Videography</li>
                   <li>✓ Professional Photography</li>
                 </ul>
-                <a href="/weddings">
-                  <CoreButton className="bg-wedding-gold hover:bg-yellow-400 text-black">
-                    Explore Weddings
-                  </CoreButton>
-                </a>
+                <CoreButton className="bg-wedding-gold hover:bg-yellow-400 text-black">
+                  Explore Weddings
+                </CoreButton>
               </motion.div>
 
               {/* Corporate */}
@@ -211,7 +202,6 @@ export default function HomePage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    unoptimized
                   />
                 </div>
                 <h3 className="text-4xl font-black text-corporate-blue mb-4">
@@ -226,11 +216,9 @@ export default function HomePage() {
                   <li>✓ LED & Audio Systems</li>
                   <li>✓ Brand Activations</li>
                 </ul>
-                <a href="/corporate">
-                  <CoreButton className="bg-corporate-blue hover:bg-blue-700 text-white">
-                    Explore Corporate
-                  </CoreButton>
-                </a>
+                <CoreButton className="bg-corporate-blue hover:bg-blue-700 text-white">
+                  Explore Corporate
+                </CoreButton>
               </motion.div>
             </div>
           </div>

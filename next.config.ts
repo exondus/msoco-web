@@ -1,10 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    // @ts-expect-error — reactCompiler is valid in Next.js 16 but not yet in type definitions
-    reactCompiler: true,
-  },
+  reactCompiler: true,
   images: {
     remotePatterns: [
       {
@@ -16,6 +13,8 @@ const nextConfig: NextConfig = {
         hostname: 'www.msocorockers.co.za',
       },
     ],
+    // Disable optimization for remote WordPress images to avoid timeout issues
+    unoptimized: process.env.NODE_ENV === 'development',
   },
 };
 

@@ -35,6 +35,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${montserrat.variable} ${playfair.variable} ${inter.variable} h-full antialiased scroll-smooth`}
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-full font-montserrat relative">
         <ApolloProvider>

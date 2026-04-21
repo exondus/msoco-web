@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 
 const CEREMONIES = [
   { name: 'Umembeso', desc: 'Capturing the exchange of gifts and the union of families.' },
-  { name: 'Umabo', desc: 'The sacred transition, documented with cultural reverence.' },
-  { name: 'Lobola', desc: 'Preserving the foundation of your journey together.' },
-  { name: 'White Weddings', desc: 'Timeless elegance for the modern KwaZulu-Natal bride.' }
+  { name: 'Traditional Wedding', desc: 'Sacred ceremonies documented with cultural reverence and artistry.' },
+  { name: 'White Weddings', desc: 'Timeless elegance for the modern KwaZulu-Natal bride.' },
+  { name: 'Hybrid Ceremonies', desc: 'Honoring traditions while embracing modern expressions of love.' }
 ];
 
 export default function KZNAuthority() {

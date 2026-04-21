@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import WeddingGallery from '@/components/weddings/WeddingGallery';
+import WeddingGalleryLive from '@/components/weddings/WeddingGalleryLive';
 import WeddingLegacy from '@/components/weddings/WeddingLegacy';
 import TheVisionary from '@/components/weddings/TheVisionary';
 import KZNAuthority from '@/components/weddings/KZNAuthority';
@@ -10,9 +10,30 @@ import ScarcityBar from '@/components/weddings/ScarcityBar';
 import PricingAnchor from '@/components/weddings/PricingAnchor';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
+import CompanyStats from '@/components/shared/CompanyStats';
+import WeddingPackages from '@/components/weddings/WeddingPackages';
+import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
+
+const WEDDING_STATS = [
+  { value: '500+', label: 'Ceremonies Captured' },
+  { value: '10 Yrs', label: 'In KwaZulu-Natal' },
+  { value: '170+', label: 'Ceremonial Productions' },
+  { value: '∞', label: 'Legacies Preserved' },
+];
+
+const WEDDING_SERVICES = [
+  { id: 'studio-photo', number: '01', title: 'Studio Photography', description: 'Professional engagement shoots, bridal portraits, and styled sessions', ctaText: 'View Packages' },
+  { id: 'studio-video', number: '02', title: 'Cinematic Videography', description: 'Highlight films, vow exchanges, and complete ceremony coverage', ctaText: 'View Packages' },
+  { id: 'live-stream', number: '03', title: 'Live Streaming', description: 'Global broadcast for family and loved ones who cannot attend', ctaText: 'View Packages' },
+  { id: 'drones', number: '04', title: 'Aerial Coverage', description: 'Drone cinematography of venue, entrance, and key moments', ctaText: 'View Packages' },
+  { id: 'sound', number: '05', title: 'Sound & Audio', description: 'Professional PA systems, microphone management, and audio mixing', ctaText: 'View Packages' },
+  { id: 'projection', number: '06', title: 'LED & Projection', description: 'Decorative displays, memory boards, and ambient lighting', ctaText: 'View Packages' },
+  { id: 'lighting', number: '07', title: 'Ambient & Stage Lighting', description: 'Venue lighting design, altar setup, and romantic ambiance', ctaText: 'View Packages' },
+  { id: 'product-photo', number: '08', title: 'Detail Photography', description: 'Rings, flowers, decor, fashion, and intimate detail captures', ctaText: 'View Packages' },
+];
 
 const STEPS = [
-  { title: 'The Indaba', desc: 'A personal meeting in your environment to understand your family story and cultural needs.' },
+  { title: 'Get in Touch', desc: 'Call +27 12 345 6789 or message us on WhatsApp to discuss your ceremony and photography needs.' },
   { title: 'The Ceremony', desc: 'Discrete, professional production handling everything from 4K film to intimate portraits.' },
   { title: 'The Legacy', desc: 'A curated cinematic masterpiece and high-fidelity gallery delivered to preserve your story.' },
 ];
@@ -24,29 +45,21 @@ export default function WeddingsPage() {
       <ScarcityBar remainingDates={4} year={2026} />
 
       {/* Navbar */}
-      <nav className="fixed w-full flex justify-between items-center px-12 py-8 z-[100] mix-blend-difference">
-        <MsocoLogo className="h-12 w-48 invert" />
-        <div className="hidden md:flex space-x-12 font-montserrat uppercase tracking-[0.3em] text-[10px] font-black text-white">
-          <a href="#vision" className="hover:text-wedding-gold transition-colors underline-offset-8">The Man</a>
-          <a href="#heritage" className="hover:text-wedding-gold transition-colors underline-offset-8">Authority</a>
-          <a href="/about" className="hover:text-wedding-gold transition-colors underline-offset-8">About</a>
-          <a href="#gallery" className="hover:text-wedding-gold transition-colors underline-offset-8">Art</a>
-          <a href="#contact" className="text-wedding-gold font-black underline underline-offset-8 decoration-2">Inquire</a>
-        </div>
-      </nav>
+      <WeddingsNavbar isHero={true} />
 
       {/* Hero */}
       <header className="relative w-full h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-wedding-charcoal">
         <div className="absolute inset-0 opacity-30">
+          {/* Hero video background */}
           <video
             autoPlay
             muted
             loop
             playsInline
             className="w-full h-full object-cover grayscale"
-            poster="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200"
+            poster="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg"
           >
-            {/* Add src once video URL available from WordPress media library */}
+            <source src="https://www.msocorockers.co.za/wp-content/uploads/2025/07/DJI_0455_1.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -81,6 +94,9 @@ export default function WeddingsPage() {
           <TheVisionary />
         </div>
 
+        {/* 1.5. Stats Section */}
+        <CompanyStats stats={WEDDING_STATS} theme="wedding" bgColor="bg-white" textColor="text-wedding-charcoal" />
+
         {/* 2. Social proof — before gallery */}
         <WeddingTestimonials />
 
@@ -90,7 +106,24 @@ export default function WeddingsPage() {
             <h2 className="font-playfair text-6xl md:text-[8rem] text-wedding-charcoal mb-6 tracking-tighter leading-none">The Art.</h2>
             <p className="font-montserrat text-[10px] uppercase tracking-[0.4em] text-wedding-gold font-black">Curation of Culture & Elegance</p>
           </div>
-          <WeddingGallery />
+          <div className="max-w-7xl mx-auto px-8">
+            <WeddingGalleryLive />
+          </div>
+          <div className="mt-16 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <a
+                href="/weddings/gallery"
+                className="inline-block font-montserrat text-[10px] font-black uppercase tracking-[0.4em] text-wedding-charcoal border border-wedding-charcoal px-12 py-4 hover:bg-wedding-charcoal hover:text-white transition-all duration-300"
+              >
+                View All Gallery Images
+              </a>
+            </motion.div>
+          </div>
         </section>
 
         {/* 4. Authority + Legacy */}
@@ -120,8 +153,11 @@ export default function WeddingsPage() {
           </div>
         </section>
 
-        {/* 6. Pricing anchor — filters leads before final CTA */}
-        <PricingAnchor startingPrice="R[X]" premiumPrice="R[Y]" />
+        {/* 6. Wedding Packages — detailed options */}
+        <WeddingPackages />
+
+        {/* 7. Pricing anchor — filters leads before final CTA */}
+        <PricingAnchor startingPrice="R12,500" premiumPrice="R22,000" />
       </main>
 
       {/* Footer */}

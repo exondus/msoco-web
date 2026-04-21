@@ -10,34 +10,40 @@ export default function WeddingLegacy() {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
         {/* Visual Composition: Overlapping Image Grid */}
         <div className="relative w-full lg:w-1/2 h-[600px]">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="absolute top-0 left-0 w-3/4 h-3/4 z-10 shadow-2xl"
+            className="absolute top-0 left-0 w-3/4 h-3/4 z-10 shadow-2xl overflow-hidden rounded-sm"
           >
-            <Image 
-              src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200" 
-              alt="Traditional Zulu Wedding" 
-              fill 
-              className="object-cover rounded-sm grayscale-[10%]" 
+            <Image
+              src="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg"
+              alt="Traditional Wedding Ceremony"
+              width={600}
+              height={600}
+              className="w-full h-full object-cover grayscale-[10%]"
+              unoptimized
+              priority
             />
           </motion.div>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             viewport={{ once: true }}
-            className="absolute bottom-0 right-0 w-3/4 h-3/4 z-20 shadow-2xl border-8 border-white"
+            className="absolute bottom-0 right-0 w-3/4 h-3/4 z-20 shadow-2xl border-8 border-white overflow-hidden rounded-sm"
           >
-            <Image 
-              src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" 
-              alt="Modern White Wedding" 
-              fill 
-              className="object-cover rounded-sm" 
+            <Image
+              src="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg"
+              alt="Wedding Celebration"
+              width={600}
+              height={600}
+              className="w-full h-full object-cover"
+              unoptimized
+              priority
             />
           </motion.div>
-          
+
           {/* Decorative Zulu Pattern Accent */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-wedding-gold/20 -z-0 rotate-6" />
         </div>
@@ -59,7 +65,7 @@ export default function WeddingLegacy() {
           </motion.div>
 
           <p className="font-playfair text-xl text-wedding-charcoal/60 leading-relaxed italic">
-            Most photographers see a wedding. We see a ceremony. We understand the deep significance of every Zulu rite, from the sacred rhythms of Umembeso to the intricate details of Umabo.
+            Most photographers see a wedding. We see a ceremony. We understand the deep significance of cultural traditions, whether traditional Zulu ceremonies or modern celebrations.
           </p>
 
           <p className="font-montserrat text-sm text-wedding-charcoal/80 leading-loose max-w-xl font-medium">
@@ -67,7 +73,7 @@ export default function WeddingLegacy() {
           </p>
 
           <div className="pt-8">
-            <CoreButton variant="outline">Learn About Our Zulu Expertise</CoreButton>
+            <CoreButton variant="outline">Learn About Our Expertise</CoreButton>
           </div>
         </div>
       </div>
