@@ -4,72 +4,186 @@ import { motion } from 'framer-motion';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
 
-const PACKAGES = [
+const WEDDING_PACKAGES = [
   {
-    name: 'The Foundation',
-    price: 'R12,500',
-    duration: '8 hours coverage',
-    description: 'Perfect for intimate ceremonies and smaller celebrations',
+    name: 'The Essentials',
+    price: 'R8,500',
+    duration: '6 hours coverage',
+    description: 'Intimate ceremonies with professional documentation',
     features: [
-      '2 videographers',
-      '4K cinema-grade video',
-      '200+ edited photos',
-      'Same-day highlight reel (3-5 minutes)',
+      '1 videographer + photographer',
+      '4K video coverage',
+      '150+ edited photos',
+      'Same-day highlight reel (2-3 minutes)',
       'Digital gallery access (lifetime)',
       'Standard color grading',
       'Digital delivery only',
     ],
-    notIncluded: [
-      'Drone coverage',
-      'Live streaming',
-      'Album design',
-      'USB delivery',
+  },
+  {
+    name: 'The Foundation',
+    price: 'R12,500',
+    duration: '8 hours coverage',
+    description: 'Perfect for small to medium ceremonies and celebrations',
+    features: [
+      '2 videographers + photographer',
+      '4K cinema-grade video',
+      '250+ edited photos',
+      'Highlight reel (3-5 minutes)',
+      'Digital gallery access (lifetime)',
+      'Professional color grading',
+      'Digital + USB delivery',
     ],
   },
   {
     name: 'The Signature',
-    price: 'R22,000',
-    duration: '12 hours coverage',
-    description: 'Our most popular package for comprehensive ceremony coverage',
+    price: 'R18,000',
+    duration: '10 hours coverage',
+    description: 'Comprehensive two-part ceremony coverage (Umembeso + Wedding)',
     highlighted: true,
     features: [
-      '3 videographers + drone operator',
-      '4K multi-angle camera coverage',
-      '400+ curated and edited photos',
-      'Cinematic highlight reel (8-10 minutes)',
-      'Aerial drone cinematography',
-      'Premium audio mixing & editing',
-      'Custom color grading',
+      '2 videographers + 2 photographers',
+      '4K multi-angle video',
+      '350+ curated photos',
+      'Cinematic highlight reel (5-8 minutes)',
+      'Aerial drone footage',
+      'Premium audio mixing',
+      'Professional color grading',
+      'Lifetime digital access',
       'Digital + USB delivery',
-      'Digital gallery access (lifetime)',
-    ],
-    notIncluded: [
-      'Live streaming',
-      'Professional album design',
-      'Multi-day editing',
     ],
   },
   {
-    name: 'The Legacy',
-    price: 'Custom Pricing',
-    duration: 'Full-day + extended post-production',
-    description: 'Ultimate production for the most important celebration',
+    name: 'The Premium',
+    price: 'R22,000',
+    duration: '12 hours coverage',
+    description: 'Ultimate comprehensive production for multi-day celebrations',
     features: [
-      'Full production team (3-4 videographers)',
-      '4K + cinema camera suite',
-      'Unlimited total hours of coverage',
-      'Documentary-style feature film (20-30 minutes)',
+      '3 videographers + 2 photographers',
+      '4K cinema camera suite',
+      '400+ curated photos',
+      'Extended cinematic film (8-10 minutes)',
       'Drone cinematography included',
-      'Multi-day professional editing',
-      'Color grading & sound design',
-      'Professional album design & printing',
-      'Live streaming option available',
+      'Premium audio mixing & editing',
+      'Custom color grading & sound design',
+      'Professional album design option',
+      'Behind-the-scenes content',
       'Digital + USB delivery',
       'Lifetime digital gallery access',
-      'Behind-the-scenes content',
     ],
-    notIncluded: [],
   },
+  {
+    name: 'The Presidential',
+    price: 'R28,000',
+    duration: '16 hours unlimited',
+    description: 'Full production suite for grand multi-venue celebrations',
+    features: [
+      '4 videographers + 3 photographers',
+      '4K + cinema-grade camera suite',
+      '500+ professional photos',
+      'Documentary-style film (12-15 minutes)',
+      'Multiple drone operators',
+      'Live streaming to family worldwide',
+      'Professional sound & lighting team',
+      'Professional album design & printing',
+      'Multi-day professional editing',
+      'Behind-the-scenes documentary',
+      'Digital + USB + physical delivery',
+      'Lifetime digital gallery access',
+    ],
+  },
+];
+
+const UNCOMMON_PACKAGES = [
+  {
+    name: 'Umembeso Only',
+    price: 'R9,000',
+    duration: '4-6 hours',
+    description: 'Dedicated coverage of traditional Zulu ceremony',
+    features: [
+      '2 videographers',
+      '1 dedicated photographer',
+      '200+ photos',
+      'Ceremony-focused highlight reel',
+      'Digital delivery + USB',
+      'Lifetime access',
+    ],
+  },
+  {
+    name: 'White Wedding Only',
+    price: 'R11,000',
+    duration: '6-8 hours',
+    description: 'Complete coverage of modern white wedding',
+    features: [
+      '2 videographers',
+      '1 dedicated photographer',
+      '250+ curated photos',
+      'Highlight reel (4-6 minutes)',
+      'Drone footage option',
+      'Digital + USB delivery',
+    ],
+  },
+  {
+    name: 'Engagement Sessions',
+    price: 'R3,500',
+    duration: '3-4 hours',
+    description: 'Styled pre-wedding photography and videography',
+    features: [
+      '1 videographer + 1 photographer',
+      '4K video reel (2-3 minutes)',
+      '100+ edited photos',
+      'Location scouting included',
+      'Styled shoot direction',
+      'Digital gallery',
+    ],
+  },
+  {
+    name: 'Reception Only',
+    price: 'R6,500',
+    duration: '4-6 hours',
+    description: 'Dedicated coverage of reception and celebration',
+    features: [
+      '1 videographer + photographer',
+      'Reception highlight film',
+      '150+ photos',
+      'Dancing & entertainment focus',
+      'First dance cinematic capture',
+      'Digital delivery',
+    ],
+  },
+  {
+    name: 'Highlight Package',
+    price: 'R5,500',
+    duration: 'Full coverage',
+    description: 'Focused on key moments with fast turnaround',
+    features: [
+      'Single videographer',
+      'Single photographer',
+      'Same-day highlight reel',
+      '100+ best photos',
+      'Edited within 24 hours',
+      'Digital + social media clips',
+    ],
+  },
+  {
+    name: 'Multi-Day Pass',
+    price: 'Contact for pricing',
+    duration: '2-3 days',
+    description: 'Extended coverage across multiple celebration days',
+    features: [
+      'Full production team',
+      'Each day professionally covered',
+      'Combined narrative film',
+      'Extended photo curation',
+      'Day-by-day highlights',
+      'Premium delivery package',
+    ],
+  },
+];
+
+const PACKAGES = [
+  ...WEDDING_PACKAGES,
+  // Custom package handled separately below
 ];
 
 const ADDONS = [
@@ -134,30 +248,35 @@ export default function WeddingsPricingPage() {
                 Wedding Pricing
               </span>
               <h1 className="text-6xl md:text-[8rem] font-playfair font-light uppercase tracking-tighter leading-[0.75] mb-8 text-wedding-charcoal">
-                Transparent <br />
-                <span className="italic">Pricing.</span>
+                Comprehensive <br />
+                <span className="italic">Packages.</span>
               </h1>
               <p className="text-lg md:text-2xl text-wedding-charcoal/60 max-w-3xl font-playfair italic font-light">
-                Three comprehensive packages designed for different ceremony scales. All include professional production, comprehensive editing, and lifetime digital access.
+                From intimate ceremonies to grand celebrations. Every package includes professional production, comprehensive editing, and lifetime digital access.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Packages */}
-        <section className="py-40 px-8">
+        {/* Wedding & Ceremonial Packages */}
+        <section className="py-20 px-8 bg-white">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {PACKAGES.map((pkg, idx) => (
+            <div className="text-center mb-16">
+              <span className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black">Main Packages</span>
+              <h2 className="font-playfair text-6xl md:text-[8rem] text-wedding-charcoal tracking-tighter mb-6">Wedding & Ceremonial</h2>
+              <p className="font-montserrat text-sm text-wedding-charcoal/60 max-w-2xl mx-auto">Professional coverage for traditional, modern, or hybrid ceremonies</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+              {WEDDING_PACKAGES.map((pkg, idx) => (
                 <motion.div
                   key={pkg.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
+                  transition={{ delay: idx * 0.08 }}
                   viewport={{ once: true }}
-                  className={`relative rounded-lg p-8 transition-all duration-500 ${
+                  className={`relative rounded-lg p-6 transition-all duration-500 ${
                     pkg.highlighted
-                      ? 'border-2 border-wedding-gold bg-wedding-gold/5 md:scale-105 shadow-2xl'
+                      ? 'border-2 border-wedding-gold bg-wedding-gold/5 shadow-2xl lg:col-span-2 lg:row-span-2 flex flex-col justify-between'
                       : 'border-2 border-gray-200 hover:border-wedding-gold/50'
                   }`}
                 >
@@ -169,53 +288,32 @@ export default function WeddingsPricingPage() {
                     </div>
                   )}
 
-                  <div className="mb-6">
-                    <h3 className="font-playfair text-2xl text-wedding-charcoal mb-2">
+                  <div className={pkg.highlighted ? 'mb-0' : 'mb-6'}>
+                    <h3 className={`font-playfair text-wedding-charcoal mb-2 ${pkg.highlighted ? 'text-3xl' : 'text-xl'}`}>
                       {pkg.name}
                     </h3>
-                    <p className="font-montserrat text-4xl text-wedding-gold font-black mb-2">
+                    <p className={`font-montserrat font-black text-wedding-gold mb-2 ${pkg.highlighted ? 'text-5xl' : 'text-3xl'}`}>
                       {pkg.price}
                     </p>
-                    <p className="font-montserrat text-[10px] uppercase tracking-[0.3em] text-wedding-charcoal/60 mb-4">
+                    <p className="font-montserrat text-[9px] uppercase tracking-[0.3em] text-wedding-charcoal/60 mb-3">
                       {pkg.duration}
                     </p>
-                    <p className="font-montserrat text-sm text-wedding-charcoal/70 italic">
+                    <p className={`font-montserrat text-wedding-charcoal/70 italic ${pkg.highlighted ? 'text-base' : 'text-xs'}`}>
                       {pkg.description}
                     </p>
                   </div>
 
-                  <div className="mb-8 border-t border-wedding-gold/20 pt-6">
-                    <p className="font-montserrat text-[9px] uppercase tracking-[0.3em] text-wedding-gold font-black mb-4">
-                      Included
-                    </p>
-                    <ul className="space-y-3 mb-6">
+                  <div className={pkg.highlighted ? 'mb-8 border-t border-wedding-gold/20 pt-6 mt-8' : 'mb-6'}>
+                    <ul className={`space-y-2 ${pkg.highlighted ? 'mb-8' : 'mb-4'}`}>
                       {pkg.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-3">
-                          <span className="text-wedding-gold mt-0.5 text-lg">✓</span>
-                          <span className="font-montserrat text-sm text-wedding-charcoal/70">
+                        <li key={feature} className="flex items-start gap-2">
+                          <span className="text-wedding-gold mt-0.5">✓</span>
+                          <span className={`font-montserrat text-wedding-charcoal/70 ${pkg.highlighted ? 'text-sm' : 'text-xs'}`}>
                             {feature}
                           </span>
                         </li>
                       ))}
                     </ul>
-
-                    {pkg.notIncluded.length > 0 && (
-                      <>
-                        <p className="font-montserrat text-[9px] uppercase tracking-[0.3em] text-wedding-charcoal/40 font-black mb-4">
-                          Not Included
-                        </p>
-                        <ul className="space-y-2">
-                          {pkg.notIncluded.map((item) => (
-                            <li key={item} className="flex items-start gap-3">
-                              <span className="text-gray-300 mt-0.5">−</span>
-                              <span className="font-montserrat text-sm text-wedding-charcoal/40">
-                                {item}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </>
-                    )}
                   </div>
 
                   <CoreButton
@@ -225,11 +323,90 @@ export default function WeddingsPricingPage() {
                         : 'border-2 border-wedding-gold text-wedding-gold hover:bg-wedding-gold/10'
                     }`}
                   >
-                    {pkg.price === 'Custom Pricing' ? 'Request Custom Quote' : 'Book Now'}
+                    Book Now
                   </CoreButton>
                 </motion.div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Uncommon Packages */}
+        <section className="py-20 px-8 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black">Specialized Offerings</span>
+              <h2 className="font-playfair text-6xl md:text-[8rem] text-wedding-charcoal tracking-tighter">Uncommon Packages</h2>
+              <p className="font-montserrat text-sm text-wedding-charcoal/60 max-w-2xl mx-auto mt-6">Tailored solutions for specific moments and unique celebration needs</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {UNCOMMON_PACKAGES.map((pkg, idx) => (
+                <motion.div
+                  key={pkg.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.08 }}
+                  viewport={{ once: true }}
+                  className="border border-gray-300 rounded-lg p-6 bg-white hover:border-wedding-gold/50 hover:shadow-lg transition-all duration-300"
+                >
+                  <h3 className="font-playfair text-xl text-wedding-charcoal mb-2">
+                    {pkg.name}
+                  </h3>
+                  <p className="font-montserrat text-3xl text-wedding-gold font-black mb-2">
+                    {pkg.price}
+                  </p>
+                  <p className="font-montserrat text-[9px] uppercase tracking-[0.3em] text-wedding-charcoal/60 mb-4">
+                    {pkg.duration}
+                  </p>
+                  <p className="font-montserrat text-sm text-wedding-charcoal/70 italic mb-6">
+                    {pkg.description}
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    {pkg.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2">
+                        <span className="text-wedding-gold mt-0.5 text-sm">✓</span>
+                        <span className="font-montserrat text-xs text-wedding-charcoal/70">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <CoreButton
+                    variant="outline"
+                    className="w-full border-2 border-wedding-gold text-wedding-gold hover:bg-wedding-gold/10"
+                  >
+                    Inquire
+                  </CoreButton>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Custom Packages Section */}
+        <section className="py-20 px-8 bg-wedding-charcoal">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black mb-6 block">Bespoke Solutions</span>
+              <h2 className="font-playfair text-5xl md:text-7xl text-white mb-8 tracking-tighter leading-tight">
+                Custom <span className="italic font-light">Packages</span>
+              </h2>
+              <p className="font-montserrat text-white/70 text-lg mb-8 max-w-2xl mx-auto">
+                Your celebration is unique. We craft custom packages that combine elements from our offerings and beyond—tailored specifically to your vision, budget, and ceremony requirements.
+              </p>
+              <div className="flex flex-col md:flex-row gap-6 justify-center">
+                <CoreButton className="bg-wedding-gold text-black hover:bg-wedding-gold/90">
+                  Request Custom Quote
+                </CoreButton>
+                <CoreButton variant="outline" className="border-white text-white hover:bg-white/10">
+                  Discuss Your Vision
+                </CoreButton>
+              </div>
+            </motion.div>
           </div>
         </section>
 
