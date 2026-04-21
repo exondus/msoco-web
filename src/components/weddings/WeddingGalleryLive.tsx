@@ -16,13 +16,11 @@ interface GalleryImage {
   height?: number;
 }
 
-// Sample of images from WordPress media library
-// This is intentionally hardcoded from the inventory for now
-// Later, this can be replaced with dynamic GraphQL queries
+// Wedding/ceremonial images
 const WEDDING_IMAGES: GalleryImage[] = [
   {
     id: '1',
-    title: 'DSC02488',
+    title: 'Ceremony Moment',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg',
     altText: 'Wedding ceremony moment',
     width: 917,
@@ -30,15 +28,15 @@ const WEDDING_IMAGES: GalleryImage[] = [
   },
   {
     id: '2',
-    title: 'DSC02474',
+    title: 'Bride & Groom',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg',
-    altText: 'Bride and groom',
+    altText: 'Bride and groom portrait',
     width: 917,
     height: 1500,
   },
   {
     id: '3',
-    title: 'DSC02469',
+    title: 'Wedding Details',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg',
     altText: 'Wedding detail shot',
     width: 917,
@@ -46,31 +44,31 @@ const WEDDING_IMAGES: GalleryImage[] = [
   },
   {
     id: '4',
-    title: 'DSC02464',
+    title: 'Ceremony Proceedings',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02464.jpg',
-    altText: 'Ceremony proceedings',
+    altText: 'Ceremony in progress',
     width: 917,
     height: 1500,
   },
   {
     id: '5',
-    title: 'DSC02438',
+    title: 'Guest Moments',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02438.jpg',
-    altText: 'Guest moments',
+    altText: 'Guests enjoying ceremony',
     width: 917,
     height: 1500,
   },
   {
     id: '6',
-    title: 'DSC02413',
+    title: 'Reception Details',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02413.jpg',
-    altText: 'Reception details',
+    altText: 'Reception setup',
     width: 917,
     height: 1500,
   },
   {
     id: '7',
-    title: 'DSC02373',
+    title: 'Celebration',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02373.jpg',
     altText: 'Celebration moment',
     width: 917,
@@ -78,7 +76,7 @@ const WEDDING_IMAGES: GalleryImage[] = [
   },
   {
     id: '8',
-    title: 'DSC02369',
+    title: 'Intimate Moment',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02369.jpg',
     altText: 'Intimate moment',
     width: 917,
@@ -86,7 +84,7 @@ const WEDDING_IMAGES: GalleryImage[] = [
   },
   {
     id: '9',
-    title: 'DSC02356',
+    title: 'Wedding Portrait',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02356.jpg',
     altText: 'Wedding portrait',
     width: 917,
@@ -94,15 +92,15 @@ const WEDDING_IMAGES: GalleryImage[] = [
   },
   {
     id: '10',
-    title: 'DSC02351',
+    title: 'Guest Interactions',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02351.jpg',
-    altText: 'Guest interactions',
+    altText: 'Guests interacting',
     width: 917,
     height: 1500,
   },
   {
     id: '11',
-    title: 'DSC02340',
+    title: 'Bride Details',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02340.jpg',
     altText: 'Bride detail shot',
     width: 917,
@@ -110,7 +108,7 @@ const WEDDING_IMAGES: GalleryImage[] = [
   },
   {
     id: '12',
-    title: 'DSC02323',
+    title: 'Ceremony Highlight',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02323.jpg',
     altText: 'Ceremony highlight',
     width: 917,

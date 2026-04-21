@@ -77,23 +77,19 @@ export default function CorporatePage() {
 
       <main>
         {/* Hero */}
-        <section className="relative h-screen flex items-center px-8 md:px-16 overflow-hidden bg-white">
-          <div
-            className="absolute inset-0 opacity-[0.03] pointer-events-none"
-            style={{ backgroundImage: 'linear-gradient(#0052FF 1px, transparent 1px), linear-gradient(90deg, #0052FF 1px, transparent 1px)', backgroundSize: '60px 60px' }}
-          />
+        <section className="relative h-screen flex items-center px-8 md:px-16 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
           <div className="max-w-7xl relative z-10">
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <span className="inline-block px-4 py-1.5 border-2 border-corporate-blue text-corporate-blue text-[10px] font-black uppercase tracking-[0.5em] mb-10">
+              <span className="inline-block px-4 py-1.5 border-2 border-gray-400 text-gray-300 text-[10px] font-black uppercase tracking-[0.5em] mb-10">
                 The Technical Backbone
               </span>
-              <h1 className="text-8xl md:text-[13rem] font-black uppercase tracking-tighter leading-[0.75] mb-8 text-black">
+              <h1 className="text-8xl md:text-[13rem] font-black uppercase tracking-tighter leading-[0.75] mb-8 text-white">
                 Engineered <br />
-                <span className="text-corporate-blue italic">Impact.</span>
+                <span className="text-gray-300 italic">Excellence.</span>
               </h1>
             </motion.div>
 
@@ -104,13 +100,15 @@ export default function CorporatePage() {
               className="flex flex-col md:flex-row md:items-end justify-between gap-12"
             >
               <div className="flex flex-col gap-8 max-w-2xl">
-                <p className="text-2xl md:text-3xl text-black/40 font-light leading-tight">
+                <p className="text-2xl md:text-3xl text-white/60 font-light leading-tight">
                   One Call. One Partner. Zero Technical Anxiety.
                 </p>
                 <ZakesTeaser persona="corporate" />
               </div>
               <div className="flex gap-4">
-                <CoreButton onClick={() => { window.location.hash = '#solutions'; }}>View Services</CoreButton>
+                <a href="/corporate/services" className="inline-block bg-gray-300 text-black hover:bg-white font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
+                  View Services
+                </a>
               </div>
             </motion.div>
           </div>

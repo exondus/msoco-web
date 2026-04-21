@@ -17,14 +17,13 @@ interface GalleryImage {
   height?: number;
 }
 
-// Sample of corporate/professional images from WordPress media library
+// Corporate/professional event images
 const CORPORATE_IMAGES: GalleryImage[] = [
   {
     id: '1',
     title: 'Corporate Event Setup',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05685.jpg',
     altText: 'Professional staging and lighting',
-    category: 'Technical Staging',
     width: 917,
     height: 1500,
   },
@@ -33,7 +32,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Broadcast Production',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05438.jpg',
     altText: 'Multi-camera broadcast setup',
-    category: 'Broadcast Media',
     width: 917,
     height: 1500,
   },
@@ -42,7 +40,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'LED Video Wall',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05410.jpg',
     altText: 'LED display technology',
-    category: 'Technical Staging',
     width: 917,
     height: 1500,
   },
@@ -51,7 +48,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Executive Headshots',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05378.jpg',
     altText: 'Professional corporate portraits',
-    category: 'Corporate Identity',
     width: 917,
     height: 1500,
   },
@@ -60,7 +56,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Audio System Configuration',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05321.jpg',
     altText: 'Line array audio setup',
-    category: 'Technical Staging',
     width: 917,
     height: 1500,
   },
@@ -69,7 +64,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Brand Activation',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05290.jpg',
     altText: 'Interactive brand experience',
-    category: 'Brand Activations',
     width: 917,
     height: 1500,
   },
@@ -78,7 +72,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Live Event Coverage',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05272.jpg',
     altText: 'Event documentation',
-    category: 'Broadcast Media',
     width: 917,
     height: 1500,
   },
@@ -87,7 +80,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Lighting Rig Configuration',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC_0451.jpg',
     altText: 'Intelligent lighting design',
-    category: 'Technical Staging',
     width: 917,
     height: 1500,
   },
@@ -96,7 +88,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Product Photography',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC_0446.jpg',
     altText: 'Professional product showcase',
-    category: 'Corporate Identity',
     width: 917,
     height: 1500,
   },
@@ -105,7 +96,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Conference Setup',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC_0428.jpg',
     altText: 'Professional conference space',
-    category: 'Technical Staging',
     width: 917,
     height: 1500,
   },
@@ -114,7 +104,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Stage Production',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC_0423.jpg',
     altText: 'Full stage setup and design',
-    category: 'Technical Staging',
     width: 917,
     height: 1500,
   },
@@ -123,7 +112,6 @@ const CORPORATE_IMAGES: GalleryImage[] = [
     title: 'Photo Booth Integration',
     sourceUrl: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/4.jpg',
     altText: 'Interactive photo booth experience',
-    category: 'Brand Activations',
     width: 917,
     height: 1500,
   },
@@ -165,19 +153,6 @@ export default function CorporateGalleryLive() {
             </div>
           </motion.article>
         ))}
-      </div>
-
-      {/* Info Card */}
-      <div className="mt-16 p-8 bg-white rounded-lg border-2 border-corporate-blue">
-        <h3 className="font-bold text-xl text-corporate-blue mb-4">
-          📸 Portfolio Status
-        </h3>
-        <ul className="space-y-2 text-sm text-black/60 font-inter">
-          <li>✓ Displaying 12 professional corporate images from WordPress</li>
-          <li>✓ Total available: 567 images in media library</li>
-          <li>✓ Categories: Technical Staging, Broadcast, Brand Activations, Corporate Identity</li>
-          <li>✓ All optimized with Next.js Image component</li>
-        </ul>
       </div>
     </div>
   );
