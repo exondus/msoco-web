@@ -53,7 +53,7 @@ export default function WeddingsServicesPage() {
         </section>
 
         {/* Services Grid */}
-        <ServicesGrid services={WEDDING_SERVICES} theme="wedding" bgColor="bg-white" columns={4} />
+        <ServicesGrid services={WEDDING_SERVICES} theme="wedding" bgColor="bg-white" columns={4} ctaLink="/weddings/pricing" />
 
         {/* CTA Section */}
         <section className="py-40 px-8 bg-wedding-charcoal">
@@ -74,12 +74,9 @@ export default function WeddingsServicesPage() {
                 Every package is customizable to match your vision. Schedule a consultation with Zakes to discuss your ceremony.
               </p>
               <div className="flex flex-col md:flex-row gap-6 justify-center">
-                <CoreButton className="bg-wedding-gold text-black hover:bg-wedding-gold/90">
-                  Book a Consultation
-                </CoreButton>
-                <CoreButton variant="outline" className="border-white text-white hover:bg-white/10">
-                  View Pricing
-                </CoreButton>
+                <a href="/weddings/pricing" className="inline-block bg-wedding-gold text-black hover:bg-wedding-gold/90 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
+                  View Packages & Pricing
+                </a>
               </div>
             </motion.div>
           </div>

@@ -17,13 +17,15 @@ interface ServicesGridProps {
   theme?: 'wedding' | 'corporate';
   bgColor?: string;
   columns?: 2 | 4;
+  ctaLink?: string;
 }
 
 export default function ServicesGrid({
   services,
   theme = 'wedding',
   bgColor = 'bg-white',
-  columns = 4
+  columns = 4,
+  ctaLink = '#'
 }: ServicesGridProps) {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
@@ -90,12 +92,13 @@ export default function ServicesGrid({
 
                 {/* CTA Button */}
                 {service.ctaText && (
-                  <motion.button
+                  <motion.a
+                    href={ctaLink}
                     whileHover={{ x: 4 }}
-                    className={`${buttonClass} font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 rounded transition-all duration-300 w-full`}
+                    className={`${buttonClass} font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 rounded transition-all duration-300 w-full block text-center`}
                   >
                     {service.ctaText} →
-                  </motion.button>
+                  </motion.a>
                 )}
 
                 {/* Hover accent line - using gradient border */}

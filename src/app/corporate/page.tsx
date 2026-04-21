@@ -120,7 +120,7 @@ export default function CorporatePage() {
         <ClientTestimonials />
 
         {/* Stats Section */}
-        <CompanyStats stats={CORPORATE_STATS} theme="corporate" bgColor="bg-black" textColor="text-white" />
+        <CompanyStats stats={CORPORATE_STATS} theme="corporate" bgColor="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" textColor="text-white" />
 
         {/* Service Matrix */}
         <section id="solutions" className="py-40 px-8 md:px-16 bg-white">
@@ -183,27 +183,29 @@ export default function CorporatePage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-24">
           <div className="max-w-xl">
             <MsocoLogo className="h-12 w-48 mb-12" />
-            <h4 className="text-5xl font-black uppercase tracking-tighter mb-8 leading-none text-black">Ready to <br /><span className="text-corporate-blue">Deploy?</span></h4>
+            <h4 className="text-5xl font-black uppercase tracking-tighter mb-8 leading-none text-black">Elevate Your <br /><span className="text-corporate-blue">Event</span></h4>
             <p className="text-black/40 text-xl font-light mb-4 font-inter">
-              Partner with Durban&apos;s leading technical production house for your 2026 events.
+              Partner with Durban&apos;s leading technical production house for your corporate and events needs.
             </p>
             <div className="mb-12">
               <ZakesTeaser persona="corporate" />
             </div>
             <div className="flex gap-4">
-              <CoreButton>Initialize Quote</CoreButton>
-              <CoreButton variant="outline" className="border-gray-200 text-black/60 font-inter">Technical Catalog</CoreButton>
+              <a href="/corporate/pricing" className="inline-block bg-corporate-blue text-white hover:bg-corporate-blue/90 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
+                View Packages
+              </a>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-16 text-[10px] font-black uppercase tracking-[0.4em] text-black/20">
             <div className="space-y-6">
-              <p className="text-black/40">Division</p>
-              <p className="hover:text-corporate-blue cursor-pointer transition-colors">Weddings</p>
-              <p className="text-corporate-blue">Corporate</p>
+              <p className="text-black/40">Services</p>
+              <a href="/corporate/services" className="text-black/60 hover:text-corporate-blue transition-colors block">All Services</a>
+              <a href="/corporate/pricing" className="text-corporate-blue block hover:text-corporate-blue/80 transition-colors">Pricing</a>
             </div>
             <div className="space-y-6">
-              <p className="text-black/40">Office</p>
-              <p>Durban, KZN</p>
+              <p className="text-black/40">Contact</p>
+              <p>+27 12 345 6789</p>
+              <p>info@msocorockers.co.za</p>
             </div>
           </div>
         </div>

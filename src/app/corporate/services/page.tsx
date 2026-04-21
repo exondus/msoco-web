@@ -53,10 +53,10 @@ export default function CorporateServicesPage() {
         </section>
 
         {/* Services Grid */}
-        <ServicesGrid services={CORPORATE_SERVICES_GRID} theme="corporate" bgColor="bg-white" columns={4} />
+        <ServicesGrid services={CORPORATE_SERVICES_GRID} theme="corporate" bgColor="bg-white" columns={4} ctaLink="/corporate/pricing" />
 
         {/* CTA Section */}
-        <section className="py-40 px-8 bg-black">
+        <section className="py-40 px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -65,21 +65,18 @@ export default function CorporateServicesPage() {
               transition={{ duration: 0.8 }}
             >
               <p className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-corporate-blue font-black mb-6">
-                Ready to Deploy
+                Secure Your Date
               </p>
               <h2 className="font-black text-5xl md:text-7xl text-white mb-8 tracking-tighter leading-tight uppercase">
-                One Partner. <span className="text-corporate-blue italic">Zero Technical Anxiety.</span>
+                Elevate Your <span className="text-corporate-blue italic">Event</span>
               </h2>
               <p className="font-inter text-white/70 text-lg mb-12 max-w-xl mx-auto">
-                Discuss your event requirements with our technical team. We&apos;ll design a custom solution that fits your vision and budget.
+                Our technical team designs custom solutions that amplify your message and deliver measurable impact.
               </p>
               <div className="flex flex-col md:flex-row gap-6 justify-center">
-                <CoreButton className="bg-corporate-blue text-white hover:bg-corporate-blue/90">
-                  Request a Quote
-                </CoreButton>
-                <CoreButton variant="outline" className="border-white text-white hover:bg-white/10">
-                  View Technical Specs
-                </CoreButton>
+                <a href="/corporate/pricing" className="inline-block bg-corporate-blue text-white hover:bg-corporate-blue/90 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
+                  View Packages
+                </a>
               </div>
             </motion.div>
           </div>
@@ -100,7 +97,7 @@ export default function CorporateServicesPage() {
               <div className="space-y-4">
                 <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-corporate-blue">Navigation</p>
                 <a href="/corporate" className="block font-inter text-black/70 hover:text-corporate-blue transition-colors">Corporate Home</a>
-                <a href="/gateway" className="block font-inter text-black/70 hover:text-corporate-blue transition-colors">Weddings</a>
+                <a href="/corporate/pricing" className="block font-inter text-black/70 hover:text-corporate-blue transition-colors">Pricing</a>
               </div>
               <div className="space-y-4">
                 <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-corporate-blue">Contact</p>
