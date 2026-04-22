@@ -67,7 +67,7 @@ export default function WeddingComparisonTable({ tiers }: WeddingComparisonTable
                 </div>
 
                 <CoreButton 
-                  variant={tier.recommended ? 'default' : 'outline'}
+                  variant={tier.recommended ? 'primary' : 'outline'}
                   className={`w-full py-4 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] ${
                     tier.recommended 
                       ? 'bg-wedding-gold text-white hover:bg-wedding-gold/90' 
