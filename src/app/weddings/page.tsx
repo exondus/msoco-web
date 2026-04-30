@@ -49,8 +49,19 @@ export default function WeddingsPage() {
 
       {/* Hero */}
       <header className="relative w-full h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-wedding-charcoal">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/gateway-background.jpg)' }} />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 opacity-30">
+          {/* Hero video background */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover grayscale"
+            poster="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05685.jpg"
+          >
+            <source src="https://www.msocorockers.co.za/wp-content/uploads/2025/07/DJI_0455_1.mp4" type="video/mp4" />
+          </video>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -87,7 +98,10 @@ export default function WeddingsPage() {
         {/* 1.5. Stats Section */}
         <CompanyStats stats={WEDDING_STATS} theme="wedding" bgColor="bg-wedding-bg" textColor="text-wedding-charcoal" />
 
-        {/* 2. Social proof — before gallery */}
+        {/* 2. Wedding Packages — pricing options (moved higher per Zakes request) */}
+        <WeddingPackages />
+
+        {/* 3. Social proof — after pricing */}
         <WeddingTestimonials />
 
         {/* 3. Gallery — real images from WP */}
@@ -143,10 +157,7 @@ export default function WeddingsPage() {
           </div>
         </section>
 
-        {/* 6. Wedding Packages — detailed options */}
-        <WeddingPackages />
-
-        {/* 7. Pricing anchor — filters leads before final CTA */}
+        {/* 6. Pricing anchor — filters leads before final CTA */}
         <PricingAnchor startingPrice="R12,500" premiumPrice="R28,000" />
       </main>
 

@@ -282,7 +282,7 @@ export default function WeddingsPricingPage() {
           </div>
         </div>
       </footer>
-      </div>
+    </div>
     </DiscountProvider>
   );
 }
