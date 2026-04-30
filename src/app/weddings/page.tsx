@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import WeddingGalleryLive from '@/components/weddings/WeddingGalleryLive';
+import WeddingMasonryGallery from '@/components/weddings/WeddingMasonryGallery';
 import WeddingLegacy from '@/components/weddings/WeddingLegacy';
 import TheVisionary from '@/components/weddings/TheVisionary';
 import KZNAuthority from '@/components/weddings/KZNAuthority';
@@ -111,7 +111,7 @@ export default function WeddingsPage() {
             <p className="font-montserrat text-[10px] uppercase tracking-[0.4em] text-wedding-gold font-black">Curation of Culture & Elegance</p>
           </div>
           <div className="max-w-7xl mx-auto px-8">
-            <WeddingGalleryLive />
+            <WeddingMasonryGallery />
           </div>
           <div className="mt-16 text-center">
             <motion.div
