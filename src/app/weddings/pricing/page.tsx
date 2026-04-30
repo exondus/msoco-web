@@ -6,6 +6,9 @@ import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
 import WeddingComparisonTable from '@/components/weddings/WeddingComparisonTable';
 import WeddingPricingTabs from '@/components/weddings/WeddingPricingTabs';
+import { DiscountProvider } from '@/lib/discount-context';
+import DiscountBanner from '@/components/weddings/DiscountBanner';
+import DiscountBadge from '@/components/weddings/DiscountBadge';
 import { PRICING_DATA } from './pricingData';
 
 const TABS = [
@@ -46,9 +49,10 @@ export default function WeddingsPricingPage() {
   const [activeTab, setActiveTab] = useState('wedding');
 
   return (
-    <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
-      {/* Navbar */}
-      <nav className="fixed w-full flex justify-between items-center p-8 z-[100] glass-wedding border-b border-wedding-gold/10">
+    <DiscountProvider>
+      <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
+        {/* Navbar */}
+        <nav className="fixed w-full flex justify-between items-center p-8 z-[100] glass-wedding border-b border-wedding-gold/10">
         <div className="flex items-center gap-8">
           <a href="/weddings" className="group flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.3em] text-wedding-gold transition-all duration-300">
             <span className="w-8 h-px bg-wedding-gold transition-all duration-300 group-hover:w-12" />
@@ -63,18 +67,20 @@ export default function WeddingsPricingPage() {
         </div>
       </nav>
 
-      <main className="flex-1 pt-24">
-        {/* Hero */}
-        <section className="py-20 px-8 bg-wedding-bg">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 border border-wedding-gold/30 text-wedding-gold text-[10px] font-black uppercase tracking-[0.5em] mb-10 bg-wedding-gold/5">
-                Heritage Tiers
-              </span>
+        <main className="flex-1 pt-24">
+          <DiscountBanner />
+
+          {/* Hero */}
+          <section className="py-20 px-8 bg-wedding-bg">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <span className="inline-block px-4 py-1.5 border border-wedding-gold/30 text-wedding-gold text-[10px] font-black uppercase tracking-[0.5em] mb-10 bg-wedding-gold/5">
+                  Heritage Tiers
+                </span>
               <h1 className="text-6xl md:text-[8rem] font-playfair font-light uppercase tracking-tighter leading-[0.75] mb-8 text-wedding-charcoal">
                 Ceremonial <br />
                 <span className="italic">Specifications.</span>
@@ -276,6 +282,7 @@ export default function WeddingsPricingPage() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </DiscountProvider>
   );
 }
