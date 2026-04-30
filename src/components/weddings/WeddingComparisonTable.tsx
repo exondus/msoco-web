@@ -57,27 +57,33 @@ export default function WeddingComparisonTable({ tiers }: WeddingComparisonTable
                 )}
 
                 <div className="mb-8">
-                  <h3 className="font-playfair text-3xl text-wedding-charcoal mb-2">{tier.name}</h3>
+                  <h3 className="font-playfair text-3xl text-wedding-charcoal mb-3">{tier.name}</h3>
                   {(() => {
                     const priceData = getPriceDisplay(tier.price);
                     return (
-                      <div className="flex items-baseline gap-2 mb-4">
-                        <span className={`font-playfair text-4xl font-black ${
-                          tier.recommended ? 'bg-gradient-to-r from-rose-600 to-rose-700 bg-clip-text text-transparent' : 'text-rose-600'
-                        }`}>
-                          {priceData.showDiscount ? priceData.discounted : priceData.original}
-                        </span>
-                        {priceData.showDiscount && (
-                          <>
-                            <span className="font-montserrat text-lg line-through text-wedding-charcoal/20">
-                              {priceData.original}
-                            </span>
-                            <span className="bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">
+                      <div className="mb-4">
+                        {/* Row 1: Discounted price + pill */}
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className={`font-playfair text-4xl font-black ${
+                            tier.recommended ? 'bg-gradient-to-r from-rose-600 to-rose-700 bg-clip-text text-transparent' : 'text-rose-600'
+                          }`}>
+                            {priceData.showDiscount ? priceData.discounted : priceData.original}
+                          </span>
+                          {priceData.showDiscount && (
+                            <span className="bg-rose-600 text-white text-[9px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
                               Save {percentage}%
                             </span>
-                          </>
-                        )}
-                        <span className="font-montserrat text-[10px] uppercase tracking-widest text-wedding-charcoal/40">Starting</span>
+                          )}
+                        </div>
+                        {/* Row 2: Original price + starting label */}
+                        <div className="flex items-center gap-2">
+                          {priceData.showDiscount && (
+                            <span className="font-montserrat text-sm line-through text-wedding-charcoal/30">
+                              {priceData.original}
+                            </span>
+                          )}
+                          <span className="font-montserrat text-[10px] uppercase tracking-widest text-wedding-charcoal/40">Starting</span>
+                        </div>
                       </div>
                     );
                   })()}
