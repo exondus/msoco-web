@@ -35,7 +35,7 @@ export default function GatewayPage() {
             className="pt-8 flex flex-col md:flex-row gap-6 justify-center"
           >
             <a href="/weddings">
-              <CoreButton className="bg-white text-black hover:bg-white/90 w-full md:w-auto">
+              <CoreButton className="bg-white text-red-900 hover:bg-white/90 hover:text-gray-800 w-full md:w-auto">
                 Wedding Production
               </CoreButton>
             </a>

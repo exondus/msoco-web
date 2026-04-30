@@ -18,8 +18,8 @@ export default function CoreButton({ children, onClick, variant = 'primary', cla
       onClick={onClick}
       className={`
         px-10 py-4 font-montserrat font-bold uppercase tracking-widest text-[10px] transition-all
-        ${variant === 'primary' 
-          ? 'bg-wedding-gold text-white [data-theme=corporate]:bg-corporate-blue [data-theme=corporate]:text-white' 
+        ${variant === 'primary'
+          ? 'bg-wedding-gold [data-theme=corporate]:bg-corporate-blue [data-theme=corporate]:text-white'
           : 'border border-wedding-gold text-wedding-gold [data-theme=corporate]:border-corporate-blue [data-theme=corporate]:text-corporate-blue hover:bg-white/5'
         }
         ${className}

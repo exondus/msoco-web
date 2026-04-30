@@ -48,9 +48,7 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
   // Regular pages navbar
   return (
     <nav className="fixed w-full flex justify-between items-center px-12 py-6 z-[100] glass-wedding border-b border-wedding-gold/10">
-      <a href="/weddings">
-        <MsocoLogo className="h-10 w-40" invert={false} />
-      </a>
+      <MsocoLogo className="h-10 w-40" invert={false} />
       <div className="hidden md:flex space-x-8 font-montserrat uppercase tracking-[0.3em] text-[10px] font-black items-center gap-2">
         {navItems.map((item) => (
           <a
