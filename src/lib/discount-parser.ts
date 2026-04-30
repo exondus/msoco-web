@@ -12,10 +12,16 @@ export function parseDiscountFromBody(body: string): DiscountData | null {
 
   if (percentage === null) return null;
 
-  // Extract COPY: ... from HTML (handles HTML entities like &#8220;)
-  // Match COPY: followed by any text until </p>
-  const copyMatch = body.match(/COPY:\s*([^<]*)/i);
-  let copy = copyMatch ? copyMatch[1].trim() : '';
+  // Extract COPY: ... from HTML (handles HTML entities and tags)
+  // Capture everything after COPY: to end of string, then strip HTML tags
+  const copyMatch = body.match(/COPY:\s*([\s\S]*)/i);
+  let copy = copyMatch ? copyMatch[1] : '';
+
+  // Strip all HTML tags and collapse whitespace
+  copy = copy
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 
   // Decode HTML entities
   copy = copy
