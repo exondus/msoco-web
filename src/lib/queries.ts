@@ -12,8 +12,8 @@ export const MEDIA_FRAGMENT = gql`
 `;
 
 export const GET_WEDDING_GALLERY = gql`
-  query GetWeddingGallery($category: String) {
-    posts(where: { categoryName: $category, categoryIn: "weddings" }) {
+  query GetWeddingGallery {
+    posts(where: { categoryName: "weddings" }, first: 100) {
       nodes {
         id
         title

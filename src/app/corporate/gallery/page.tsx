@@ -1,37 +1,95 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import CorporateNavbar from '@/components/corporate/CorporateNavbar';
 import MsocoLogo from '@/components/ui/MsocoLogo';
-import client from '@/lib/apollo-client';
-import { GET_CORPORATE_SERVICES } from '@/lib/queries';
-import { transformCorporatePostToGalleryImage, type GalleryImage } from '@/lib/wp-image-helpers';
+
+interface GalleryImage {
+  id: string;
+  title: string;
+  src: string;
+  altText: string;
+}
+
+// Corporate gallery images
+const CORPORATE_GALLERY_IMAGES: GalleryImage[] = [
+  {
+    id: '1',
+    title: 'Corporate Event Setup',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg',
+    altText: 'Professional staging and lighting',
+  },
+  {
+    id: '2',
+    title: 'Broadcast Production',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg',
+    altText: 'Multi-camera broadcast setup',
+  },
+  {
+    id: '3',
+    title: 'LED Video Wall',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg',
+    altText: 'LED display technology',
+  },
+  {
+    id: '4',
+    title: 'Executive Headshots',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02464.jpg',
+    altText: 'Professional corporate portraits',
+  },
+  {
+    id: '5',
+    title: 'Audio System Configuration',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02438.jpg',
+    altText: 'Line array audio setup',
+  },
+  {
+    id: '6',
+    title: 'Brand Activation',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02413.jpg',
+    altText: 'Interactive brand experience',
+  },
+  {
+    id: '7',
+    title: 'Live Event Coverage',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02373.jpg',
+    altText: 'Event documentation',
+  },
+  {
+    id: '8',
+    title: 'Lighting Rig Configuration',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02369.jpg',
+    altText: 'Intelligent lighting design',
+  },
+  {
+    id: '9',
+    title: 'Product Photography',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02356.jpg',
+    altText: 'Professional product showcase',
+  },
+  {
+    id: '10',
+    title: 'Conference Setup',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02351.jpg',
+    altText: 'Professional conference space',
+  },
+  {
+    id: '11',
+    title: 'Stage Production',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02340.jpg',
+    altText: 'Full stage setup and design',
+  },
+  {
+    id: '12',
+    title: 'Photo Booth Integration',
+    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02323.jpg',
+    altText: 'Interactive photo booth experience',
+  },
+];
 
 export default function CorporateGalleryPage() {
-  const [images, setImages] = useState<GalleryImage[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchGallery() {
-      try {
-        const { data } = await client.query({ query: GET_CORPORATE_SERVICES });
-        const posts = (data as Record<string, any>)?.posts?.nodes || [];
-        const transformed = posts
-          .map((post: Record<string, any>) => transformCorporatePostToGalleryImage(post))
-          .filter((img: GalleryImage | null): img is GalleryImage => img !== null);
-        setImages(transformed);
-      } catch (error) {
-        console.error('Error fetching corporate gallery:', error);
-        setImages([]);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchGallery();
-  }, []);
+  const images = CORPORATE_GALLERY_IMAGES;
 
   return (
     <div className="flex flex-col min-h-screen bg-white scroll-smooth">
@@ -64,55 +122,40 @@ export default function CorporateGalleryPage() {
         {/* Gallery Grid */}
         <section className="py-40 px-8">
           <div className="max-w-7xl mx-auto">
-            {loading ? (
-              <div className="text-center py-20">
-                <p className="font-montserrat text-gray-600">Loading gallery...</p>
-              </div>
-            ) : (
-              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {images.map((image, idx) => (
-                  <motion.div
-                    key={image.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, delay: idx * 0.05 }}
-                    className="group relative h-96 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500"
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      unoptimized
-                    />
+            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {images.map((image, idx) => (
+                <motion.div
+                  key={image.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  className="group relative h-96 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.altText}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    unoptimized
+                  />
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      <h3 className="text-white font-playfair text-xl font-semibold">{image.title}</h3>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-
-            {/* Empty State */}
-            {!loading && images.length === 0 && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
-                <p className="font-montserrat text-gray-600 text-lg">No images available yet.</p>
-              </motion.div>
-            )}
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 className="text-white font-playfair text-xl font-semibold">{image.title}</h3>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
 
             {/* Image Count */}
-            {!loading && images.length > 0 && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-center mt-16">
-                <p className="font-montserrat text-[10px] uppercase tracking-[0.4em] text-gray-600">
-                  Showing {images.length} images
-                </p>
-              </motion.div>
-            )}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-center mt-16">
+              <p className="font-montserrat text-[10px] uppercase tracking-[0.4em] text-gray-600">
+                Showing {images.length} images
+              </p>
+            </motion.div>
           </div>
         </section>
       </main>
