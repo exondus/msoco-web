@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import ServicesGrid from '@/components/shared/ServicesGrid';
 import MsocoLogo from '@/components/ui/MsocoLogo';
-import CoreButton from '@/components/ui/CoreButton';
+import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
 import ScarcityBar from '@/components/weddings/ScarcityBar';
 import { DiscountProvider } from '@/lib/discount-context';
 
@@ -26,20 +26,7 @@ export default function WeddingsServicesPage() {
       <ScarcityBar remainingDates={4} year={2026} />
 
       {/* Navbar */}
-      <nav className="fixed top-[44px] w-full flex justify-between items-center p-8 z-[100] glass-wedding border-b border-wedding-gold/10">
-        <div className="flex items-center gap-8">
-          <a href="/weddings" className="group flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.3em] text-wedding-gold transition-all duration-300">
-            <span className="w-8 h-px bg-wedding-gold transition-all duration-300 group-hover:w-12" />
-            Back to Weddings
-          </a>
-          <MsocoLogo className="h-10 w-44" invert={false} />
-        </div>
-        <div className="hidden md:flex space-x-12 text-[9px] font-black uppercase tracking-[0.4em] text-wedding-charcoal/40 items-center gap-8">
-          <a href="/weddings" className="hover:text-wedding-gold transition-colors">Portfolio</a>
-          <a href="/gateway" className="hover:text-wedding-gold transition-colors">Change Division</a>
-          <CoreButton variant="outline" className="py-2 px-6 border-wedding-gold text-wedding-gold hover:bg-wedding-gold/5">Inquire</CoreButton>
-        </div>
-      </nav>
+      <WeddingsNavbar isHero={false} />
 
       <main className="flex-1 pt-40">
         {/* Hero */}

@@ -100,7 +100,7 @@ export default function WeddingComparisonTable({ tiers }: WeddingComparisonTable
                   className={`w-full py-4 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] ${
                     tier.recommended
                       ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:shadow-lg hover:shadow-rose-600/30'
-                      : 'border-2 border-rose-300 text-rose-600 hover:bg-rose-50'
+                      : 'bg-wedding-charcoal text-white hover:bg-wedding-charcoal/90'
                   }`}
                 >
                   {tier.cta}

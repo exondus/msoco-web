@@ -1,6 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import PricingAnchor from '@/components/weddings/PricingAnchor';
 
+jest.mock('@/lib/discount-context', () => ({
+  useDiscount: () => ({
+    isActive: false,
+    loading: false,
+    percentage: 0,
+    copy: '',
+    discountedPrice: (price: number) => price,
+  }),
+}));
+
 describe('PricingAnchor', () => {
   it('displays starting price', () => {
     render(<PricingAnchor startingPrice="R25,000" premiumPrice="R50,000" />);

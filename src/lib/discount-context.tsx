@@ -7,6 +7,7 @@ import { parseDiscountFromBody } from './discount-parser';
 
 export interface DiscountContextType {
   isActive: boolean;
+  loading: boolean;
   percentage: number;
   copy: string;
   discountedPrice(originalPrice: number): number;
@@ -17,6 +18,7 @@ const DiscountContext = createContext<DiscountContextType | null>(null);
 export function DiscountProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<DiscountContextType>({
     isActive: false,
+    loading: true,
     percentage: 0,
     copy: '',
     discountedPrice: (price: number) => price,
@@ -27,7 +29,7 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
       try {
         const { data } = await client.query({
           query: GET_SALE_DISCOUNT,
-          fetchPolicy: 'network-only', // Always fetch fresh data from server
+          fetchPolicy: 'network-only',
         });
         const posts = (data as Record<string, any>)?.posts?.nodes || [];
 
@@ -42,6 +44,7 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
             console.log('[Discount] Parsed discount:', parsed);
             setState({
               isActive: true,
+              loading: false,
               percentage: parsed.percentage,
               copy: parsed.copy,
               discountedPrice: (price: number) =>
@@ -55,18 +58,18 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
           console.log('[Discount] No SALE posts found');
         }
 
-        // No valid SALE post found
         setState({
           isActive: false,
+          loading: false,
           percentage: 0,
           copy: '',
           discountedPrice: (price: number) => price,
         });
       } catch (error) {
         console.error('[Discount] Error fetching discount:', error);
-        // Graceful fallback on error
         setState({
           isActive: false,
+          loading: false,
           percentage: 0,
           copy: '',
           discountedPrice: (price: number) => price,

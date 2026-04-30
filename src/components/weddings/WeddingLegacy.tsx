@@ -36,8 +36,34 @@ export default function WeddingLegacy() {
     fetchImages();
   }, []);
 
-  if (loading || images.length < 2) {
-    return null; // Don't render if loading or insufficient images
+  if (loading) {
+    return (
+      <section className="py-32 px-8 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
+          {/* Skeleton image composition */}
+          <div className="relative w-full lg:w-1/2 h-[600px]">
+            <div className="absolute top-0 left-0 w-3/4 h-3/4 z-10 rounded-sm bg-gray-200 animate-pulse" />
+            <div className="absolute bottom-0 right-0 w-3/4 h-3/4 z-20 rounded-sm bg-gray-100 animate-pulse border-8 border-white" />
+          </div>
+          {/* Skeleton text */}
+          <div className="w-full lg:w-1/2 space-y-6">
+            <div className="h-3 w-40 bg-gray-200 rounded animate-pulse" />
+            <div className="h-12 w-3/4 bg-gray-200 rounded animate-pulse" />
+            <div className="h-1 w-24 bg-gray-200 rounded animate-pulse" />
+            <div className="space-y-3">
+              <div className="h-4 w-full bg-gray-100 rounded animate-pulse" />
+              <div className="h-4 w-5/6 bg-gray-100 rounded animate-pulse" />
+              <div className="h-4 w-4/6 bg-gray-100 rounded animate-pulse" />
+            </div>
+            <div className="h-10 w-48 bg-gray-200 rounded animate-pulse mt-4" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (images.length < 2) {
+    return null;
   }
 
   const [img1, img2] = images;
@@ -81,8 +107,8 @@ export default function WeddingLegacy() {
             />
           </motion.div>
 
-          {/* Decorative Zulu Pattern Accent */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-wedding-gold/20 -z-0 rotate-6" />
+          {/* Decorative Zulu Pattern Accent - Using CSS utility instead of missing image */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full zulu-pattern -z-0 rotate-6" />
         </div>
 
         {/* Content Section */}

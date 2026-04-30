@@ -21,10 +21,10 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
   ];
 
   if (isHero) {
-    // Landing page navbar - overlay style
+    // Landing page navbar - sit below ScarcityBar
     return (
-      <nav className="fixed w-full flex justify-between items-center px-12 py-6 z-[100] mix-blend-difference">
-        <div className="pt-4">
+      <nav className="relative w-full flex justify-between items-center px-12 py-8 z-[100] mix-blend-difference">
+        <div className="pt-2">
           <MsocoLogo className="h-12 w-48 invert" />
         </div>
         <div className="hidden md:flex space-x-8 font-montserrat uppercase tracking-[0.3em] text-[10px] font-black text-white">
@@ -45,20 +45,19 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
     );
   }
 
-  // Regular pages navbar
+  // Regular pages navbar — sits below ScarcityBar
   return (
-    <nav className="fixed w-full flex justify-between items-center px-12 py-6 z-[100] glass-wedding border-b border-wedding-gold/10">
+    <nav className="fixed top-[44px] w-full flex justify-between items-center px-12 py-6 z-[100] glass-wedding border-b border-wedding-gold/10">
       <MsocoLogo className="h-10 w-40" invert={false} />
       <div className="hidden md:flex space-x-8 font-montserrat uppercase tracking-[0.3em] text-[10px] font-black items-center gap-2">
         {navItems.map((item) => (
           <a
             key={item.label}
             href={item.href}
-            className={`transition-colors ${
-              item.active
-                ? 'text-wedding-gold border-b-2 border-wedding-gold pb-1'
-                : 'text-wedding-charcoal/60 hover:text-wedding-gold'
-            }`}
+            className={`transition-colors ${item.active
+              ? 'text-wedding-gold border-b-2 border-wedding-gold pb-1'
+              : 'text-wedding-charcoal/60 hover:text-wedding-gold'
+              }`}
           >
             {item.label}
           </a>

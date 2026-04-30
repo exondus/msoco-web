@@ -161,7 +161,7 @@ export default function WeddingPackages() {
                 className={`inline-block w-full text-center font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 rounded transition-all duration-300 ${
                   pkg.highlighted
                     ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:shadow-lg hover:shadow-rose-600/30'
-                    : 'border-2 border-rose-300 text-rose-600 hover:bg-rose-50'
+                    : 'bg-wedding-charcoal text-white hover:bg-wedding-charcoal/90'
                 }`}
               >
                 View Full Details
