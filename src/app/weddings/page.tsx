@@ -49,19 +49,8 @@ export default function WeddingsPage() {
 
       {/* Hero */}
       <header className="relative w-full h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-wedding-charcoal">
-        <div className="absolute inset-0 opacity-30">
-          {/* Hero video background */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover grayscale"
-            poster="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05685.jpg"
-          >
-            <source src="https://www.msocorockers.co.za/wp-content/uploads/2025/07/DJI_0455_1.mp4" type="video/mp4" />
-          </video>
-        </div>
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/gateway-background.jpg)' }} />
+        <div className="absolute inset-0 bg-black/40" />
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
