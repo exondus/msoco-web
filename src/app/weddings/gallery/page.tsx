@@ -1,26 +1,13 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
 import MsocoLogo from '@/components/ui/MsocoLogo';
-
-// All wedding gallery images
-const ALL_GALLERY_IMAGES = [
-  { id: '1', title: 'Ceremony Moment', category: 'ceremonies', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg' },
-  { id: '2', title: 'Bride & Groom', category: 'portraits', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg' },
-  { id: '3', title: 'Wedding Details', category: 'details', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg' },
-  { id: '4', title: 'Ceremony Proceedings', category: 'ceremonies', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02464.jpg' },
-  { id: '5', title: 'Guest Moments', category: 'candid', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02438.jpg' },
-  { id: '6', title: 'Reception Details', category: 'details', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02413.jpg' },
-  { id: '7', title: 'Celebration', category: 'ceremonies', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02373.jpg' },
-  { id: '8', title: 'Intimate Moment', category: 'portraits', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02369.jpg' },
-  { id: '9', title: 'Wedding Portrait', category: 'portraits', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02356.jpg' },
-  { id: '10', title: 'Guest Interactions', category: 'candid', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02351.jpg' },
-  { id: '11', title: 'Bride Details', category: 'details', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02340.jpg' },
-  { id: '12', title: 'Ceremony Highlight', category: 'ceremonies', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02323.jpg' },
-];
+import client from '@/lib/apollo-client';
+import { GET_WEDDING_GALLERY } from '@/lib/queries';
+import { transformWeddingPostToGalleryImage, type GalleryImage } from '@/lib/wp-image-helpers';
 
 const CATEGORIES = [
   { id: 'all', label: 'All Images' },
@@ -32,11 +19,33 @@ const CATEGORIES = [
 
 export default function WeddingsGalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [allImages, setAllImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchGallery() {
+      try {
+        const { data } = await client.query({ query: GET_WEDDING_GALLERY });
+        const posts = (data as Record<string, any>)?.posts?.nodes || [];
+        const images = posts
+          .map((post: Record<string, any>) => transformWeddingPostToGalleryImage(post))
+          .filter((img: GalleryImage | null): img is GalleryImage => img !== null);
+        setAllImages(images);
+      } catch (error) {
+        console.error('Error fetching gallery:', error);
+        setAllImages([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchGallery();
+  }, []);
 
   const filteredImages = useMemo(() => {
-    if (selectedCategory === 'all') return ALL_GALLERY_IMAGES;
-    return ALL_GALLERY_IMAGES.filter((img) => img.category === selectedCategory);
-  }, [selectedCategory]);
+    if (selectedCategory === 'all') return allImages;
+    return allImages.filter((img) => img.category === selectedCategory);
+  }, [allImages, selectedCategory]);
 
   return (
     <div className="flex flex-col min-h-screen bg-white scroll-smooth">
@@ -83,7 +92,7 @@ export default function WeddingsGalleryPage() {
                   }`}
                 >
                   {category.label}
-                  <span className="ml-2 text-sm">({ALL_GALLERY_IMAGES.filter((img) => category.id === 'all' || img.category === category.id).length})</span>
+                  <span className="ml-2 text-sm">({allImages.filter((img) => category.id === 'all' || img.category === category.id).length})</span>
                 </motion.button>
               ))}
             </div>
@@ -93,44 +102,47 @@ export default function WeddingsGalleryPage() {
         {/* Gallery Grid */}
         <section className="py-40 px-8">
           <div className="max-w-7xl mx-auto">
-            <motion.div
-              layout
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {filteredImages.map((image, idx) => (
-                <motion.div
-                  key={image.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3, delay: idx * 0.05 }}
-                  className="group relative h-96 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    unoptimized
-                  />
+            {loading ? (
+              <div className="text-center py-20">
+                <p className="font-montserrat text-wedding-charcoal/60">Loading gallery...</p>
+              </div>
+            ) : (
+              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredImages.map((image, idx) => (
+                  <motion.div
+                    key={image.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3, delay: idx * 0.05 }}
+                    className="group relative h-96 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      unoptimized
+                    />
 
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <h3 className="text-white font-playfair text-xl font-semibold">
-                      {image.title}
-                    </h3>
-                    <p className="text-white/80 text-sm mt-2 capitalize">
-                      {CATEGORIES.find((c) => c.id === image.category)?.label}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                      <h3 className="text-white font-playfair text-xl font-semibold">
+                        {image.title}
+                      </h3>
+                      <p className="text-white/80 text-sm mt-2 capitalize">
+                        {CATEGORIES.find((c) => c.id === image.category)?.label}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
 
             {/* Empty State */}
-            {filteredImages.length === 0 && (
+            {!loading && filteredImages.length === 0 && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -141,19 +153,21 @@ export default function WeddingsGalleryPage() {
                 </p>
               </motion.div>
             )}
-          </div>
 
-          {/* Image Count */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-center mt-16"
-          >
-            <p className="font-montserrat text-[10px] uppercase tracking-[0.4em] text-wedding-charcoal/60">
-              Showing {filteredImages.length} of {ALL_GALLERY_IMAGES.length} images
-            </p>
-          </motion.div>
+            {/* Image Count */}
+            {!loading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="text-center mt-16"
+              >
+                <p className="font-montserrat text-[10px] uppercase tracking-[0.4em] text-wedding-charcoal/60">
+                  Showing {filteredImages.length} of {allImages.length} images
+                </p>
+              </motion.div>
+            )}
+          </div>
         </section>
 
         {/* CTA Section */}
