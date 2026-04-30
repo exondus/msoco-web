@@ -23,7 +23,7 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
   if (isHero) {
     // Landing page navbar - sit below ScarcityBar
     return (
-      <nav className="relative w-full flex justify-between items-center px-12 py-8 z-[100] mix-blend-difference">
+      <nav className="relative w-full flex justify-between items-center px-12 py-8 z-[100] mix-blend-difference bg-transparent">
         <div className="pt-2">
           <MsocoLogo className="h-12 w-48 invert" />
         </div>
@@ -45,9 +45,9 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
     );
   }
 
-  // Regular pages navbar — sits below ScarcityBar
+  // Regular pages navbar — sticky so it flows below ScarcityBar naturally
   return (
-    <nav className="fixed top-[44px] w-full flex justify-between items-center px-12 py-6 z-[100] glass-wedding border-b border-wedding-gold/10">
+    <nav className="sticky top-0 w-full flex justify-between items-center px-12 py-6 z-[100] glass-wedding border-b border-wedding-gold/10">
       <MsocoLogo className="h-10 w-40" invert={false} />
       <div className="hidden md:flex space-x-8 font-montserrat uppercase tracking-[0.3em] text-[10px] font-black items-center gap-2">
         {navItems.map((item) => (

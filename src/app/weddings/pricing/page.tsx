@@ -48,6 +48,8 @@ const FAQS = [
 export default function WeddingsPricingPage() {
   const [activeTab, setActiveTab] = useState('wedding');
 
+  const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+
   return (
     <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
@@ -57,7 +59,7 @@ export default function WeddingsPricingPage() {
         {/* Navbar */}
         <WeddingsNavbar isHero={false} />
 
-        <main className="flex-1 pt-40">
+        <main className="flex-1">
           {/* Hero */}
           <section className="py-20 px-8 bg-wedding-bg">
             <div className="max-w-7xl mx-auto">
@@ -229,7 +231,7 @@ export default function WeddingsPricingPage() {
                 </p>
                 <div className="flex flex-col md:flex-row gap-6 justify-center">
                   <CoreButton className="bg-wedding-gold text-black hover:bg-wedding-gold/90">
-                    Call +27 12 345 6789
+                    Call +${CONTACT_NUMBER}
                   </CoreButton>
                   <CoreButton variant="outline" className="border-white text-white hover:bg-white/10">
                     WhatsApp Inquiry
@@ -258,7 +260,7 @@ export default function WeddingsPricingPage() {
                 </div>
                 <div className="space-y-4">
                   <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-wedding-gold">Contact</p>
-                  <p className="font-inter text-wedding-charcoal/60">+27 12 345 6789</p>
+                  <p className="font-inter text-wedding-charcoal/60">+${CONTACT_NUMBER}</p>
                   <p className="font-inter text-wedding-charcoal/60">info@msocorockers.co.za</p>
                 </div>
               </div>

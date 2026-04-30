@@ -19,100 +19,103 @@ const WEDDING_SERVICES = [
 ];
 
 export default function WeddingsServicesPage() {
+
+  const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+
   return (
     <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
-      {/* Scarcity/Discount Bar */}
-      <ScarcityBar remainingDates={4} year={2026} />
+        {/* Scarcity/Discount Bar */}
+        <ScarcityBar remainingDates={4} year={2026} />
 
-      {/* Navbar */}
-      <WeddingsNavbar isHero={false} />
+        {/* Navbar */}
+        <WeddingsNavbar isHero={false} />
 
-      <main className="flex-1 pt-40">
-        {/* Hero */}
-        <section className="py-20 px-8 bg-wedding-bg">
+        <main className="flex-1">
+          {/* Hero */}
+          <section className="py-20 px-8 bg-wedding-bg">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <span className="inline-block px-4 py-1.5 border border-wedding-gold/30 text-wedding-gold text-[10px] font-black uppercase tracking-[0.5em] mb-10 bg-wedding-gold/5">
+                  Ceremonial Production
+                </span>
+                <h1 className="text-6xl md:text-[8rem] font-playfair font-light uppercase tracking-tighter leading-[0.75] mb-8 text-wedding-charcoal">
+                  The Art of <br />
+                  <span className="italic">Preservation.</span>
+                </h1>
+                <p className="text-lg md:text-2xl text-wedding-charcoal/60 max-w-3xl font-playfair italic font-light">
+                  From the quiet intimacy of the morning preparations to the grand celebration of your union, we capture every nuance of your heritage.
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Services Grid */}
+          <ServicesGrid services={WEDDING_SERVICES} theme="wedding" bgColor="bg-wedding-bg" columns={4} ctaLink="/weddings/pricing" />
+
+          {/* CTA Section */}
+          <section className="py-40 px-8 bg-wedding-bg relative overflow-hidden">
+            <div className="absolute inset-0 bg-wedding-gold/5 blur-[120px] rounded-full translate-y-1/2" />
+            <div className="max-w-3xl mx-auto text-center relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <p className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black mb-6">
+                  Begin Your Journey
+                </p>
+                <h2 className="font-playfair text-5xl md:text-7xl text-wedding-charcoal mb-8 tracking-tighter leading-tight">
+                  Plan Your <span className="italic font-light">Heritage.</span>
+                </h2>
+                <p className="font-montserrat text-wedding-charcoal/50 text-lg mb-12 max-w-xl mx-auto italic">
+                  Every package is customizable to match your vision. Schedule a consultation with Zakes to discuss your ceremony.
+                </p>
+                <div className="flex flex-col md:flex-row gap-6 justify-center">
+                  <a href="/weddings/pricing" className="inline-block bg-wedding-gold text-white hover:bg-wedding-gold/90 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
+                    View Tiers & Specifications
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </main>
+
+        {/* Footer */}
+        <footer className="border-t border-wedding-gold/10 py-16 px-8 bg-wedding-bg">
           <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 border border-wedding-gold/30 text-wedding-gold text-[10px] font-black uppercase tracking-[0.5em] mb-10 bg-wedding-gold/5">
-                Ceremonial Production
-              </span>
-              <h1 className="text-6xl md:text-[8rem] font-playfair font-light uppercase tracking-tighter leading-[0.75] mb-8 text-wedding-charcoal">
-                The Art of <br />
-                <span className="italic">Preservation.</span>
-              </h1>
-              <p className="text-lg md:text-2xl text-wedding-charcoal/60 max-w-3xl font-playfair italic font-light">
-                From the quiet intimacy of the morning preparations to the grand celebration of your union, we capture every nuance of your heritage.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Services Grid */}
-        <ServicesGrid services={WEDDING_SERVICES} theme="wedding" bgColor="bg-wedding-bg" columns={4} ctaLink="/weddings/pricing" />
-
-        {/* CTA Section */}
-        <section className="py-40 px-8 bg-wedding-bg relative overflow-hidden">
-          <div className="absolute inset-0 bg-wedding-gold/5 blur-[120px] rounded-full translate-y-1/2" />
-          <div className="max-w-3xl mx-auto text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <p className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black mb-6">
-                Begin Your Journey
-              </p>
-              <h2 className="font-playfair text-5xl md:text-7xl text-wedding-charcoal mb-8 tracking-tighter leading-tight">
-                Plan Your <span className="italic font-light">Heritage.</span>
-              </h2>
-              <p className="font-montserrat text-wedding-charcoal/50 text-lg mb-12 max-w-xl mx-auto italic">
-                Every package is customizable to match your vision. Schedule a consultation with Zakes to discuss your ceremony.
-              </p>
-              <div className="flex flex-col md:flex-row gap-6 justify-center">
-                <a href="/weddings/pricing" className="inline-block bg-wedding-gold text-white hover:bg-wedding-gold/90 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
-                  View Tiers & Specifications
-                </a>
+            <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-12">
+              <div>
+                <MsocoLogo className="h-10 w-40 mb-8" invert={false} />
+                <p className="font-montserrat text-[10px] text-wedding-charcoal/40 uppercase tracking-[0.2em] max-w-md font-bold">
+                  Durban-based wedding production specialists. A decade of authentic, culturally sensitive storytelling. Heirloom quality.
+                </p>
               </div>
-            </motion.div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-wedding-gold/10 py-16 px-8 bg-wedding-bg">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-12">
-            <div>
-              <MsocoLogo className="h-10 w-40 mb-8" invert={false} />
-              <p className="font-montserrat text-[10px] text-wedding-charcoal/40 uppercase tracking-[0.2em] max-w-md font-bold">
-                Durban-based wedding production specialists. A decade of authentic, culturally sensitive storytelling. Heirloom quality.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-12 text-sm">
-              <div className="space-y-4">
-                <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-wedding-gold">Legacy</p>
-                <a href="/weddings" className="block font-inter text-wedding-charcoal/60 hover:text-wedding-gold transition-colors">Portfolio Home</a>
-                <a href="/weddings/pricing" className="block font-inter text-wedding-charcoal/60 hover:text-wedding-gold transition-colors">Tiers</a>
-              </div>
-              <div className="space-y-4">
-                <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-wedding-gold">Contact</p>
-                <p className="font-inter text-wedding-charcoal/60">+27 12 345 6789</p>
-                <p className="font-inter text-wedding-charcoal/60">info@msocorockers.co.za</p>
+              <div className="grid grid-cols-2 gap-12 text-sm">
+                <div className="space-y-4">
+                  <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-wedding-gold">Legacy</p>
+                  <a href="/weddings" className="block font-inter text-wedding-charcoal/60 hover:text-wedding-gold transition-colors">Portfolio Home</a>
+                  <a href="/weddings/pricing" className="block font-inter text-wedding-charcoal/60 hover:text-wedding-gold transition-colors">Tiers</a>
+                </div>
+                <div className="space-y-4">
+                  <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-wedding-gold">Contact</p>
+                  <p className="font-inter text-wedding-charcoal/60">+${CONTACT_NUMBER}</p>
+                  <p className="font-inter text-wedding-charcoal/60">info@msocorockers.co.za</p>
+                </div>
               </div>
             </div>
+            <div className="border-t border-wedding-gold/10 pt-8 text-center">
+              <p className="font-montserrat text-[9px] font-bold text-wedding-charcoal/20 uppercase tracking-[0.2em]">
+                © 2026 Msoco Rockers Production. Excellence in Heritage.
+              </p>
+            </div>
           </div>
-          <div className="border-t border-wedding-gold/10 pt-8 text-center">
-            <p className="font-montserrat text-[9px] font-bold text-wedding-charcoal/20 uppercase tracking-[0.2em]">
-              © 2026 Msoco Rockers Production. Excellence in Heritage.
-            </p>
-          </div>
-        </div>
-      </footer>
+        </footer>
       </div>
     </DiscountProvider>
   );
