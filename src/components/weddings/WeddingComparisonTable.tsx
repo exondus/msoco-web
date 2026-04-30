@@ -11,7 +11,7 @@ interface WeddingComparisonTableProps {
 }
 
 export default function WeddingComparisonTable({ tiers }: WeddingComparisonTableProps) {
-  const { isActive, discountedPrice } = useDiscount();
+  const { isActive, percentage, discountedPrice } = useDiscount();
 
   const getPriceDisplay = (priceStr: string) => {
     const match = priceStr.match(/[\d,]+/);
@@ -68,9 +68,14 @@ export default function WeddingComparisonTable({ tiers }: WeddingComparisonTable
                           {priceData.showDiscount ? priceData.discounted : priceData.original}
                         </span>
                         {priceData.showDiscount && (
-                          <span className="font-montserrat text-lg line-through text-wedding-charcoal/20">
-                            {priceData.original}
-                          </span>
+                          <>
+                            <span className="font-montserrat text-lg line-through text-wedding-charcoal/20">
+                              {priceData.original}
+                            </span>
+                            <span className="bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">
+                              Save {percentage}%
+                            </span>
+                          </>
                         )}
                         <span className="font-montserrat text-[10px] uppercase tracking-widest text-wedding-charcoal/40">Starting</span>
                       </div>

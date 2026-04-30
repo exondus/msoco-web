@@ -15,7 +15,7 @@ export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) 
   // Show skeleton bar while loading to prevent layout shift
   if (loading) {
     return (
-      <div className="w-full bg-gradient-to-r from-rose-700 via-rose-600 to-rose-700 py-3 px-6">
+      <div className="w-full bg-gradient-to-r from-rose-700 via-rose-600 to-rose-700 py-4 px-6">
         <div className="flex items-center justify-center gap-6 max-w-5xl mx-auto">
           <div className="h-3 w-24 bg-white/20 rounded animate-pulse" />
           <div className="h-5 w-20 bg-white/20 rounded-full animate-pulse" />
@@ -32,7 +32,7 @@ export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) 
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative w-full bg-gradient-to-r from-rose-700 via-rose-600 to-rose-700 py-3 px-6 overflow-hidden"
+        className="relative w-full bg-gradient-to-r from-rose-700 via-rose-600 to-rose-700 py-4 px-6 overflow-hidden"
       >
         {/* Shimmer effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[shimmer_3s_infinite] -skew-x-12" />
@@ -68,7 +68,7 @@ export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) 
           {/* Right: Copy text + CTA */}
           <div className="flex items-center gap-3">
             {copy && (
-              <span className="font-montserrat text-[10px] text-white/80 italic max-w-xs hidden lg:inline">
+              <span className="font-montserrat text-[10px] text-white/80 italic max-w-sm hidden md:inline">
                 {copy}
               </span>
             )}

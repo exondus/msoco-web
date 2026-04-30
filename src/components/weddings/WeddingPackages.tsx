@@ -51,7 +51,7 @@ const PACKAGES = [
 ];
 
 export default function WeddingPackages() {
-  const { isActive, discountedPrice } = useDiscount();
+  const { isActive, percentage, discountedPrice } = useDiscount();
 
   // Parse price and apply discount
   const getPriceDisplay = (priceStr: string) => {
@@ -131,9 +131,9 @@ export default function WeddingPackages() {
                         )}
                       </div>
                       {priceData.showDiscount && (
-                        <p className="font-montserrat text-[11px] font-black text-rose-600 mb-2">
-                          SAVE 5%
-                        </p>
+                        <span className="bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">
+                          Save {percentage}%
+                        </span>
                       )}
                     </>
                   );
