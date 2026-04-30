@@ -76,7 +76,7 @@ export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) 
 
           {/* Row 2: Full copy text */}
           {copy && (
-            <p className="font-montserrat text-[10px] text-white/80 italic text-center max-w-2xl">
+            <p className="font-montserrat text-[10px] text-white/80 italic text-center px-4">
               {copy}
             </p>
           )}
