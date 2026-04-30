@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import MsocoLogo from '@/components/ui/MsocoLogo';
+import CoreButton from '@/components/ui/CoreButton';
 
 export default function GatewayPage() {
   return (
@@ -25,6 +26,25 @@ export default function GatewayPage() {
           <p className="font-playfair text-2xl md:text-3xl text-white/80 italic max-w-3xl mx-auto font-light leading-relaxed">
             Exceptional production that transcends expectations.
           </p>
+
+          {/* Navigation Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="pt-8 flex flex-col md:flex-row gap-6 justify-center"
+          >
+            <a href="/weddings">
+              <CoreButton className="bg-white text-black hover:bg-white/90 w-full md:w-auto">
+                Wedding Production
+              </CoreButton>
+            </a>
+            <a href="/corporate">
+              <CoreButton variant="outline" className="border-white text-white hover:bg-white/10 w-full md:w-auto">
+                Corporate Services
+              </CoreButton>
+            </a>
+          </motion.div>
         </motion.div>
       </header>
 
