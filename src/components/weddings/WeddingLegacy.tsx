@@ -1,10 +1,47 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import CoreButton from '../ui/CoreButton';
+import client from '@/lib/apollo-client';
+import { GET_WEDDING_GALLERY } from '@/lib/queries';
+import { transformWeddingPostToGalleryImage, type GalleryImage } from '@/lib/wp-image-helpers';
 
 export default function WeddingLegacy() {
+  const [images, setImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchImages() {
+      try {
+        const { data } = await client.query({
+          query: GET_WEDDING_GALLERY,
+          variables: { first: 50 },
+        });
+        const posts = (data as Record<string, any>)?.posts?.nodes || [];
+        const transformedImages = posts
+          .map((post: Record<string, any>) => transformWeddingPostToGalleryImage(post))
+          .filter((img: GalleryImage | null): img is GalleryImage => img !== null)
+          .slice(0, 2); // Use first 2 images for legacy section
+        setImages(transformedImages);
+      } catch (error) {
+        console.error('Error fetching legacy images:', error);
+        setImages([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchImages();
+  }, []);
+
+  if (loading || images.length < 2) {
+    return null; // Don't render if loading or insufficient images
+  }
+
+  const [img1, img2] = images;
+
   return (
     <section className="py-32 px-8 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
@@ -17,8 +54,8 @@ export default function WeddingLegacy() {
             className="absolute top-0 left-0 w-3/4 h-3/4 z-10 shadow-2xl overflow-hidden rounded-sm"
           >
             <Image
-              src="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg"
-              alt="Traditional Wedding Ceremony"
+              src={img1.src}
+              alt={img1.title}
               width={600}
               height={600}
               className="w-full h-full object-cover grayscale-[10%]"
@@ -34,8 +71,8 @@ export default function WeddingLegacy() {
             className="absolute bottom-0 right-0 w-3/4 h-3/4 z-20 shadow-2xl border-8 border-white overflow-hidden rounded-sm"
           >
             <Image
-              src="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg"
-              alt="Wedding Celebration"
+              src={img2.src}
+              alt={img2.title}
               width={600}
               height={600}
               className="w-full h-full object-cover"
