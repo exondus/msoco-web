@@ -78,12 +78,12 @@ export default function WeddingPackages() {
               viewport={{ once: true }}
               className={`relative rounded-lg p-8 transition-all duration-500 ${
                 pkg.highlighted
-                  ? 'border-2 border-wedding-gold bg-wedding-gold/5 md:scale-105 shadow-2xl'
-                  : 'border border-wedding-gold/20 hover:border-wedding-gold/50 bg-white/50'
+                  ? 'border-2 border-rose-300 bg-gradient-to-b from-rose-50 to-white md:scale-105 shadow-2xl'
+                  : 'border border-rose-200/50 hover:border-rose-300/70 bg-white/50'
               }`}
             >
               {pkg.highlighted && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-wedding-gold text-white px-4 py-1 rounded-full">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-1 rounded-full">
                   <span className="font-montserrat text-[10px] font-black uppercase tracking-[0.2em]">
                     Most Popular
                   </span>
@@ -94,7 +94,9 @@ export default function WeddingPackages() {
                 <h3 className="font-playfair text-2xl text-wedding-charcoal mb-2">
                   {pkg.name}
                 </h3>
-                <p className="font-montserrat text-4xl text-wedding-gold font-black mb-2">
+                <p className={`font-montserrat text-4xl font-black mb-2 ${
+                  pkg.highlighted ? 'bg-gradient-to-r from-rose-400 to-rose-500 bg-clip-text text-transparent' : 'text-rose-400'
+                }`}>
                   {pkg.price}
                 </p>
                 <p className="font-montserrat text-[10px] uppercase tracking-[0.3em] text-wedding-charcoal/60">
@@ -102,11 +104,11 @@ export default function WeddingPackages() {
                 </p>
               </div>
 
-              <div className="mb-8 border-t border-wedding-gold/20 pt-6">
+              <div className="mb-8 border-t border-rose-200/30 pt-6">
                 <ul className="space-y-4">
                   {pkg.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <span className="text-wedding-gold mt-1 text-xl">✓</span>
+                      <span className="text-rose-400 mt-1 text-xl">✓</span>
                       <span className="font-montserrat text-sm text-wedding-charcoal/70">
                         {feature}
                       </span>
@@ -119,8 +121,8 @@ export default function WeddingPackages() {
                 href="/weddings/pricing"
                 className={`inline-block w-full text-center font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 rounded transition-all duration-300 ${
                   pkg.highlighted
-                    ? 'bg-wedding-gold text-white hover:bg-wedding-gold/90'
-                    : 'border-2 border-wedding-gold text-wedding-gold hover:bg-wedding-gold/10'
+                    ? 'bg-gradient-to-r from-rose-400 to-rose-500 text-white hover:shadow-lg hover:shadow-rose-400/30'
+                    : 'border-2 border-rose-300 text-rose-400 hover:bg-rose-50'
                 }`}
               >
                 View Full Details

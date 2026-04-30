@@ -10,30 +10,41 @@ export default function DiscountBanner() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -10 }}
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative overflow-hidden rounded-lg bg-gradient-to-r from-emerald-600 to-emerald-700 px-8 py-10 mb-8 shadow-2xl"
+      className="relative overflow-hidden bg-gradient-to-r from-rose-400 via-rose-300 to-rose-400 px-8 py-6 shadow-lg"
     >
-      {/* Animated pulse background */}
+      {/* Subtle animated gradient overlay */}
       <motion.div
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute inset-0 bg-emerald-500/20 rounded-lg"
+        animate={{ opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        className="absolute inset-0 bg-gradient-to-r from-rose-300/30 via-transparent to-rose-300/30"
       />
 
-      <div className="relative z-10 text-center space-y-4">
-        <motion.div
-          animate={{ scale: [1, 1.02, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="font-playfair text-white text-6xl font-bold"
-        >
-          SAVE {percentage}%
-        </motion.div>
-        <p className="text-white/90 text-lg font-montserrat italic max-w-2xl mx-auto">
+      <div className="relative z-10 max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div className="flex-1">
+          <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-white/90 mb-1">
+            Exclusive Offer
+          </p>
+          <p className="font-playfair text-2xl md:text-3xl text-white font-light">
+            Save {percentage}% on all packages
+          </p>
+        </div>
+
+        {copy && (
+          <p className="hidden md:block font-montserrat text-sm text-white/95 italic max-w-xs text-right">
+            {copy}
+          </p>
+        )}
+      </div>
+
+      {/* Mobile view of copy */}
+      {copy && (
+        <p className="md:hidden font-montserrat text-xs text-white/95 italic mt-3 text-center">
           {copy}
         </p>
-      </div>
+      )}
     </motion.div>
   );
 }

@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import ServicesGrid from '@/components/shared/ServicesGrid';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
+import DiscountBanner from '@/components/weddings/DiscountBanner';
+import { DiscountProvider } from '@/lib/discount-context';
 
 const WEDDING_SERVICES = [
   { id: 'studio-photo', number: '01', title: 'Studio Photography', description: 'Professional engagement shoots, bridal portraits, and styled sessions', ctaText: 'View Packages' },
@@ -18,7 +20,8 @@ const WEDDING_SERVICES = [
 
 export default function WeddingsServicesPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
+    <DiscountProvider>
+      <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
       {/* Navbar */}
       <nav className="fixed w-full flex justify-between items-center p-8 z-[100] glass-wedding border-b border-wedding-gold/10">
         <div className="flex items-center gap-8">
@@ -36,6 +39,8 @@ export default function WeddingsServicesPage() {
       </nav>
 
       <main className="flex-1 pt-24">
+        <DiscountBanner />
+
         {/* Hero */}
         <section className="py-20 px-8 bg-wedding-bg">
           <div className="max-w-7xl mx-auto">
@@ -120,6 +125,7 @@ export default function WeddingsServicesPage() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </DiscountProvider>
   );
 }

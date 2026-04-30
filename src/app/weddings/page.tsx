@@ -7,12 +7,14 @@ import TheVisionary from '@/components/weddings/TheVisionary';
 import KZNAuthority from '@/components/weddings/KZNAuthority';
 import WeddingTestimonials from '@/components/weddings/WeddingTestimonials';
 import ScarcityBar from '@/components/weddings/ScarcityBar';
+import DiscountBanner from '@/components/weddings/DiscountBanner';
 import PricingAnchor from '@/components/weddings/PricingAnchor';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
 import CompanyStats from '@/components/shared/CompanyStats';
 import WeddingPackages from '@/components/weddings/WeddingPackages';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
+import { DiscountProvider } from '@/lib/discount-context';
 
 const WEDDING_STATS = [
   { value: '500+', label: 'Ceremonies Captured' },
@@ -40,9 +42,13 @@ const STEPS = [
 
 export default function WeddingsPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
+    <DiscountProvider>
+      <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
       {/* Scarcity Bar — above everything */}
       <ScarcityBar remainingDates={4} year={2026} />
+
+      {/* Discount Banner — for active promotions */}
+      <DiscountBanner />
 
       {/* Navbar */}
       <WeddingsNavbar isHero={true} />
@@ -201,6 +207,7 @@ export default function WeddingsPage() {
           <p className="font-montserrat text-[9px] font-bold text-wedding-charcoal/30 uppercase tracking-[0.2em]">Heirloom Quality. Durban Proud.</p>
         </div>
       </footer>
-    </div>
+      </div>
+    </DiscountProvider>
   );
 }
