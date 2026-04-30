@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 
 export default function WhatsAppFAB() {
-  const WHATSAPP_NUMBER = "27123456789"; // To be updated by client
+  const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER; // To be updated by client
 
   return (
     <motion.a

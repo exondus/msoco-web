@@ -90,12 +90,20 @@ export default function WeddingsGalleryPage() {
                 <p className="font-montserrat text-white/70 text-lg mb-12 max-w-xl mx-auto">
                   Every image in this gallery represents our commitment to authentic storytelling and technical excellence.
                 </p>
-                <a
-                  href="/weddings/pricing"
-                  className="inline-block font-montserrat text-[10px] font-black uppercase tracking-[0.4em] text-white border border-white px-12 py-4 hover:bg-white hover:text-wedding-charcoal transition-all duration-300"
-                >
-                  View Packages & Pricing
-                </a>
+                <div className="flex flex-col md:flex-row gap-6 justify-center">
+                  <a
+                    href="/weddings/contact"
+                    className="inline-block font-montserrat text-[10px] font-black uppercase tracking-[0.4em] text-black bg-wedding-gold px-12 py-4 hover:bg-wedding-gold/90 transition-all duration-300"
+                  >
+                    Book a Consultation
+                  </a>
+                  <a
+                    href="/weddings/pricing"
+                    className="inline-block font-montserrat text-[10px] font-black uppercase tracking-[0.4em] text-white border border-white px-12 py-4 hover:bg-white hover:text-wedding-charcoal transition-all duration-300"
+                  >
+                    View Packages & Pricing
+                  </a>
+                </div>
               </motion.div>
             </div>
           </section>

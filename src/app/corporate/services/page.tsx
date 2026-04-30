@@ -17,6 +17,8 @@ const CORPORATE_SERVICES_GRID = [
 ];
 
 export default function CorporateServicesPage() {
+  const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+
   return (
     <div className="flex flex-col min-h-screen bg-corporate-midnight text-white font-inter scroll-smooth" data-theme="corporate">
       {/* Navbar */}
@@ -108,7 +110,7 @@ export default function CorporateServicesPage() {
               </div>
               <div className="space-y-4">
                 <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-corporate-copper">Contact</p>
-                <p className="font-inter text-white/60">+27 12 345 6789</p>
+                <p className="font-inter text-white/60">+${CONTACT_NUMBER}</p>
                 <p className="font-inter text-white/60">info@msocorockers.co.za</p>
               </div>
             </div>

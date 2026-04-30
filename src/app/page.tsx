@@ -14,34 +14,36 @@ const FEATURED_IMAGES = [
   {
     id: 1,
     src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05685.jpg',
-    alt: 'Wedding ceremony',
+    alt: 'Traditional Zulu wedding ceremony captured with cinematic precision',
     type: 'Weddings',
   },
   {
     id: 2,
     src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg',
-    alt: 'Corporate event',
+    alt: 'Large-scale corporate conference production with technical staging',
     type: 'Corporate',
   },
   {
     id: 3,
     src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05410.jpg',
-    alt: 'Traditional event',
+    alt: 'Cultural wedding details and heritage documentation',
     type: 'Weddings',
   },
   {
     id: 4,
     src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg',
-    alt: 'Technical production',
+    alt: 'Behind the scenes of a broadcast-quality corporate livestream',
     type: 'Corporate',
   },
 ];
 
 export default function HomePage() {
+  const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+
   return (
     <div className="flex flex-col min-h-screen bg-white scroll-smooth">
       {/* Navbar */}
-      <nav className="fixed w-full flex justify-between items-center p-8 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+      <nav className="fixed w-full flex justify-between items-center p-8 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100" role="navigation">
         <MsocoLogo className="h-10 w-44" />
         <div className="hidden md:flex space-x-12 text-[9px] font-black uppercase tracking-[0.4em] text-black/30 items-center">
           <a href="/weddings" className="hover:text-wedding-gold transition-colors">Weddings</a>
@@ -51,7 +53,7 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <main className="flex-1 pt-24">
+      <main className="flex-1 pt-24" id="main-content">
         {/* Hero */}
         <section className="relative h-[80vh] flex items-center px-8 md:px-16 overflow-hidden bg-gradient-to-br from-gray-900 to-black">
           <div
@@ -62,6 +64,7 @@ export default function HomePage() {
               backgroundPosition: 'center',
               filter: 'grayscale(100%)',
             }}
+            aria-hidden="true"
           />
 
           <div className="max-w-5xl relative z-10">
@@ -130,9 +133,8 @@ export default function HomePage() {
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <span className={`text-xs font-black uppercase tracking-wider ${
-                      img.type === 'Weddings' ? 'text-wedding-gold' : 'text-corporate-blue'
-                    }`}>
+                    <span className={`text-xs font-black uppercase tracking-wider ${img.type === 'Weddings' ? 'text-wedding-gold' : 'text-corporate-blue'
+                      }`}>
                       {img.type}
                     </span>
                   </div>
@@ -288,8 +290,8 @@ export default function HomePage() {
             <div>
               <h4 className="font-black text-white mb-4 uppercase tracking-wider">Contact</h4>
               <ul className="space-y-2 text-sm text-white/50">
-                <li>Durban, KZN</li>
-                <li>+27 12 345 6789</li>
+                <li>F30 Impisi Grove, Ntuzuma, Durban, 4359, KZN</li>
+                <li>+${CONTACT_NUMBER}</li>
                 <li>info@msocorockers.co.za</li>
               </ul>
             </div>

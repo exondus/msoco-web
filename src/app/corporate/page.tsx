@@ -62,6 +62,8 @@ const CORPORATE_SERVICES = [
 ];
 
 export default function CorporatePage() {
+  const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+
   return (
     <div className="flex flex-col min-h-screen bg-corporate-midnight text-white font-inter scroll-smooth" data-theme="corporate">
       {/* Navbar */}
@@ -81,7 +83,7 @@ export default function CorporatePage() {
           {/* Ambient Glows */}
           <div className="absolute top-1/4 -left-1/4 w-[50%] h-[50%] bg-corporate-copper/5 blur-[120px] rounded-full" />
           <div className="absolute bottom-1/4 -right-1/4 w-[50%] h-[50%] bg-corporate-orange/5 blur-[120px] rounded-full" />
-          
+
           <div className="max-w-7xl relative z-10">
             <motion.div
               initial={{ opacity: 0, x: -100 }}
@@ -207,7 +209,7 @@ export default function CorporatePage() {
             </div>
             <div className="space-y-6">
               <p className="text-white/40">Connect</p>
-              <p className="text-white/60">+27 12 345 6789</p>
+              <p className="text-white/60">+${CONTACT_NUMBER}</p>
               <p className="text-white/60">info@msocorockers.co.za</p>
             </div>
           </div>

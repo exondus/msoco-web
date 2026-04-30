@@ -107,15 +107,17 @@ export default function WeddingComparisonTable({ tiers }: WeddingComparisonTable
                   </ul>
                 </div>
 
-                <CoreButton
-                  className={`w-full py-4 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] ${
-                    tier.recommended
-                      ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:shadow-lg hover:shadow-rose-600/30'
-                      : 'bg-wedding-charcoal text-white hover:bg-wedding-charcoal/90'
-                  }`}
-                >
-                  {tier.cta}
-                </CoreButton>
+                <a href={`/weddings/contact?package=${encodeURIComponent(tier.name)}`} className="w-full block">
+                  <CoreButton
+                    className={`w-full py-4 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] ${
+                      tier.recommended
+                        ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:shadow-lg hover:shadow-rose-600/30'
+                        : 'bg-wedding-charcoal text-white hover:bg-wedding-charcoal/90'
+                    }`}
+                  >
+                    {tier.cta}
+                  </CoreButton>
+                </a>
               </motion.div>
             ))}
           </motion.div>

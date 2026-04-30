@@ -80,6 +80,9 @@ export default function WeddingsServicesPage() {
                   <a href="/weddings/pricing" className="inline-block bg-wedding-gold text-white hover:bg-wedding-gold/90 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
                     View Tiers & Specifications
                   </a>
+                  <a href="/weddings/contact" className="inline-block border border-wedding-charcoal text-wedding-charcoal hover:bg-wedding-charcoal hover:text-white font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
+                    Book a Consultation
+                  </a>
                 </div>
               </motion.div>
             </div>

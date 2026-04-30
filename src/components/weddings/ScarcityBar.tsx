@@ -67,7 +67,7 @@ export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) 
             <span className="hidden md:block w-px h-4 bg-white/30" />
 
             <a
-              href="/weddings/pricing"
+              href="/weddings/contact"
               className="inline-flex items-center gap-1 font-montserrat text-[9px] font-black uppercase tracking-[0.2em] text-white border border-white/40 rounded-full px-3 py-1 hover:bg-white/20 transition-all"
             >
               Book Now <ArrowRight size={10} />

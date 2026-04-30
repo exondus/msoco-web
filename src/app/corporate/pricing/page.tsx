@@ -98,6 +98,8 @@ const FAQS = [
 ];
 
 export default function CorporatePricingPage() {
+  const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+
   return (
     <div className="flex flex-col min-h-screen bg-corporate-midnight text-white scroll-smooth" data-theme="corporate">
       {/* Navbar */}
@@ -150,11 +152,10 @@ export default function CorporatePricingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1 }}
                   viewport={{ once: true }}
-                  className={`relative rounded-lg p-8 transition-all duration-500 glass-corporate ${
-                    pkg.highlighted
+                  className={`relative rounded-lg p-8 transition-all duration-500 glass-corporate ${pkg.highlighted
                       ? 'border border-corporate-copper/50 md:scale-105 shadow-2xl shadow-corporate-copper/10'
                       : 'border border-white/5 hover:border-white/20'
-                  }`}
+                    }`}
                 >
                   {pkg.highlighted && (
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-corporate-copper text-black px-4 py-1 rounded-full">
@@ -196,11 +197,10 @@ export default function CorporatePricingPage() {
                   </div>
 
                   <CoreButton
-                    className={`w-full ${
-                      pkg.highlighted
+                    className={`w-full ${pkg.highlighted
                         ? 'bg-corporate-copper text-black hover:bg-corporate-orange'
                         : 'border border-white/10 text-white hover:bg-white/5 hover:border-corporate-copper'
-                    }`}
+                      }`}
                   >
                     Select Specification
                   </CoreButton>
@@ -312,7 +312,7 @@ export default function CorporatePricingPage() {
               </p>
               <div className="flex flex-col md:flex-row gap-6 justify-center">
                 <a href="tel:+27123456789" className="inline-block bg-corporate-copper text-black hover:bg-corporate-orange font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300 shadow-lg shadow-corporate-copper/20">
-                  Call +27 12 345 6789
+                  Call +${CONTACT_NUMBER}
                 </a>
                 <a href="mailto:info@msocorockers.co.za" className="inline-block border border-white/10 text-white hover:bg-white/5 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
                   Email Command
@@ -340,7 +340,7 @@ export default function CorporatePricingPage() {
               </div>
               <div className="space-y-4">
                 <p className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-corporate-copper">Contact</p>
-                <p className="text-white/60">+27 12 345 6789</p>
+                <p className="text-white/60">+${CONTACT_NUMBER}</p>
                 <p className="text-white/60">info@msocorockers.co.za</p>
               </div>
             </div>

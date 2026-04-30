@@ -119,12 +119,16 @@ export default function WeddingsPricingPage() {
                   Your celebration is a unique chapter in your family&apos;s history. We craft bespoke packages that combine specific elements to fit your vision, tradition, and scale.
                 </p>
                 <div className="flex flex-col md:flex-row gap-6 justify-center">
-                  <CoreButton className="bg-wedding-gold text-black hover:bg-wedding-gold/90 px-10 py-5">
-                    Request Bespoke Quote
-                  </CoreButton>
-                  <CoreButton variant="outline" className="border-white text-white hover:bg-white/10 px-10 py-5">
-                    Discuss Your Vision
-                  </CoreButton>
+                  <a href="/weddings/contact?package=Bespoke">
+                    <CoreButton className="bg-wedding-gold text-black hover:bg-wedding-gold/90 px-10 py-5">
+                      Request Bespoke Quote
+                    </CoreButton>
+                  </a>
+                  <a href="/weddings/contact">
+                    <CoreButton variant="outline" className="border-white text-white hover:bg-white/10 px-10 py-5">
+                      Discuss Your Vision
+                    </CoreButton>
+                  </a>
                 </div>
               </motion.div>
             </div>
@@ -230,12 +234,16 @@ export default function WeddingsPricingPage() {
                   Contact Zakes directly to discuss your specific needs, ceremony type, and customize a package that works for you.
                 </p>
                 <div className="flex flex-col md:flex-row gap-6 justify-center">
-                  <CoreButton className="bg-wedding-gold text-black hover:bg-wedding-gold/90">
-                    Call +${CONTACT_NUMBER}
-                  </CoreButton>
-                  <CoreButton variant="outline" className="border-white text-white hover:bg-white/10">
-                    WhatsApp Inquiry
-                  </CoreButton>
+                  <a href="/weddings/contact">
+                    <CoreButton className="bg-wedding-gold text-black hover:bg-wedding-gold/90">
+                      Book a Consultation
+                    </CoreButton>
+                  </a>
+                  <a href={`https://wa.me/${CONTACT_NUMBER}?text=Hi%20Zakes%2C%20I%27m%20interested%20in%20your%20wedding%20packages.`} target="_blank" rel="noopener noreferrer">
+                    <CoreButton variant="outline" className="border-white text-white hover:bg-white/10">
+                      WhatsApp Zakes
+                    </CoreButton>
+                  </a>
                 </div>
               </motion.div>
             </div>

@@ -23,11 +23,11 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
   if (isHero) {
     // Landing page navbar - sit below ScarcityBar
     return (
-      <nav className="relative w-full flex justify-between items-center px-12 py-8 z-[100] mix-blend-difference bg-transparent">
+      <nav className="relative w-full flex justify-between items-center px-12 py-8 z-[100] bg-transparent">
         <div className="pt-2">
-          <MsocoLogo className="h-12 w-48 invert" />
+          <MsocoLogo className="h-12 w-48" invert={true} />
         </div>
-        <div className="hidden md:flex space-x-8 font-montserrat uppercase tracking-[0.3em] text-[10px] font-black text-white">
+        <div className="hidden md:flex space-x-8 font-montserrat uppercase tracking-[0.3em] text-[10px] font-black text-white/90">
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -37,7 +37,7 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
               {item.label}
             </a>
           ))}
-          <a href="#contact" className="text-wedding-gold font-black underline underline-offset-8 decoration-2">
+          <a href="/weddings/contact" className="text-wedding-gold font-black underline underline-offset-8 decoration-2">
             Inquire
           </a>
         </div>
@@ -62,9 +62,11 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
             {item.label}
           </a>
         ))}
-        <CoreButton variant="outline" className="py-2 px-6 border-wedding-gold text-wedding-gold ml-4 hover:bg-wedding-gold/5">
-          Inquire
-        </CoreButton>
+        <a href="/weddings/contact">
+          <CoreButton variant="outline" className="py-2 px-6 border-wedding-gold text-wedding-gold ml-4 hover:bg-wedding-gold/5">
+            Inquire
+          </CoreButton>
+        </a>
       </div>
     </nav>
   );

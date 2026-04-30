@@ -13,7 +13,7 @@ export default function DiscountBanner() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative overflow-hidden bg-gradient-to-r from-rose-600 via-rose-500 to-rose-600 px-8 py-6 shadow-lg"
+      className="relative overflow-hidden bg-gradient-to-r from-rose-600 via-rose-500 to-rose-600 px-8 py-6 shadow-lg mb-10"
     >
       {/* Subtle animated gradient overlay */}
       <motion.div

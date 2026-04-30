@@ -39,6 +39,8 @@ const FEATURED_IMAGES = [
 ];
 
 export default function HomePage() {
+  const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+
   return (
     <div className="flex flex-col min-h-screen bg-white scroll-smooth">
       {/* Navbar */}
@@ -126,9 +128,8 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <span className={`text-xs font-black uppercase tracking-wider ${
-                      img.type === 'Weddings' ? 'text-wedding-gold' : 'text-corporate-blue'
-                    }`}>
+                    <span className={`text-xs font-black uppercase tracking-wider ${img.type === 'Weddings' ? 'text-wedding-gold' : 'text-corporate-blue'
+                      }`}>
                       {img.type}
                     </span>
                   </div>
@@ -277,7 +278,7 @@ export default function HomePage() {
               <h4 className="font-black text-white mb-4 uppercase tracking-wider">Contact</h4>
               <ul className="space-y-2 text-sm text-white/50">
                 <li>Durban, KZN</li>
-                <li>+27 12 345 6789</li>
+                <li>+${CONTACT_NUMBER}</li>
                 <li>info@msocorockers.co.za</li>
               </ul>
             </div>
