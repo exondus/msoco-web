@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import CoreButton from '../ui/CoreButton';
+import { useDiscount } from '@/lib/discount-context';
 
 const PACKAGES = [
   {
@@ -50,6 +51,25 @@ const PACKAGES = [
 ];
 
 export default function WeddingPackages() {
+  const { isActive, discountedPrice } = useDiscount();
+
+  // Parse price and apply discount
+  const getPriceDisplay = (priceStr: string) => {
+    if (priceStr === 'Custom') return { original: 'Custom', discounted: 'Custom', showDiscount: false };
+
+    const match = priceStr.match(/[\d,]+/);
+    if (!match) return { original: priceStr, discounted: priceStr, showDiscount: false };
+
+    const original = parseInt(match[0].replace(/,/g, ''), 10);
+    const discounted = isActive ? discountedPrice(original) : original;
+
+    return {
+      original: `R${original.toLocaleString()}`,
+      discounted: `R${discounted.toLocaleString()}`,
+      showDiscount: isActive && discounted < original,
+    };
+  };
+
   return (
     <section className="py-40 px-8 bg-wedding-bg">
       <div className="max-w-7xl mx-auto">
@@ -83,7 +103,7 @@ export default function WeddingPackages() {
               }`}
             >
               {pkg.highlighted && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-1 rounded-full">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-rose-600 to-rose-700 text-white px-4 py-1 rounded-full">
                   <span className="font-montserrat text-[10px] font-black uppercase tracking-[0.2em]">
                     Most Popular
                   </span>
@@ -94,11 +114,30 @@ export default function WeddingPackages() {
                 <h3 className="font-playfair text-2xl text-wedding-charcoal mb-2">
                   {pkg.name}
                 </h3>
-                <p className={`font-montserrat text-4xl font-black mb-2 ${
-                  pkg.highlighted ? 'bg-gradient-to-r from-rose-400 to-rose-500 bg-clip-text text-transparent' : 'text-rose-400'
-                }`}>
-                  {pkg.price}
-                </p>
+                {(() => {
+                  const priceData = getPriceDisplay(pkg.price);
+                  return (
+                    <>
+                      <div className="flex items-baseline gap-2 mb-2">
+                        <p className={`font-montserrat text-4xl font-black ${
+                          pkg.highlighted ? 'bg-gradient-to-r from-rose-600 to-rose-700 bg-clip-text text-transparent' : 'text-rose-600'
+                        }`}>
+                          {priceData.showDiscount ? priceData.discounted : priceData.original}
+                        </p>
+                        {priceData.showDiscount && (
+                          <p className="font-montserrat text-lg line-through text-wedding-charcoal/30">
+                            {priceData.original}
+                          </p>
+                        )}
+                      </div>
+                      {priceData.showDiscount && (
+                        <p className="font-montserrat text-[11px] font-black text-rose-600 mb-2">
+                          SAVE 5%
+                        </p>
+                      )}
+                    </>
+                  );
+                })()}
                 <p className="font-montserrat text-[10px] uppercase tracking-[0.3em] text-wedding-charcoal/60">
                   {pkg.duration}
                 </p>
@@ -121,8 +160,8 @@ export default function WeddingPackages() {
                 href="/weddings/pricing"
                 className={`inline-block w-full text-center font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 rounded transition-all duration-300 ${
                   pkg.highlighted
-                    ? 'bg-gradient-to-r from-rose-400 to-rose-500 text-white hover:shadow-lg hover:shadow-rose-400/30'
-                    : 'border-2 border-rose-300 text-rose-400 hover:bg-rose-50'
+                    ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:shadow-lg hover:shadow-rose-600/30'
+                    : 'border-2 border-rose-300 text-rose-600 hover:bg-rose-50'
                 }`}
               >
                 View Full Details

@@ -44,11 +44,11 @@ export default function WeddingsPage() {
   return (
     <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
-      {/* Scarcity Bar — above everything */}
-      <ScarcityBar remainingDates={4} year={2026} />
-
-      {/* Discount Banner — for active promotions */}
+      {/* Discount Banner — above everything */}
       <DiscountBanner />
+
+      {/* Scarcity Bar */}
+      <ScarcityBar remainingDates={4} year={2026} />
 
       {/* Navbar */}
       <WeddingsNavbar isHero={true} />
