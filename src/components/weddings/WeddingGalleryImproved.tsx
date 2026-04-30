@@ -59,6 +59,7 @@ export default function WeddingGalleryImproved() {
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 25vw"
                 unoptimized
+                loading={index < 4 ? 'eager' : 'lazy'}
               />
               {/* No visible border - only subtle hover overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />

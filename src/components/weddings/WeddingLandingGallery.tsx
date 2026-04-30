@@ -43,6 +43,7 @@ export default function WeddingLandingGallery() {
               className="object-cover group-hover:scale-105 transition-transform duration-500"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               unoptimized
+              loading={index < 3 ? 'eager' : 'lazy'}
             />
             {/* Subtle overlay on hover - no visible border */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
