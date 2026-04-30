@@ -12,80 +12,32 @@ interface GalleryImage {
   altText: string;
 }
 
-// Corporate gallery images
+// Corporate gallery images (24 total from Excel categorization)
 const CORPORATE_GALLERY_IMAGES: GalleryImage[] = [
-  {
-    id: '1',
-    title: 'Corporate Event Setup',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg',
-    altText: 'Professional staging and lighting',
-  },
-  {
-    id: '2',
-    title: 'Broadcast Production',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg',
-    altText: 'Multi-camera broadcast setup',
-  },
-  {
-    id: '3',
-    title: 'LED Video Wall',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg',
-    altText: 'LED display technology',
-  },
-  {
-    id: '4',
-    title: 'Executive Headshots',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02464.jpg',
-    altText: 'Professional corporate portraits',
-  },
-  {
-    id: '5',
-    title: 'Audio System Configuration',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02438.jpg',
-    altText: 'Line array audio setup',
-  },
-  {
-    id: '6',
-    title: 'Brand Activation',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02413.jpg',
-    altText: 'Interactive brand experience',
-  },
-  {
-    id: '7',
-    title: 'Live Event Coverage',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02373.jpg',
-    altText: 'Event documentation',
-  },
-  {
-    id: '8',
-    title: 'Lighting Rig Configuration',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02369.jpg',
-    altText: 'Intelligent lighting design',
-  },
-  {
-    id: '9',
-    title: 'Product Photography',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02356.jpg',
-    altText: 'Professional product showcase',
-  },
-  {
-    id: '10',
-    title: 'Conference Setup',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02351.jpg',
-    altText: 'Professional conference space',
-  },
-  {
-    id: '11',
-    title: 'Stage Production',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02340.jpg',
-    altText: 'Full stage setup and design',
-  },
-  {
-    id: '12',
-    title: 'Photo Booth Integration',
-    src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02323.jpg',
-    altText: 'Interactive photo booth experience',
-  },
+  { id: '1', title: 'DSC02488', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02488.jpg', altText: 'Corporate Event Setup' },
+  { id: '2', title: 'DSC02474', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02474.jpg', altText: 'Broadcast Production' },
+  { id: '3', title: 'DSC02469', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02469.jpg', altText: 'LED Video Wall' },
+  { id: '4', title: 'DSC02464', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02464.jpg', altText: 'Executive Headshots' },
+  { id: '5', title: 'DSC02438', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02438.jpg', altText: 'Audio System' },
+  { id: '6', title: 'DSC02413', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02413.jpg', altText: 'Brand Activation' },
+  { id: '7', title: 'DSC02373', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02373.jpg', altText: 'Live Event Coverage' },
+  { id: '8', title: 'DSC02369', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02369.jpg', altText: 'Lighting Rig' },
+  { id: '9', title: 'DSC02356', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02356.jpg', altText: 'Product Photography' },
+  { id: '10', title: 'DSC02351', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02351.jpg', altText: 'Conference Setup' },
+  { id: '11', title: 'DSC02340', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02340.jpg', altText: 'Stage Production' },
+  { id: '12', title: 'DSC02323', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02323.jpg', altText: 'Photo Booth' },
+  { id: '13', title: 'DSC02271', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02271.jpg', altText: 'Corporate Event' },
+  { id: '14', title: 'AECI', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/AECI.jpg', altText: 'Corporate Event' },
+  { id: '15', title: 'DSC02241', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02241.jpg', altText: 'Corporate Event' },
+  { id: '16', title: 'DSC02234', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC02234.jpg', altText: 'Corporate Event' },
+  { id: '17', title: 'AECI', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/AECI.jpg', altText: 'Corporate Event' },
+  { id: '18', title: 'DSC_3063', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC_3063.jpg', altText: 'Corporate Event' },
+  { id: '19', title: 'Corporate Event', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/corporate-event-19.jpg', altText: 'Corporate Event' },
+  { id: '20', title: 'Corporate Event', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/corporate-event-20.jpg', altText: 'Corporate Event' },
+  { id: '21', title: 'Corporate Event', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/corporate-event-21.jpg', altText: 'Corporate Event' },
+  { id: '22', title: 'PP (11)', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/PP-11.jpg', altText: 'Corporate Event' },
+  { id: '23', title: 'PP-11-1', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/PP-11-1.jpg', altText: 'Corporate Event' },
+  { id: '24', title: 'PP-11', src: 'https://www.msocorockers.co.za/wp-content/uploads/2026/02/PP-11.jpg', altText: 'Corporate Event' },
 ];
 
 export default function CorporateGalleryPage() {
@@ -137,7 +89,7 @@ export default function CorporateGalleryPage() {
                     src={image.src}
                     alt={image.altText}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-contain group-hover:scale-110 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     unoptimized
                   />

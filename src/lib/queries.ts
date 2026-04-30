@@ -119,7 +119,7 @@ export const GET_ABOUT_CONTENT = gql`
 
 export const GET_SALE_DISCOUNT = gql`
   query GetSaleDiscount {
-    posts(where: { search: "SALE", first: 1 }) {
+    posts(where: { search: "SALE" }, first: 1) {
       nodes {
         id
         title

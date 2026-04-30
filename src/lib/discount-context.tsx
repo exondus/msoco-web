@@ -25,14 +25,21 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     async function fetchDiscount() {
       try {
-        const { data } = await client.query({ query: GET_SALE_DISCOUNT });
+        const { data } = await client.query({
+          query: GET_SALE_DISCOUNT,
+          fetchPolicy: 'network-only', // Always fetch fresh data from server
+        });
         const posts = (data as Record<string, any>)?.posts?.nodes || [];
+
+        console.log('[Discount] Fetched posts:', posts.length, posts);
 
         if (posts.length > 0) {
           const firstPost = posts[0];
+          console.log('[Discount] Found SALE post:', firstPost.title, firstPost.content);
           const parsed = parseDiscountFromBody(firstPost.content);
 
           if (parsed) {
+            console.log('[Discount] Parsed discount:', parsed);
             setState({
               isActive: true,
               percentage: parsed.percentage,
@@ -41,7 +48,11 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
                 Math.round(price * (1 - parsed.percentage / 100)),
             });
             return;
+          } else {
+            console.log('[Discount] Failed to parse discount from content:', firstPost.content);
           }
+        } else {
+          console.log('[Discount] No SALE posts found');
         }
 
         // No valid SALE post found
@@ -52,7 +63,7 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
           discountedPrice: (price: number) => price,
         });
       } catch (error) {
-        console.error('Error fetching discount:', error);
+        console.error('[Discount] Error fetching discount:', error);
         // Graceful fallback on error
         setState({
           isActive: false,
