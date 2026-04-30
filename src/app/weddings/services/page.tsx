@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import ServicesGrid from '@/components/shared/ServicesGrid';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
-import DiscountBanner from '@/components/weddings/DiscountBanner';
+import ScarcityBar from '@/components/weddings/ScarcityBar';
 import { DiscountProvider } from '@/lib/discount-context';
 
 const WEDDING_SERVICES = [
@@ -22,8 +22,11 @@ export default function WeddingsServicesPage() {
   return (
     <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
+      {/* Scarcity/Discount Bar */}
+      <ScarcityBar remainingDates={4} year={2026} />
+
       {/* Navbar */}
-      <nav className="fixed w-full flex justify-between items-center p-8 z-[100] glass-wedding border-b border-wedding-gold/10">
+      <nav className="fixed top-[44px] w-full flex justify-between items-center p-8 z-[100] glass-wedding border-b border-wedding-gold/10">
         <div className="flex items-center gap-8">
           <a href="/weddings" className="group flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.3em] text-wedding-gold transition-all duration-300">
             <span className="w-8 h-px bg-wedding-gold transition-all duration-300 group-hover:w-12" />
@@ -38,9 +41,7 @@ export default function WeddingsServicesPage() {
         </div>
       </nav>
 
-      <main className="flex-1 pt-24">
-        <DiscountBanner />
-
+      <main className="flex-1 pt-40">
         {/* Hero */}
         <section className="py-20 px-8 bg-wedding-bg">
           <div className="max-w-7xl mx-auto">

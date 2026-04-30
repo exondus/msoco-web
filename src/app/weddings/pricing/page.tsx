@@ -6,9 +6,8 @@ import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
 import WeddingComparisonTable from '@/components/weddings/WeddingComparisonTable';
 import WeddingPricingTabs from '@/components/weddings/WeddingPricingTabs';
+import ScarcityBar from '@/components/weddings/ScarcityBar';
 import { DiscountProvider } from '@/lib/discount-context';
-import DiscountBanner from '@/components/weddings/DiscountBanner';
-import DiscountBadge from '@/components/weddings/DiscountBadge';
 import { PRICING_DATA } from './pricingData';
 
 const TABS = [
@@ -51,11 +50,11 @@ export default function WeddingsPricingPage() {
   return (
     <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
-        {/* Discount Banner — above navbar */}
-        <DiscountBanner />
+        {/* Scarcity/Discount Bar */}
+        <ScarcityBar remainingDates={4} year={2026} />
 
         {/* Navbar */}
-        <nav className="fixed top-[60px] w-full flex justify-between items-center p-8 z-[100] glass-wedding border-b border-wedding-gold/10">
+        <nav className="fixed top-[44px] w-full flex justify-between items-center p-8 z-[100] glass-wedding border-b border-wedding-gold/10">
         <div className="flex items-center gap-8">
           <a href="/weddings" className="group flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.3em] text-wedding-gold transition-all duration-300">
             <span className="w-8 h-px bg-wedding-gold transition-all duration-300 group-hover:w-12" />
@@ -70,7 +69,7 @@ export default function WeddingsPricingPage() {
         </div>
       </nav>
 
-        <main className="flex-1 pt-32">
+        <main className="flex-1 pt-40">
           {/* Hero */}
           <section className="py-20 px-8 bg-wedding-bg">
             <div className="max-w-7xl mx-auto">

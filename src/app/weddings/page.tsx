@@ -7,7 +7,6 @@ import TheVisionary from '@/components/weddings/TheVisionary';
 import KZNAuthority from '@/components/weddings/KZNAuthority';
 import WeddingTestimonials from '@/components/weddings/WeddingTestimonials';
 import ScarcityBar from '@/components/weddings/ScarcityBar';
-import DiscountBanner from '@/components/weddings/DiscountBanner';
 import PricingAnchor from '@/components/weddings/PricingAnchor';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
@@ -44,10 +43,7 @@ export default function WeddingsPage() {
   return (
     <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
-      {/* Discount Banner — above everything */}
-      <DiscountBanner />
-
-      {/* Scarcity Bar */}
+      {/* Scarcity/Discount Bar — shows discount if active, otherwise scarcity info */}
       <ScarcityBar remainingDates={4} year={2026} />
 
       {/* Navbar */}
