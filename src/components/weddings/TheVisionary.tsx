@@ -17,9 +17,8 @@ export default function TheVisionary() {
           className="w-full md:w-1/2 relative h-[700px] flex-shrink-0"
         >
           <div className="absolute inset-0 border-[20px] border-white z-10 shadow-2xl" />
-          {/* Replace src with real WP media URL once available */}
           <Image
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200"
+            src="/zakes.jpg"
             alt="Zakes, founder of Msoco Rockers"
             fill
             className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
