@@ -1,10 +1,13 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
-const WP_GRAPHQL_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'https://www.msocorockers.co.za/graphql';
+// Use local API proxy to avoid CORS issues with WordPress GraphQL
+const GRAPHQL_URL = typeof window !== 'undefined'
+  ? '/api/graphql'
+  : (process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'https://www.msocorockers.co.za/graphql');
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: WP_GRAPHQL_URL,
+    uri: GRAPHQL_URL,
   }),
   cache: new InMemoryCache(),
   defaultOptions: {
