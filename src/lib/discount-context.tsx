@@ -33,15 +33,12 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
         });
         const posts = (data as Record<string, any>)?.posts?.nodes || [];
 
-        console.log('[Discount] Fetched posts:', posts.length, posts);
 
         if (posts.length > 0) {
           const firstPost = posts[0];
-          console.log('[Discount] Found SALE post:', firstPost.title, firstPost.content);
           const parsed = parseDiscountFromBody(firstPost.content);
 
           if (parsed) {
-            console.log('[Discount] Parsed discount:', parsed);
             setState({
               isActive: true,
               loading: false,
@@ -51,11 +48,7 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
                 Math.round(price * (1 - parsed.percentage / 100)),
             });
             return;
-          } else {
-            console.log('[Discount] Failed to parse discount from content:', firstPost.content);
           }
-        } else {
-          console.log('[Discount] No SALE posts found');
         }
 
         setState({
