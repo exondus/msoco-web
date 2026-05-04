@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState, ReactNode } from
 import client from './apollo-client';
 import { GET_SALE_DISCOUNT } from './queries';
 import { parseDiscountFromBody } from './discount-parser';
+import { DISCOUNT_CONFIG } from './discount-config';
 
 export interface DiscountContextType {
   isActive: boolean;
@@ -27,6 +28,18 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     async function fetchDiscount() {
       try {
+        if (DISCOUNT_CONFIG.active === true) {
+          setState({
+            isActive: true,
+            loading: false,
+            percentage: DISCOUNT_CONFIG.percentage,
+            copy: DISCOUNT_CONFIG.copy,
+            discountedPrice: (price: number) =>
+              Math.round(price * (1 - DISCOUNT_CONFIG.percentage / 100)),
+          });
+          return;
+        }
+
         const { data } = await client.query({
           query: GET_SALE_DISCOUNT,
           fetchPolicy: 'network-only',
