@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { WEDDING_GALLERY_IMAGES, type GalleryImage } from '@/lib/cloudinary-images';
+import { WEDDING_GALLERY_IMAGES } from '@/lib/cloudinary-images';
 
 export default function WeddingGalleryLive() {
   return (

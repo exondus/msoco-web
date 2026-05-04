@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { CORPORATE_GALLERY_IMAGES, type GalleryImage } from '@/lib/cloudinary-images';
+import { CORPORATE_GALLERY_IMAGES } from '@/lib/cloudinary-images';
 
 export default function CorporateGalleryLive() {
   return (
@@ -26,11 +26,6 @@ export default function CorporateGalleryLive() {
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-              {image.category && (
-                <span className="text-corporate-blue text-xs font-black uppercase tracking-wider mb-2">
-                  {image.category}
-                </span>
-              )}
               <h3 className="text-white font-bold text-sm line-clamp-2">
                 {image.title}
               </h3>

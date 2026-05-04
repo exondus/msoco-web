@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { MASONRY_IMAGES, type MasonryImage } from '@/lib/cloudinary-images';
+import { MASONRY_IMAGES } from '@/lib/cloudinary-images';
 
 export default function WeddingMasonryGallery() {
   return (
