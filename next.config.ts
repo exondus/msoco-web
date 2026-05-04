@@ -12,9 +12,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'www.msocorockers.co.za',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
-    // Disable optimization for remote WordPress images to avoid timeout issues
-    unoptimized: process.env.NODE_ENV === 'development',
   },
   headers: async () => [
     {
