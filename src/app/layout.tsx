@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Playfair_Display, Inter } from "next/font/google";
 import ThemeInitializer from "@/components/ThemeInitializer";
-import BridgeFAB from "@/components/BridgeFAB";
+// import BridgeFAB from "@/components/BridgeFAB"; // muted until corporate is ready
 import WhatsAppFAB from "@/components/ui/WhatsAppFAB";
 import { DiscountProvider } from "@/lib/discount-context";
 import { PostHogProvider } from "@/providers/PostHogProvider";
@@ -122,7 +122,7 @@ export default function RootLayout({
             <div className="animate-page-fade">
               {children}
             </div>
-            <BridgeFAB />
+            {/* <BridgeFAB /> */}
             <WhatsAppFAB />
           </DiscountProvider>
         </PostHogProvider>
