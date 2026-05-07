@@ -14,6 +14,8 @@ import CompanyStats from '@/components/shared/CompanyStats';
 import WeddingPackages from '@/components/weddings/WeddingPackages';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
 import { DiscountProvider } from '@/lib/discount-context';
+import { HERO_VIDEO } from '@/lib/media-registry';
+import { cloudinaryUrl, cloudinaryVideoUrl } from '@/lib/cloudinary';
 
 const WEDDING_STATS = [
   { value: '500+', label: 'Ceremonies Captured' },
@@ -59,17 +61,20 @@ export default function WeddingsPage() {
           </div>
 
           <div className="absolute inset-0 opacity-30">
-            {/* Hero video background */}
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover grayscale"
-              poster="https://www.msocorockers.co.za/wp-content/uploads/2026/02/DSC05685.jpg"
-            >
-              <source src="https://www.msocorockers.co.za/wp-content/uploads/2025/07/DJI_0455_1.mp4" type="video/mp4" />
-            </video>
+            {HERO_VIDEO ? (
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover grayscale"
+                poster={HERO_VIDEO.poster ? cloudinaryUrl(HERO_VIDEO.poster) : undefined}
+              >
+                <source src={cloudinaryVideoUrl(HERO_VIDEO.publicId)} type="video/mp4" />
+              </video>
+            ) : (
+              <div className="w-full h-full bg-wedding-charcoal" />
+            )}
           </div>
 
           <motion.div
@@ -110,7 +115,9 @@ export default function WeddingsPage() {
           <CompanyStats stats={WEDDING_STATS} theme="wedding" bgColor="bg-wedding-bg" textColor="text-wedding-charcoal" />
 
           {/* 2. Wedding Packages — pricing options (moved higher per Zakes request) */}
-          <WeddingPackages />
+          <div id="packages">
+            <WeddingPackages />
+          </div>
 
           {/* 3. Social proof — after pricing */}
           <WeddingTestimonials />
@@ -169,7 +176,7 @@ export default function WeddingsPage() {
           </section>
 
           {/* 6. Pricing anchor — filters leads before final CTA */}
-          <PricingAnchor startingPrice="R12,500" premiumPrice="R28,000" />
+          <PricingAnchor startingPrice="R12,000" premiumPrice="R30,000" />
         </main>
 
         {/* Footer */}

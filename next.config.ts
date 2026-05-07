@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  redirects: async () => [
+    // Corporate is not ready yet — all corporate URLs redirect to weddings
+    { source: '/', destination: '/weddings', permanent: false },
+    { source: '/gateway', destination: '/weddings', permanent: false },
+    { source: '/corporate', destination: '/weddings', permanent: false },
+    { source: '/corporate/:path*', destination: '/weddings', permanent: false },
+  ],
   images: {
     remotePatterns: [
       {

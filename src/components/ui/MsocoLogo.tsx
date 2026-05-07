@@ -17,6 +17,7 @@ export default function MsocoLogo({ className = "h-20 w-auto", invert = false }:
         src="/logo.png"
         alt="Msoco Rockers Production"
         fill
+        sizes="(max-width: 768px) 160px, 256px"
         className={`object-contain transition-all duration-500 brightness-0 ${invert ? 'invert' : ''} ${isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         priority

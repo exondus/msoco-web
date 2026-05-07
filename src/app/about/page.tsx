@@ -49,7 +49,7 @@ export default function AboutPage() {
       {/* Hero */}
       <header className="relative w-full h-[70vh] flex items-end px-12 pb-24 overflow-hidden bg-black">
         <div className="absolute inset-0 opacity-40 bg-gradient-to-b from-transparent to-black" />
-        {/* Replace with real photo from WordPress once available */}
+        {/* Photo slot — add via media-registry when ready */}
         <div className="absolute inset-0 bg-gray-900" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}

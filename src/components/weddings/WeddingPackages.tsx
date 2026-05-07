@@ -1,78 +1,187 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import CoreButton from '../ui/CoreButton';
 import { useDiscount } from '@/lib/discount-context';
 
-const PACKAGES = [
+const STANDARD_PACKAGES = [
   {
-    name: 'The Heritage',
-    price: 'R12,500',
-    duration: '8 hours coverage',
+    name: 'Bronze',
+    price: 'R12000',
     features: [
-      '2 videographers',
-      '4K cinema-grade video',
-      '200+ edited photos',
-      'Same-day highlight reel',
-      'Digital gallery access',
+      '1x Photographer',
+      '1x Videographer',
+      'A4 Photobook Magazine',
+      'A3 Canvas Picture',
+      'Extra Photos on USB',
+      'Video Output 2x USB',
     ],
     highlighted: false,
+    badge: null,
   },
   {
-    name: 'The Legacy',
-    price: 'R22,000',
-    duration: '12 hours coverage',
+    name: 'Silver',
+    price: 'R15000',
     features: [
-      '3 videographers + drone',
-      '4K multi-angle coverage',
-      '400+ curated photos',
-      'Cinematic highlight reel',
-      'Premium audio mixing',
-      'Custom color grading',
-      'Digital + USB delivery',
+      '1x Photographer',
+      '1x Videographer',
+      'A3 Photobook Magazine',
+      'A3 Canvas Picture',
+      'Drone Coverage',
+      'Video Output 2x USB',
+    ],
+    highlighted: false,
+    badge: null,
+  },
+  {
+    name: 'Gold',
+    price: 'R18000',
+    features: [
+      '2x Photographers',
+      '2x Videographers',
+      'A3 Photobook Magazine',
+      'A2 Canvas Picture',
+      'Drone Coverage',
+      'Video Output 2x USB',
     ],
     highlighted: true,
-  },
-  {
-    name: 'The Dynasty',
-    price: 'Custom',
-    duration: 'Full-day + post-production',
-    features: [
-      'Full production team',
-      '4K + cinema camera suite',
-      'Unlimited coverage',
-      'Multi-day editing',
-      'Documentary-style film',
-      'Professional album design',
-      'Live streaming option',
-    ],
-    highlighted: false,
+    badge: 'Most Popular',
   },
 ];
 
+const EXCLUSIVE_PACKAGES = [
+  {
+    name: 'Platinum',
+    price: 'R26000',
+    features: [
+      '1x Photographer',
+      '2x Videographers',
+      'Layflat Photobook',
+      '2x A2 Canvas Pictures',
+      'Drone Coverage',
+      '2x Personalised USBs',
+      'Sound System',
+    ],
+    highlighted: false,
+    badge: 'Exclusive',
+  },
+  {
+    name: 'Premium',
+    price: 'R30000',
+    features: [
+      '2x Photographers',
+      '2x Videographers',
+      'A1 & A2 Canvas Pictures',
+      'Layflat Photobook Magazine',
+      'Drone Coverage',
+      '2x Personalised USBs',
+      'Sound System',
+    ],
+    highlighted: true,
+    badge: 'Full Production',
+  },
+];
+
+function PackageCard({
+  pkg,
+  idx,
+  isActive,
+  percentage,
+  discountedPrice,
+}: {
+  pkg: (typeof STANDARD_PACKAGES)[number] | (typeof EXCLUSIVE_PACKAGES)[number];
+  idx: number;
+  isActive: boolean;
+  percentage: number;
+  discountedPrice: (n: number) => number;
+}) {
+  const raw = parseInt(pkg.price.replace(/\D/g, ''), 10);
+  const discounted = isActive ? discountedPrice(raw) : raw;
+  const showDiscount = isActive && discounted < raw;
+
+  const formatPrice = (n: number) => `R${n.toLocaleString()}`;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: idx * 0.08 }}
+      viewport={{ once: true }}
+      className={`relative rounded-lg p-8 transition-all duration-500 flex flex-col ${
+        pkg.highlighted
+          ? 'border-2 border-wedding-gold bg-gradient-to-b from-wedding-gold/5 to-white md:scale-105 shadow-2xl'
+          : 'border border-wedding-gold/20 hover:border-wedding-gold/40 bg-white/60'
+      }`}
+    >
+      {pkg.badge && (
+        <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full ${
+          pkg.highlighted
+            ? 'bg-wedding-gold text-wedding-charcoal'
+            : 'bg-wedding-charcoal text-white'
+        }`}>
+          <span className="font-montserrat text-[10px] font-black uppercase tracking-[0.2em]">
+            {pkg.badge}
+          </span>
+        </div>
+      )}
+
+      <div className="mb-6">
+        <h3 className="font-playfair text-2xl text-wedding-charcoal mb-3">
+          {pkg.name}
+        </h3>
+        <div className="flex items-baseline gap-2 flex-wrap mb-1">
+          <p className={`font-montserrat text-3xl font-black ${
+            pkg.highlighted ? 'text-wedding-gold' : 'text-wedding-charcoal'
+          }`}>
+            {showDiscount ? formatPrice(discounted) : formatPrice(raw)}
+          </p>
+          {showDiscount && (
+            <p className="font-montserrat text-base line-through text-wedding-charcoal/30">
+              {formatPrice(raw)}
+            </p>
+          )}
+        </div>
+        {showDiscount && (
+          <span className="bg-rose-600 text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">
+            Save {percentage}%
+          </span>
+        )}
+      </div>
+
+      <div className="flex-1 border-t border-wedding-gold/15 pt-6 mb-8">
+        <ul className="space-y-3">
+          {pkg.features.map((feature) => (
+            <li key={feature} className="flex items-start gap-3">
+              <span className="text-wedding-gold mt-0.5 text-base leading-none">✓</span>
+              <span className="font-montserrat text-sm text-wedding-charcoal/70 leading-snug">
+                {feature}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <a
+        href="/weddings/contact"
+        className={`block w-full text-center font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 transition-all duration-300 ${
+          pkg.highlighted
+            ? 'bg-wedding-gold text-wedding-charcoal hover:bg-wedding-gold/90'
+            : 'bg-wedding-charcoal text-white hover:bg-wedding-charcoal/90'
+        }`}
+      >
+        Book This Package
+      </a>
+    </motion.div>
+  );
+}
+
 export default function WeddingPackages() {
   const { isActive, percentage, discountedPrice } = useDiscount();
-
-  // Parse price and apply discount
-  const getPriceDisplay = (priceStr: string) => {
-    if (priceStr === 'Custom') return { original: 'Custom', discounted: 'Custom', showDiscount: false };
-
-    const match = priceStr.match(/[\d,]+/);
-    if (!match) return { original: priceStr, discounted: priceStr, showDiscount: false };
-
-    const original = parseInt(match[0].replace(/,/g, ''), 10);
-    const discounted = isActive ? discountedPrice(original) : original;
-
-    return {
-      original: `R${original.toLocaleString()}`,
-      discounted: `R${discounted.toLocaleString()}`,
-      showDiscount: isActive && discounted < original,
-    };
-  };
+  const cardProps = { isActive, percentage, discountedPrice };
 
   return (
     <section className="py-40 px-8 bg-wedding-bg">
       <div className="max-w-7xl mx-auto">
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -81,93 +190,39 @@ export default function WeddingPackages() {
           className="text-center mb-24"
         >
           <p className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black mb-6">
-            Service Packages
+            Wedding Packages
           </p>
           <h2 className="font-playfair text-5xl md:text-7xl text-wedding-charcoal tracking-tighter leading-tight">
             Choose Your <span className="italic font-light">Investment.</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {PACKAGES.map((pkg, idx) => (
-            <motion.div
-              key={pkg.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              className={`relative rounded-lg p-8 transition-all duration-500 ${
-                pkg.highlighted
-                  ? 'border-2 border-rose-300 bg-gradient-to-b from-rose-50 to-white md:scale-105 shadow-2xl'
-                  : 'border border-rose-200/50 hover:border-rose-300/70 bg-white/50'
-              }`}
-            >
-              {pkg.highlighted && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-rose-600 to-rose-700 text-white px-4 py-1 rounded-full">
-                  <span className="font-montserrat text-[10px] font-black uppercase tracking-[0.2em]">
-                    Most Popular
-                  </span>
-                </div>
-              )}
+        {/* Standard Packages */}
+        <div className="mb-6">
+          <p className="font-montserrat text-[9px] uppercase tracking-[0.5em] text-wedding-charcoal/30 font-black text-center mb-12">
+            Standard
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {STANDARD_PACKAGES.map((pkg, idx) => (
+              <PackageCard key={pkg.name} pkg={pkg} idx={idx} {...cardProps} />
+            ))}
+          </div>
+        </div>
 
-              <div className="mb-6">
-                <h3 className="font-playfair text-2xl text-wedding-charcoal mb-2">
-                  {pkg.name}
-                </h3>
-                {(() => {
-                  const priceData = getPriceDisplay(pkg.price);
-                  return (
-                    <>
-                      <div className="flex items-baseline gap-2 mb-2">
-                        <p className={`font-montserrat text-4xl font-black ${
-                          pkg.highlighted ? 'bg-gradient-to-r from-rose-600 to-rose-700 bg-clip-text text-transparent' : 'text-rose-600'
-                        }`}>
-                          {priceData.showDiscount ? priceData.discounted : priceData.original}
-                        </p>
-                        {priceData.showDiscount && (
-                          <p className="font-montserrat text-lg line-through text-wedding-charcoal/30">
-                            {priceData.original}
-                          </p>
-                        )}
-                      </div>
-                      {priceData.showDiscount && (
-                        <span className="bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">
-                          Save {percentage}%
-                        </span>
-                      )}
-                    </>
-                  );
-                })()}
-                <p className="font-montserrat text-[10px] uppercase tracking-[0.3em] text-wedding-charcoal/60">
-                  {pkg.duration}
-                </p>
-              </div>
-
-              <div className="mb-8 border-t border-rose-200/30 pt-6">
-                <ul className="space-y-4">
-                  {pkg.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <span className="text-rose-400 mt-1 text-xl">✓</span>
-                      <span className="font-montserrat text-sm text-wedding-charcoal/70">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <a
-                href="/weddings/pricing"
-                className={`inline-block w-full text-center font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 rounded transition-all duration-300 ${
-                  pkg.highlighted
-                    ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:shadow-lg hover:shadow-rose-600/30'
-                    : 'bg-wedding-charcoal text-white hover:bg-wedding-charcoal/90'
-                }`}
-              >
-                View Full Details
-              </a>
-            </motion.div>
-          ))}
+        {/* Exclusive Packages */}
+        <div className="mt-20">
+          <div className="flex items-center gap-6 mb-12">
+            <div className="flex-1 h-px bg-wedding-gold/15" />
+            <p className="font-montserrat text-[9px] uppercase tracking-[0.5em] text-wedding-gold font-black shrink-0">
+              Exclusive
+            </p>
+            <div className="flex-1 h-px bg-wedding-gold/15" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {EXCLUSIVE_PACKAGES.map((pkg, idx) => (
+              <PackageCard key={pkg.name} pkg={pkg} idx={idx} {...cardProps} />
+            ))}
+          </div>
         </div>
 
         <motion.div
@@ -177,15 +232,9 @@ export default function WeddingPackages() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-20 text-center"
         >
-          <p className="font-montserrat text-sm text-wedding-charcoal/60 max-w-2xl mx-auto mb-6">
-            All packages include a consultation with Zakes to customize your coverage based on your ceremony type, venue, and family traditions. Pricing is for KwaZulu-Natal venues; travel is additional.
+          <p className="font-montserrat text-sm text-wedding-charcoal/50 max-w-2xl mx-auto">
+            All packages include a consultation with Zakes. Pricing applies to KwaZulu-Natal venues — travel is additional.
           </p>
-          <a
-            href="/weddings/pricing"
-            className="inline-block font-montserrat text-[10px] font-black uppercase tracking-[0.4em] text-wedding-charcoal border border-wedding-charcoal px-10 py-4 hover:bg-wedding-charcoal hover:text-white transition-all duration-300"
-          >
-            See All Packages
-          </a>
         </motion.div>
       </div>
     </section>

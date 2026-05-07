@@ -1,117 +1,63 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import CoreButton from '../ui/CoreButton';
-import client from '@/lib/apollo-client';
-import { GET_WEDDING_GALLERY } from '@/lib/queries';
-import { transformWeddingPostToGalleryImage, type GalleryImage } from '@/lib/wp-image-helpers';
+import { ALL_WEDDING_IMAGES } from '@/lib/media-registry';
+import { cloudinaryUrl } from '@/lib/cloudinary';
+
+const LEGACY_IMAGES = ALL_WEDDING_IMAGES.filter((a) => a.featured && a.orientation === 'portrait').slice(0, 2);
 
 export default function WeddingLegacy() {
-  const [images, setImages] = useState<GalleryImage[]>([]);
-  const [loading, setLoading] = useState(true);
+  if (LEGACY_IMAGES.length < 2) return null;
 
-  useEffect(() => {
-    async function fetchImages() {
-      try {
-        const { data } = await client.query({
-          query: GET_WEDDING_GALLERY,
-          variables: { first: 50 },
-        });
-        const posts = (data as Record<string, any>)?.posts?.nodes || [];
-        const transformedImages = posts
-          .map((post: Record<string, any>) => transformWeddingPostToGalleryImage(post))
-          .filter((img: GalleryImage | null): img is GalleryImage => img !== null)
-          .slice(0, 2); // Use first 2 images for legacy section
-        setImages(transformedImages);
-      } catch (error) {
-        console.error('Error fetching legacy images:', error);
-        setImages([]);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchImages();
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="py-32 px-8 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
-          {/* Skeleton image composition */}
-          <div className="relative w-full lg:w-1/2 h-[600px]">
-            <div className="absolute top-0 left-0 w-3/4 h-3/4 z-10 rounded-sm bg-gray-200 animate-pulse" />
-            <div className="absolute bottom-0 right-0 w-3/4 h-3/4 z-20 rounded-sm bg-gray-100 animate-pulse border-8 border-white" />
-          </div>
-          {/* Skeleton text */}
-          <div className="w-full lg:w-1/2 space-y-6">
-            <div className="h-3 w-40 bg-gray-200 rounded animate-pulse" />
-            <div className="h-12 w-3/4 bg-gray-200 rounded animate-pulse" />
-            <div className="h-1 w-24 bg-gray-200 rounded animate-pulse" />
-            <div className="space-y-3">
-              <div className="h-4 w-full bg-gray-100 rounded animate-pulse" />
-              <div className="h-4 w-5/6 bg-gray-100 rounded animate-pulse" />
-              <div className="h-4 w-4/6 bg-gray-100 rounded animate-pulse" />
-            </div>
-            <div className="h-10 w-48 bg-gray-200 rounded animate-pulse mt-4" />
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (images.length < 2) {
-    return null;
-  }
-
-  const [img1, img2] = images;
+  const [img1, img2] = LEGACY_IMAGES;
 
   return (
     <section className="py-32 px-8 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24">
-        {/* Visual Composition: Overlapping Image Grid */}
-        <div className="relative w-full lg:w-1/2 h-[600px]">
+
+        {/* Visual: right image wider, overlapping in front of left */}
+        <div className="relative w-full lg:w-1/2 h-[640px] shrink-0">
+
+          {/* Left — traditional, behind */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="absolute top-0 left-0 w-3/4 h-3/4 z-10 shadow-2xl overflow-hidden rounded-sm"
+            className="absolute left-0 top-[6%] w-[52%] h-[88%] z-0 shadow-lg overflow-hidden rounded-sm"
           >
             <Image
-              src={img1.src}
-              alt={img1.title}
-              width={600}
-              height={600}
-              className="w-full h-full object-cover grayscale-[10%]"
-              unoptimized
-              priority
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
-            className="absolute bottom-0 right-0 w-3/4 h-3/4 z-20 shadow-2xl border-8 border-white overflow-hidden rounded-sm"
-          >
-            <Image
-              src={img2.src}
-              alt={img2.title}
-              width={600}
-              height={600}
-              className="w-full h-full object-cover"
-              unoptimized
+              src={cloudinaryUrl(img1.publicId, { width: 500, height: 900, crop: 'fill', gravity: 'face' })}
+              alt={img1.alt}
+              fill
+              sizes="25vw"
+              className="object-cover object-top grayscale-[10%]"
               priority
             />
           </motion.div>
 
-          {/* Decorative Zulu Pattern Accent - Using CSS utility instead of missing image */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full zulu-pattern -z-0 rotate-6" />
+          {/* Right — white wedding, wider, overlapping in front */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            className="absolute left-[44%] top-0 w-[65%] h-[88%] z-10 shadow-2xl border-[6px] border-white overflow-hidden rounded-sm"
+          >
+            <Image
+              src={cloudinaryUrl(img2.publicId, { width: 600, height: 900, crop: 'fill', gravity: 'face' })}
+              alt={img2.alt}
+              fill
+              sizes="30vw"
+              className="object-cover object-top"
+              priority
+            />
+          </motion.div>
         </div>
 
-        {/* Content Section */}
+        {/* Content */}
         <div className="w-full lg:w-1/2 space-y-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -136,7 +82,9 @@ export default function WeddingLegacy() {
           </p>
 
           <div className="pt-8">
-            <CoreButton variant="outline">Learn About Our Expertise</CoreButton>
+            <Link href="#packages">
+              <CoreButton variant="outline">View Our Packages</CoreButton>
+            </Link>
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@ import { Montserrat, Playfair_Display, Inter } from "next/font/google";
 import ThemeInitializer from "@/components/ThemeInitializer";
 import BridgeFAB from "@/components/BridgeFAB";
 import WhatsAppFAB from "@/components/ui/WhatsAppFAB";
-import ApolloProvider from "@/components/shared/ApolloProvider";
 import { DiscountProvider } from "@/lib/discount-context";
 import { PostHogProvider } from "@/providers/PostHogProvider";
 import "./globals.css";
@@ -118,16 +117,14 @@ export default function RootLayout({
       </head>
       <body className="min-h-full font-montserrat relative">
         <PostHogProvider>
-          <ApolloProvider>
-            <DiscountProvider>
-              <ThemeInitializer />
-              <div className="animate-page-fade">
-                {children}
-              </div>
-              <BridgeFAB />
-              <WhatsAppFAB />
-            </DiscountProvider>
-          </ApolloProvider>
+          <DiscountProvider>
+            <ThemeInitializer />
+            <div className="animate-page-fade">
+              {children}
+            </div>
+            <BridgeFAB />
+            <WhatsAppFAB />
+          </DiscountProvider>
         </PostHogProvider>
       </body>
     </html>

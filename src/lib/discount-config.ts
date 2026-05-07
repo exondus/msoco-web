@@ -23,7 +23,7 @@ export interface DiscountConfig {
 }
 
 export const DISCOUNT_CONFIG: DiscountConfig = {
-  active: false,
-  percentage: 0,
-  copy: '',
+  active: true,
+  percentage: 10,
+  copy: '10% off all wedding packages — limited 2026 dates remaining',
 };
