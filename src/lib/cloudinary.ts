@@ -18,7 +18,7 @@ export type CloudinaryAsset = {
   featured?: boolean;
 };
 
-const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dm6y75l3e';
 const BASE = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
 
 type UrlOptions = {
