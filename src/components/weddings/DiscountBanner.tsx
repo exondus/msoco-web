@@ -3,9 +3,19 @@
 import { useDiscount } from '@/lib/discount-context';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { trackDiscountViewed, trackDiscountCTAClick } from '@/lib/analytics';
 
 export default function DiscountBanner() {
   const { isActive, percentage, copy } = useDiscount();
+  const hasTrackedView = useRef(false);
+
+  useEffect(() => {
+    if (isActive && !hasTrackedView.current) {
+      trackDiscountViewed(percentage, 'discount_banner');
+      hasTrackedView.current = true;
+    }
+  }, [isActive, percentage]);
 
   if (!isActive) return null;
 
@@ -64,6 +74,8 @@ export default function DiscountBanner() {
         {/* CTA */}
         <a
           href="/weddings/contact"
+          onClick={() => trackDiscountCTAClick(percentage, 'discount_banner')}
+          data-ph-capture-attribute-cta="discount-banner-book-now"
           className="shrink-0 flex items-center gap-2 font-montserrat text-[9px] font-black uppercase tracking-[0.3em] bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 transition-colors duration-200"
         >
           Book Now <ArrowRight size={11} />

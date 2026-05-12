@@ -5,13 +5,12 @@ import { Phone, Mail, MapPin, MessageCircle, CheckCircle } from 'lucide-react';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
 import ScarcityBar from '@/components/weddings/ScarcityBar';
 import MsocoLogo from '@/components/ui/MsocoLogo';
-import { DiscountProvider } from '@/lib/discount-context';
+import { trackPhoneCallClick, trackWhatsAppClick, trackEmailClick } from '@/lib/analytics';
 
 const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
 export default function ContactPage() {
   return (
-    <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
         <ScarcityBar remainingDates={4} year={2026} />
         <WeddingsNavbar isHero={false} />
@@ -49,6 +48,8 @@ export default function ContactPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
+                  onClick={() => trackPhoneCallClick('contact_page')}
+                  data-ph-capture-attribute-cta="contact-phone"
                   className="bg-white rounded-2xl p-10 border border-wedding-gold/20 hover:border-wedding-gold/50 hover:shadow-lg transition-all group text-center"
                 >
                   <div className="w-16 h-16 rounded-full bg-wedding-gold/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-wedding-gold/20 transition-colors">
@@ -71,6 +72,8 @@ export default function ContactPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
+                  onClick={() => trackWhatsAppClick('contact_page')}
+                  data-ph-capture-attribute-cta="contact-whatsapp"
                   className="bg-green-600 rounded-2xl p-10 hover:bg-green-700 transition-all group text-center text-white"
                 >
                   <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-6 group-hover:bg-white/30 transition-colors">
@@ -93,6 +96,8 @@ export default function ContactPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
+                  onClick={() => trackEmailClick('contact_page')}
+                  data-ph-capture-attribute-cta="contact-email"
                   className="bg-white rounded-2xl p-8 border border-wedding-gold/20 hover:border-wedding-gold/50 transition-all group flex items-center gap-6"
                 >
                   <div className="w-12 h-12 rounded-full bg-wedding-gold/10 flex items-center justify-center flex-shrink-0 group-hover:bg-wedding-gold/20 transition-colors">
@@ -178,6 +183,5 @@ export default function ContactPage() {
         </footer>
 
       </div>
-    </DiscountProvider>
   );
 }

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useDiscount } from '@/lib/discount-context';
+import { trackPackageCTAClick } from '@/lib/analytics';
 
 const STANDARD_PACKAGES = [
   {
@@ -162,6 +163,9 @@ function PackageCard({
 
       <a
         href="/weddings/contact"
+        data-ph-capture-attribute-package-name={pkg.name}
+        data-ph-capture-attribute-package-price={raw}
+        onClick={() => trackPackageCTAClick(pkg.name, showDiscount ? discounted : raw, isActive, percentage)}
         className={`block w-full text-center font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 transition-all duration-300 ${
           pkg.highlighted
             ? 'bg-wedding-gold text-wedding-charcoal hover:bg-wedding-gold/90'

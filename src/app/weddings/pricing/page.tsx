@@ -8,7 +8,7 @@ import CoreButton from '@/components/ui/CoreButton';
 import WeddingComparisonTable from '@/components/weddings/WeddingComparisonTable';
 import WeddingPricingTabs from '@/components/weddings/WeddingPricingTabs';
 import ScarcityBar from '@/components/weddings/ScarcityBar';
-import { DiscountProvider } from '@/lib/discount-context';
+import { trackPricingTabChange, trackBespokeQuoteClick, trackCTAClick } from '@/lib/analytics';
 import { PRICING_DATA } from './pricingData';
 
 const TABS = [
@@ -51,7 +51,6 @@ export default function WeddingsPricingPage() {
   const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
   return (
-    <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
         {/* Scarcity/Discount Bar */}
         <ScarcityBar remainingDates={4} year={2026} />
@@ -88,7 +87,10 @@ export default function WeddingsPricingPage() {
               <WeddingPricingTabs
                 tabs={TABS}
                 activeTab={activeTab}
-                onChange={setActiveTab}
+                onChange={(tab) => {
+                  trackPricingTabChange(tab);
+                  setActiveTab(tab);
+                }}
               />
 
               <motion.div
@@ -119,12 +121,12 @@ export default function WeddingsPricingPage() {
                   Your celebration is a unique chapter in your family&apos;s history. We craft bespoke packages that combine specific elements to fit your vision, tradition, and scale.
                 </p>
                 <div className="flex flex-col md:flex-row gap-6 justify-center">
-                  <a href="/weddings/contact?package=Bespoke">
+                  <a href="/weddings/contact?package=Bespoke" onClick={() => trackBespokeQuoteClick()}>
                     <CoreButton className="bg-wedding-gold text-black hover:bg-wedding-gold/90 px-10 py-5">
                       Request Bespoke Quote
                     </CoreButton>
                   </a>
-                  <a href="/weddings/contact">
+                  <a href="/weddings/contact" onClick={() => trackCTAClick('discuss_vision', { source: 'pricing_page' })}>
                     <CoreButton variant="outline" className="border-white text-white hover:bg-white/10 px-10 py-5">
                       Discuss Your Vision
                     </CoreButton>
@@ -281,6 +283,5 @@ export default function WeddingsPricingPage() {
           </div>
         </footer>
       </div>
-    </DiscountProvider>
   );
 }

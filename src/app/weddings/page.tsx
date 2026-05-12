@@ -13,7 +13,7 @@ import CoreButton from '@/components/ui/CoreButton';
 import CompanyStats from '@/components/shared/CompanyStats';
 import WeddingPackages from '@/components/weddings/WeddingPackages';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
-import { DiscountProvider } from '@/lib/discount-context';
+import { trackCTAClick, trackGalleryView } from '@/lib/analytics';
 import { HERO_VIDEO } from '@/lib/media-registry';
 import { cloudinaryUrl, cloudinaryVideoUrl } from '@/lib/cloudinary';
 
@@ -45,7 +45,6 @@ export default function WeddingsPage() {
   const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
   return (
-    <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
 
         {/* Hero — Full screen, starts at top */}
@@ -95,8 +94,8 @@ export default function WeddingsPage() {
               Umembeso. White Wedding. Both Flawless.
             </p>
             <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-6">
-              <CoreButton onClick={() => { window.location.hash = '#gallery'; }}>View the Portfolio</CoreButton>
-              <a href="/weddings/contact">
+              <CoreButton onClick={() => { trackCTAClick('view_portfolio', { source: 'hero' }); window.location.hash = '#gallery'; }}>View the Portfolio</CoreButton>
+              <a href="/weddings/contact" onClick={() => trackCTAClick('book_consultation', { source: 'hero' })}>
                 <CoreButton variant="outline" className="text-white border-white hover:bg-white hover:text-black">
                   Book a Consultation
                 </CoreButton>
@@ -191,10 +190,10 @@ export default function WeddingsPage() {
                 Secure KwaZulu-Natal&apos;s authority in traditional and modern wedding production.
               </p>
               <div className="pt-8 flex flex-col sm:flex-row gap-6">
-                <a href="/weddings/contact">
+                <a href="/weddings/contact" onClick={() => trackCTAClick('book_consultation', { source: 'footer' })}>
                   <CoreButton className="bg-wedding-gold text-white hover:bg-wedding-gold/90">Book a Consultation</CoreButton>
                 </a>
-                <a href="/weddings/gallery">
+                <a href="/weddings/gallery" onClick={() => trackGalleryView('footer_cta')}>
                   <CoreButton variant="outline" className="border-wedding-gold/20 text-wedding-charcoal hover:bg-wedding-gold/5">View Full Portfolio</CoreButton>
                 </a>
               </div>
@@ -224,6 +223,5 @@ export default function WeddingsPage() {
           </div>
         </footer>
       </div>
-    </DiscountProvider>
   );
 }

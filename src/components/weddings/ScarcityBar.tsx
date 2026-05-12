@@ -3,7 +3,8 @@
 import { useDiscount } from '@/lib/discount-context';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { trackDiscountViewed, trackDiscountCTAClick } from '@/lib/analytics';
 
 const DEADLINE = new Date('2026-05-31T23:59:59');
 
@@ -38,12 +39,20 @@ interface ScarcityBarProps {
 export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) {
   const { isActive, loading, percentage } = useDiscount();
   const [timeLeft, setTimeLeft] = useState<ReturnType<typeof getTimeLeft> | null>(null);
+  const hasTrackedView = useRef(false);
 
   useEffect(() => {
     setTimeLeft(getTimeLeft());
     const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (isActive && !hasTrackedView.current) {
+      trackDiscountViewed(percentage, 'scarcity_bar');
+      hasTrackedView.current = true;
+    }
+  }, [isActive, percentage]);
 
   if (loading) {
     return <div className="w-full h-[56px] bg-white border-b border-gray-100 animate-pulse" />;
@@ -108,6 +117,8 @@ export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) 
           {/* Right: CTA */}
           <a
             href="/weddings/contact"
+            onClick={() => trackDiscountCTAClick(percentage, 'scarcity_bar')}
+            data-ph-capture-attribute-cta="scarcity-book-now"
             className="shrink-0 flex items-center gap-1.5 font-montserrat text-[9px] font-black uppercase tracking-[0.3em] bg-rose-600 hover:bg-rose-700 text-white px-4 md:px-5 py-2.5 transition-colors duration-200"
           >
             <span className="hidden sm:inline">Book Now</span>

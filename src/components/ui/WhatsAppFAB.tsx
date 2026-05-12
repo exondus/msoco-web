@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { trackWhatsAppClick } from '@/lib/analytics';
 
 export default function WhatsAppFAB() {
   const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER; // To be updated by client
@@ -10,6 +11,8 @@ export default function WhatsAppFAB() {
       href={`https://wa.me/${WHATSAPP_NUMBER}`}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackWhatsAppClick('fab')}
+      data-ph-capture-attribute-cta="whatsapp-fab"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}

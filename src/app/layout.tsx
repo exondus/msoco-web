@@ -5,6 +5,7 @@ import ThemeInitializer from "@/components/ThemeInitializer";
 import WhatsAppFAB from "@/components/ui/WhatsAppFAB";
 import { DiscountProvider } from "@/lib/discount-context";
 import { PostHogProvider } from "@/providers/PostHogProvider";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -118,12 +119,14 @@ export default function RootLayout({
       <body className="min-h-full font-montserrat relative">
         <PostHogProvider>
           <DiscountProvider>
-            <ThemeInitializer />
-            <div className="animate-page-fade">
-              {children}
-            </div>
-            {/* <BridgeFAB /> */}
-            <WhatsAppFAB />
+            <ErrorBoundary>
+              <ThemeInitializer />
+              <div className="animate-page-fade">
+                {children}
+              </div>
+              {/* <BridgeFAB /> */}
+              <WhatsAppFAB />
+            </ErrorBoundary>
           </DiscountProvider>
         </PostHogProvider>
       </body>

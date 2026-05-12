@@ -1,6 +1,7 @@
 'use client';
 
 import { useDiscount } from '@/lib/discount-context';
+import { trackCTAClick } from '@/lib/analytics';
 
 interface PricingAnchorProps {
   startingPrice: string;
@@ -58,6 +59,8 @@ export default function PricingAnchor({ startingPrice, premiumPrice }: PricingAn
         </p>
         <a
           href="/weddings/pricing"
+          onClick={() => trackCTAClick('explore_tiers', { source: 'pricing_anchor' })}
+          data-ph-capture-attribute-cta="explore-tiers"
           className="inline-block font-montserrat text-[10px] font-black uppercase tracking-[0.4em] text-wedding-charcoal border border-wedding-charcoal px-10 py-4 hover:bg-wedding-charcoal hover:text-white transition-all duration-300"
         >
           Explore Tiers & Specifications

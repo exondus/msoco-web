@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
+import { trackNavClick, trackCTAClick } from '@/lib/analytics';
 
 interface WeddingsNavbarProps {
   isHero?: boolean; // true for hero section (dark overlay), false for regular pages
@@ -32,12 +33,18 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
             <a
               key={item.label}
               href={item.href}
+              onClick={() => trackNavClick(item.label, item.href)}
               className="hover:text-wedding-gold transition-colors"
             >
               {item.label}
             </a>
           ))}
-          <a href="/weddings/contact" className="text-wedding-gold font-black underline underline-offset-8 decoration-2">
+          <a
+            href="/weddings/contact"
+            onClick={() => trackCTAClick('navbar_inquire', { navbar_type: 'hero' })}
+            data-ph-capture-attribute-cta="navbar-inquire"
+            className="text-wedding-gold font-black underline underline-offset-8 decoration-2"
+          >
             Inquire
           </a>
         </div>
@@ -54,6 +61,7 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
           <a
             key={item.label}
             href={item.href}
+            onClick={() => trackNavClick(item.label, item.href)}
             className={`transition-colors ${item.active
               ? 'text-wedding-gold border-b-2 border-wedding-gold pb-1'
               : 'text-wedding-charcoal/60 hover:text-wedding-gold'
@@ -62,7 +70,10 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
             {item.label}
           </a>
         ))}
-        <a href="/weddings/contact">
+        <a
+          href="/weddings/contact"
+          onClick={() => trackCTAClick('navbar_inquire', { navbar_type: 'regular' })}
+        >
           <CoreButton variant="outline" className="py-2 px-6 border-wedding-gold text-wedding-gold ml-4 hover:bg-wedding-gold/5">
             Inquire
           </CoreButton>

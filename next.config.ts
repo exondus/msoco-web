@@ -2,6 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  skipTrailingSlashRedirect: true,
+  // PostHog reverse proxy — routes analytics through our domain to bypass ad blockers
+  rewrites: async () => [
+    {
+      source: '/ingest/static/:path*',
+      destination: 'https://us-assets.i.posthog.com/static/:path*',
+    },
+    {
+      source: '/ingest/:path*',
+      destination: 'https://us.i.posthog.com/:path*',
+    },
+  ],
   redirects: async () => [
     // Corporate is not ready yet — all corporate URLs redirect to weddings
     { source: '/', destination: '/weddings', permanent: false },

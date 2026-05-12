@@ -6,7 +6,8 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { trackVideoError } from '@/lib/analytics';
 
 interface HeroVideoProps {
   videoUrl?: string;
@@ -34,7 +35,10 @@ export default function HeroVideo({
             playsInline
             className={`w-full h-full object-cover ${fallbackGrayscale ? 'grayscale' : ''}`}
             poster={posterImage}
-            onError={() => setVideoError(true)}
+            onError={() => {
+              setVideoError(true);
+              trackVideoError(videoUrl || 'unknown', 'video_load_failed');
+            }}
           >
             <source src={videoUrl} type="video/mp4" />
           </video>
