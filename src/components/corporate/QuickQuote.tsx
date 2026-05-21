@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CoreButton from '../ui/CoreButton';
+import { trackCTAClick } from '@/lib/analytics';
 
 export default function QuickQuote() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,11 @@ export default function QuickQuote() {
     <>
       {/* Trigger */}
       <motion.button
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          trackCTAClick('corporate_quick_quote_open');
+        }}
+        data-ph-capture-attribute-cta="corporate-quick-quote-open"
         className="fixed bottom-24 right-8 z-[60] bg-corporate-blue text-white px-6 py-3 font-inter font-black uppercase text-[10px] tracking-[0.3em] shadow-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors"
       >
         <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
@@ -60,7 +65,7 @@ export default function QuickQuote() {
                 <textarea placeholder="EVENT DETAILS & DATE" rows={3} className="w-full bg-transparent border-b border-gray-100 py-4 text-xs font-inter text-black focus:border-corporate-blue outline-none transition-colors resize-none" />
                 
                 <div className="pt-6">
-                  <CoreButton className="w-full">Initialize Request</CoreButton>
+                  <CoreButton onClick={() => trackCTAClick('corporate_quick_quote_submit')} data-ph-capture-attribute-cta="corporate-quick-quote-submit" className="w-full">Initialize Request</CoreButton>
                 </div>
               </form>
             </motion.div>

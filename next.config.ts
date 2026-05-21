@@ -14,13 +14,7 @@ const nextConfig: NextConfig = {
       destination: 'https://us.i.posthog.com/:path*',
     },
   ],
-  redirects: async () => [
-    // Corporate is not ready yet — all corporate URLs redirect to weddings
-    { source: '/', destination: '/weddings', permanent: false },
-    { source: '/gateway', destination: '/weddings', permanent: false },
-    { source: '/corporate', destination: '/weddings', permanent: false },
-    { source: '/corporate/:path*', destination: '/weddings', permanent: false },
-  ],
+  redirects: async () => [],
   images: {
     remotePatterns: [
       {

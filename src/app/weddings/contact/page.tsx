@@ -120,7 +120,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-playfair text-lg text-wedding-charcoal mb-1">Location</h4>
-                    <p className="font-montserrat text-sm text-wedding-charcoal/60">F30 Impisi Grove, Ntuzuma, Durban, 4359, KwaZulu-Natal</p>
+                    <p className="font-montserrat text-sm text-wedding-charcoal/60">30 Impisi Grove, Ntuzuma, Durban, 4359, KwaZulu-Natal</p>
                   </div>
                 </motion.div>
               </div>

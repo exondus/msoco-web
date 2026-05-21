@@ -202,7 +202,7 @@ export default function WeddingsPage() {
             <div className="flex flex-col justify-end text-right space-y-12">
               <div className="space-y-4">
                 <p className="font-montserrat text-[10px] font-black uppercase tracking-widest text-wedding-gold">Headquarters</p>
-                <p className="font-playfair text-2xl text-wedding-charcoal italic">F30 Impisi Grove, Ntuzuma, Durban, 4359, KwaZulu-Natal</p>
+                <p className="font-playfair text-2xl text-wedding-charcoal italic">30 Impisi Grove, Ntuzuma, Durban, 4359, KwaZulu-Natal</p>
               </div>
               <div className="space-y-4">
                 <p className="font-montserrat text-[10px] font-black uppercase tracking-widest text-wedding-gold">Direct Contact</p>

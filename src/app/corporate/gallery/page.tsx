@@ -1,11 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import CorporateNavbar from '@/components/corporate/CorporateNavbar';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import { CORPORATE_IMAGES } from '@/lib/media-registry';
-import { cloudinaryUrl, getAssetDimensions } from '@/lib/cloudinary';
+import { cloudinaryUrl } from '@/lib/cloudinary';
 
 export default function CorporateGalleryPage() {
   const images = CORPORATE_IMAGES;
@@ -46,33 +45,35 @@ export default function CorporateGalleryPage() {
                 Gallery coming soon
               </p>
             ) : (
-              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {images.map((image, idx) => {
-                  const dims = getAssetDimensions(image.orientation);
-                  return (
-                    <motion.div
-                      key={image.id}
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.3, delay: idx * 0.05 }}
-                      className="group relative h-96 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500"
-                    >
-                      <Image
-                        src={cloudinaryUrl(image.publicId, { width: dims.width, height: dims.height })}
+              <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+                {images.map((image, idx) => (
+                  <motion.div
+                    key={image.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: (idx % 5) * 0.1, ease: [0.21, 0.45, 0.32, 0.9] }}
+                    viewport={{ once: true, margin: '-100px' }}
+                    className="relative break-inside-avoid group cursor-pointer overflow-hidden bg-gray-50 rounded-sm"
+                  >
+                    <div className="relative">
+                      <img
+                        src={cloudinaryUrl(image.publicId, {
+                          width: image.orientation === 'landscape' ? 800 : 600,
+                        })}
                         alt={image.alt}
-                        fill
-                        className="object-contain group-hover:scale-110 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="w-full h-auto object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-700 ease-out"
+                        loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 className="text-white font-playfair text-xl font-semibold">{image.alt}</h3>
+                      <div className="absolute inset-0 bg-corporate-blue/0 group-hover:bg-corporate-blue/10 transition-colors duration-500" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out bg-gradient-to-t from-corporate-blue/80 to-transparent">
+                        <p className="font-montserrat text-[10px] uppercase tracking-[0.3em] text-white font-black">
+                          {image.alt}
+                        </p>
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             )}
 
             {/* Image Count */}

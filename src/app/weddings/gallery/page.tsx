@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import WeddingGalleryImproved from '@/components/weddings/WeddingGalleryImproved';
+import YouTubeGallery from '@/components/weddings/YouTubeGallery';
 import ScarcityBar from '@/components/weddings/ScarcityBar';
 import { DiscountProvider } from '@/lib/discount-context';
 
@@ -69,6 +70,9 @@ export default function WeddingsGalleryPage() {
                   </p>
                 </div>
               </motion.div>
+              
+              {/* YouTube Films Gallery */}
+              <YouTubeGallery />
             </div>
           </section>
 

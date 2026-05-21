@@ -13,6 +13,7 @@
  */
 
 import type { CloudinaryAsset, CloudinaryVideo } from './cloudinary';
+import { CORPORATE_ASSETS } from './corporate-images';
 
 // ---------------------------------------------------------------------------
 // RAW ASSET LIST — single source of truth
@@ -356,10 +357,11 @@ export const ALL_ASSETS = [
     alt: "Makoti with a statement pose",
   },
   {
-    link: "https://res.cloudinary.com/dm6y75l3e/video/upload/v1778082355/C0062_3_ayc4xh.mp4",
+    link: "https://res.cloudinary.com/dm6y75l3e/video/upload/v1779344709/DJI_0351_pcseli.mp4",
     tag: "hero video",
     alt: "Hero video",
-  }
+  },
+  ...CORPORATE_ASSETS
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -406,7 +408,16 @@ export const WHITE_WEDDING_IMAGES: CloudinaryAsset[] = ALL_ASSETS
 // ---------------------------------------------------------------------------
 // CORPORATE
 // ---------------------------------------------------------------------------
-export const CORPORATE_IMAGES: CloudinaryAsset[] = [];
+export const CORPORATE_IMAGES: CloudinaryAsset[] = ALL_ASSETS
+  .filter((a): a is typeof a & { orientation: string } => a.tag === 'corporate')
+  .map((a, i) => ({
+    id: `corp-${i + 1}`,
+    publicId: publicIdFromUrl(a.link),
+    alt: a.alt,
+    orientation: a.orientation as 'portrait' | 'landscape',
+    category: 'corporate' as const,
+    featured: 'featured' in a ? a.featured : undefined,
+  }));
 
 // ---------------------------------------------------------------------------
 // PORTRAITS / HEADSHOTS
@@ -432,5 +443,5 @@ export const ALL_IMAGES: CloudinaryAsset[] = [
 // ---------------------------------------------------------------------------
 export const HERO_VIDEO: CloudinaryVideo = {
   id: 'hero-wedding',
-  publicId: 'C0062_3_ayc4xh',
+  publicId: 'DJI_0351_pcseli',
 };

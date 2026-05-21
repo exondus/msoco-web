@@ -11,6 +11,7 @@ import ZakesTeaser from '@/components/shared/ZakesTeaser';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
 import CompanyStats from '@/components/shared/CompanyStats';
+import { trackCTAClick } from '@/lib/analytics';
 
 const CORPORATE_STATS = [
   { value: '260+', label: 'Corporate Videos' },
@@ -70,10 +71,9 @@ export default function CorporatePage() {
       <nav className="fixed w-full flex justify-between items-center p-8 z-[100] glass-corporate border-b border-white/5">
         <MsocoLogo className="h-10 w-44" invert={true} />
         <div className="hidden md:flex space-x-12 text-[9px] font-black uppercase tracking-[0.4em] text-white/40 items-center">
-          <a href="#solutions" className="hover:text-corporate-copper transition-colors">Solutions</a>
-          <a href="#infrastructure" className="hover:text-corporate-copper transition-colors">Infrastructure</a>
-          <a href="/about" className="hover:text-corporate-copper transition-colors">About</a>
-          <CoreButton variant="outline" className="py-2 px-6 border-white/10 text-white hover:bg-white/5 hover:border-corporate-copper">Get Quote</CoreButton>
+          <a href="/corporate/contact" onClick={() => trackCTAClick('corporate_nav_get_quote')} data-ph-capture-attribute-cta="corporate-nav-quote">
+            <CoreButton variant="outline" className="py-2 px-6 border-white/10 text-white hover:bg-white/5 hover:border-corporate-copper">Get Quote</CoreButton>
+          </a>
         </div>
       </nav>
 
@@ -112,9 +112,9 @@ export default function CorporatePage() {
                 </p>
                 <ZakesTeaser persona="corporate" />
               </div>
-              <div className="flex gap-4">
-                <a href="/corporate/services" className="inline-block bg-corporate-copper text-black hover:bg-corporate-orange font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300 shadow-lg shadow-corporate-copper/20">
-                  Deploy Solutions
+              <div className="flex flex-col md:flex-row gap-6 justify-center">
+                <a href="/corporate/contact" onClick={() => trackCTAClick('corporate_hero_get_quote')} data-ph-capture-attribute-cta="corporate-hero-quote" className="inline-block bg-corporate-copper text-black hover:bg-corporate-orange font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300 shadow-lg shadow-corporate-copper/20">
+                  Request a Quote
                 </a>
               </div>
             </motion.div>
@@ -174,10 +174,12 @@ export default function CorporatePage() {
           <div className="flex space-x-24 items-center animate-marquee">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="flex space-x-24 items-center">
-                <span className="text-6xl font-black uppercase tracking-tighter text-black">4K Multi-Cam</span>
-                <span className="text-6xl font-black uppercase tracking-tighter text-black/40">Line Array Audio</span>
-                <span className="text-6xl font-black uppercase tracking-tighter text-black">DMX Lighting</span>
-                <span className="text-6xl font-black uppercase tracking-tighter text-black/40">LED Video Walls</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-black">Live Streaming</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-black/40">4K Multi-Cam</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-black">Stage & Lighting</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-black/40">PA & Sound System</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-black">Drone Videography</span>
+                <span className="text-6xl font-black uppercase tracking-tighter text-black/40">Studio Photography</span>
               </div>
             ))}
           </div>
@@ -196,16 +198,15 @@ export default function CorporatePage() {
               <ZakesTeaser persona="corporate" />
             </div>
             <div className="flex gap-4">
-              <a href="/corporate/pricing" className="inline-block bg-corporate-copper text-black hover:bg-corporate-orange font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
-                View Specifications
+              <a href="/corporate/contact" className="inline-block bg-corporate-copper text-black hover:bg-corporate-orange font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-4 px-12 rounded transition-all duration-300">
+                Request a Quote
               </a>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-16 text-[10px] font-black uppercase tracking-[0.4em] text-white/20">
             <div className="space-y-6">
               <p className="text-white/40">Services</p>
-              <a href="/corporate/services" className="text-white/60 hover:text-corporate-copper transition-colors block">All Services</a>
-              <a href="/corporate/pricing" className="text-corporate-copper block hover:text-corporate-orange transition-colors">Specifications & Pricing</a>
+              <a href="/corporate" className="text-white/60 hover:text-corporate-copper transition-colors block">All Services</a>
             </div>
             <div className="space-y-6">
               <p className="text-white/40">Connect</p>
