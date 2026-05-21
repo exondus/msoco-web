@@ -4,6 +4,7 @@ import ThemeInitializer from "@/components/ThemeInitializer";
 import BridgeFAB from "@/components/BridgeFAB";
 import WhatsAppFAB from "@/components/ui/WhatsAppFAB";
 import { DiscountProvider } from "@/lib/discount-context";
+import { Suspense } from "react";
 import { PostHogProvider } from "@/providers/PostHogProvider";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MetaPixel from "@/components/MetaPixel";
@@ -121,7 +122,9 @@ export default function RootLayout({
         <PostHogProvider>
           <DiscountProvider>
             <ErrorBoundary>
-              <MetaPixel />
+              <Suspense fallback={null}>
+                <MetaPixel />
+              </Suspense>
               <ThemeInitializer />
               <div className="animate-page-fade">
                 {children}
