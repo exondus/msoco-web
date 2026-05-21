@@ -6,6 +6,7 @@ import WhatsAppFAB from "@/components/ui/WhatsAppFAB";
 import { DiscountProvider } from "@/lib/discount-context";
 import { PostHogProvider } from "@/providers/PostHogProvider";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import MetaPixel from "@/components/MetaPixel";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -120,6 +121,7 @@ export default function RootLayout({
         <PostHogProvider>
           <DiscountProvider>
             <ErrorBoundary>
+              <MetaPixel />
               <ThemeInitializer />
               <div className="animate-page-fade">
                 {children}
