@@ -15,6 +15,65 @@ export type PricingData = {
   [key: string]: Tier[];
 };
 
+// Feature lists are kept consistent with the landing-page packages
+// (WeddingPackages.tsx). Heritage=Bronze, Legacy=Silver, Legacy Royale=Gold,
+// The Dynasty=Platinum, The Dynasty Royale=Premium.
+const BRONZE_FEATURES = [
+  '1x Photographer',
+  '1x Videographer',
+  'One minutes highlights video',
+  'A4 Photobook Magazine',
+  'A3 Canvas Picture',
+  'Extra Photos on USB',
+  'Video Output 2x USB',
+  'Free Digital Invitation',
+];
+
+const SILVER_FEATURES = [
+  '1x Photographer',
+  '1x Videographer',
+  'One minutes highlights video',
+  'A3 Photobook Magazine',
+  'A3 Canvas Picture',
+  'Drone Coverage',
+  'Video Output 2x USB',
+  'Free Digital Invitation',
+];
+
+const GOLD_FEATURES = [
+  '1x Photographer',
+  '2x Videographers',
+  '3 minutes to 5 minutes cinematic video',
+  'A3 Photobook Magazine',
+  'A2 Canvas Picture',
+  'Drone Coverage',
+  'Video Output 2x USB',
+  'Free Digital Invitation',
+];
+
+const PLATINUM_FEATURES = [
+  '1x Photographer',
+  '2x Videographers',
+  'A3 Photobook Magazine',
+  '2x A2 Canvas Pictures',
+  'Drone Coverage',
+  '2x Personalised USBs',
+  'Sound system (100 to 150 people)',
+  'Free Digital Invitation',
+];
+
+const PREMIUM_FEATURES = [
+  '2x Photographers',
+  '2x Videographers',
+  '3 minutes to 5 minutes cinematic video',
+  'A1 & A2 Canvas Pictures',
+  'Layflat Photobook Magazine',
+  'Drone Coverage',
+  '2x Personalised USBs',
+  'Sound system (200 to 400 people)',
+  'Free Digital Invitation',
+];
+
 export const PRICING_DATA: PricingData = {
   wedding: [
     {
@@ -22,15 +81,7 @@ export const PRICING_DATA: PricingData = {
       subtitle: 'Bronze',
       price: 'R12,000',
       description: 'The foundation of your cinematic legacy.',
-      features: [
-        'Full Day Cinematic Coverage',
-        '2 Professional Videographers',
-        'All Raw Footage Delivered',
-        '4K Cinema-Grade Video',
-        'Cinematic Highlight Film',
-        'Digital Photo Album',
-        'Transportation (up to 50km)',
-      ],
+      features: BRONZE_FEATURES,
       cta: 'Book Heritage',
     },
     {
@@ -38,15 +89,7 @@ export const PRICING_DATA: PricingData = {
       subtitle: 'Silver',
       price: 'R15,000',
       description: 'Comprehensive storytelling for your special day.',
-      features: [
-        'Full Day Cinematic Coverage',
-        '2 Videographers + 1 Photographer',
-        'All Raw Footage Delivered',
-        '4K Cinema-Grade Video',
-        'Cinematic Highlight Film',
-        'Digital Photo Album',
-        'Transportation (up to 50km)',
-      ],
+      features: SILVER_FEATURES,
       cta: 'Secure Legacy',
       recommended: true,
     },
@@ -55,16 +98,7 @@ export const PRICING_DATA: PricingData = {
       subtitle: 'Gold',
       price: 'R18,000',
       description: 'Elevated perspectives for a grander narrative.',
-      features: [
-        'Full Day Cinematic Coverage',
-        '2 Videographers + 1 Photographer',
-        'Aerial Drone Cinematography',
-        'All Raw Footage Delivered',
-        '4K Cinema-Grade Video',
-        'Cinematic Highlight Film',
-        'Digital Photo Album',
-        'Transportation (up to 50km)',
-      ],
+      features: GOLD_FEATURES,
       cta: 'Request Royale',
     },
   ],
@@ -74,15 +108,7 @@ export const PRICING_DATA: PricingData = {
       subtitle: 'Bronze',
       price: 'R12,000',
       description: 'Capturing the heart of your traditional ceremony.',
-      features: [
-        'Full Day Ceremonial Coverage',
-        '2 Professional Videographers',
-        'All Raw Footage Delivered',
-        '4K Video Quality',
-        'Full Highlight Film',
-        'Digital Photo Album',
-        'Transportation (up to 50km)',
-      ],
+      features: BRONZE_FEATURES,
       cta: 'Book Heritage',
     },
     {
@@ -90,15 +116,7 @@ export const PRICING_DATA: PricingData = {
       subtitle: 'Silver',
       price: 'R15,000',
       description: 'Detailed documentation of your cultural union.',
-      features: [
-        'Full Day Ceremonial Coverage',
-        '2 Videographers + 1 Photographer',
-        'All Raw Footage Delivered',
-        '4K Video Quality',
-        'Full Highlight Film',
-        'Digital Photo Album',
-        'Transportation (up to 50km)',
-      ],
+      features: SILVER_FEATURES,
       cta: 'Secure Legacy',
       recommended: true,
     },
@@ -107,16 +125,7 @@ export const PRICING_DATA: PricingData = {
       subtitle: 'Gold',
       price: 'R18,000',
       description: 'The complete traditional coverage suite.',
-      features: [
-        'Full Day Ceremonial Coverage',
-        '2 Videographers + 1 Photographer',
-        'Aerial Drone Cinematography',
-        'All Raw Footage Delivered',
-        '4K Video Quality',
-        'Full Highlight Film',
-        'Digital Photo Album',
-        'Transportation (up to 50km)',
-      ],
+      features: GOLD_FEATURES,
       cta: 'Request Royale',
     },
   ],
@@ -127,16 +136,7 @@ export const PRICING_DATA: PricingData = {
       price: 'R26,000',
       salePrice: 'R20,000',
       description: 'The ultimate production for multi-day legacies.',
-      features: [
-        '2 Full Days (Wedding + Umembeso)',
-        '3 Videographers + 2 Photographers',
-        'Aerial Drone Cinematography',
-        '4K Video + Documentary Suite',
-        'Live Stream (Optional)',
-        'Personalized USB + Heirloom Box',
-        'A4 Premium Photo Book',
-        'Transportation (up to 100km)',
-      ],
+      features: PLATINUM_FEATURES,
       cta: 'Commission Dynasty',
     },
     {
@@ -144,17 +144,7 @@ export const PRICING_DATA: PricingData = {
       subtitle: 'Premium',
       price: 'R30,000',
       description: 'The sovereign standard for family history.',
-      features: [
-        '2 Full Days (Wedding + Umembeso)',
-        '3 Videographers + 2 Photographers',
-        'Aerial Drone Cinematography',
-        '4K Video + Photo Suite',
-        'Free Pre-Wedding Shoot',
-        'A1 Large Format Enlargement',
-        'Personalized USB + Heirloom Box',
-        'A4 Premium Photo Book',
-        'Transportation (up to 100km)',
-      ],
+      features: PREMIUM_FEATURES,
       cta: 'Secure Royale',
       recommended: true,
     },

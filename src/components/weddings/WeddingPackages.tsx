@@ -63,7 +63,7 @@ const EXCLUSIVE_PACKAGES = [
     features: [
       '1x Photographer',
       '2x Videographers',
-      'Layflat Photobook',
+      'A3 Photobook Magazine',
       '2x A2 Canvas Pictures',
       'Drone Coverage',
       '2x Personalised USBs',
