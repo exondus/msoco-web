@@ -59,6 +59,7 @@ const EXCLUSIVE_PACKAGES = [
   {
     name: 'Platinum',
     price: 'R26000',
+    salePrice: 'R20000',
     features: [
       '1x Photographer',
       '2x Videographers',
@@ -105,8 +106,13 @@ function PackageCard({
   discountedPrice: (n: number) => number;
 }) {
   const raw = parseInt(pkg.price.replace(/\D/g, ''), 10);
-  const discounted = isActive ? discountedPrice(raw) : raw;
-  const showDiscount = isActive && discounted < raw;
+  // A package-specific fixed sale price (e.g. Platinum) takes precedence over any global percentage discount.
+  const fixedSale =
+    'salePrice' in pkg && pkg.salePrice ? parseInt(pkg.salePrice.replace(/\D/g, ''), 10) : null;
+  const discounted = fixedSale ?? (isActive ? discountedPrice(raw) : raw);
+  const showDiscount = discounted < raw;
+  const savings = raw - discounted;
+  const savingsLabel = fixedSale != null ? `Save R${savings.toLocaleString()}` : `Save ${percentage}%`;
 
   const formatPrice = (n: number) => `R${n.toLocaleString()}`;
 
@@ -152,7 +158,7 @@ function PackageCard({
         </div>
         {showDiscount && (
           <span className="bg-rose-600 text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">
-            Save {percentage}%
+            {savingsLabel}
           </span>
         )}
       </div>
@@ -174,7 +180,7 @@ function PackageCard({
         href="/weddings/contact"
         data-ph-capture-attribute-package-name={pkg.name}
         data-ph-capture-attribute-package-price={raw}
-        onClick={() => trackPackageCTAClick(pkg.name, showDiscount ? discounted : raw, isActive, percentage)}
+        onClick={() => trackPackageCTAClick(pkg.name, discounted, showDiscount, showDiscount ? Math.round((savings / raw) * 100) : 0)}
         className={`block w-full text-center font-montserrat text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 transition-all duration-300 ${
           pkg.highlighted
             ? 'bg-wedding-gold text-wedding-charcoal hover:bg-wedding-gold/90'

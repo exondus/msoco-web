@@ -1,15 +1,13 @@
 'use client';
 
-import { useDiscount } from '@/lib/discount-context';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { BANNER_CONFIG } from '@/lib/banner-config';
 import { trackDiscountViewed, trackDiscountCTAClick } from '@/lib/analytics';
 
-const DEADLINE = new Date('2026-05-31T23:59:59');
-
-function getTimeLeft() {
-  const diff = Math.max(0, DEADLINE.getTime() - Date.now());
+function getTimeLeft(deadlineMs: number) {
+  const diff = Math.max(0, deadlineMs - Date.now());
   return {
     days: Math.floor(diff / 86400000),
     hours: Math.floor((diff % 86400000) / 3600000),
@@ -37,28 +35,26 @@ interface ScarcityBarProps {
 }
 
 export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) {
-  const { isActive, loading, percentage } = useDiscount();
+  const { active, years, offer, ctaHref, deadline } = BANNER_CONFIG;
   const [timeLeft, setTimeLeft] = useState<ReturnType<typeof getTimeLeft> | null>(null);
   const hasTrackedView = useRef(false);
 
   useEffect(() => {
-    setTimeLeft(getTimeLeft());
-    const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
+    const deadlineMs = new Date(deadline).getTime();
+    const tick = () => setTimeLeft(getTimeLeft(deadlineMs));
+    tick();
+    const timer = setInterval(tick, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [deadline]);
 
   useEffect(() => {
-    if (isActive && !hasTrackedView.current) {
-      trackDiscountViewed(percentage, 'scarcity_bar');
+    if (active && !hasTrackedView.current) {
+      trackDiscountViewed(0, 'anniversary_banner');
       hasTrackedView.current = true;
     }
-  }, [isActive, percentage]);
+  }, [active]);
 
-  if (loading) {
-    return <div className="w-full h-[56px] bg-white border-b border-gray-100 animate-pulse" />;
-  }
-
-  if (isActive) {
+  if (active) {
     return (
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -79,22 +75,22 @@ export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) 
             </span>
           </div>
 
-          {/* Center: percentage + message + countdown */}
+          {/* Center: anniversary milestone + offer + countdown */}
           <div className="flex items-center gap-3 md:gap-6">
-            {/* Big percentage */}
+            {/* Big anniversary figure */}
             <div className="flex items-baseline gap-1.5">
               <span className="font-playfair text-3xl md:text-4xl font-black text-rose-700 leading-none">
-                {percentage}%
+                {years}
               </span>
               <span className="font-montserrat text-[10px] font-black uppercase tracking-[0.35em] text-rose-500">
-                OFF
+                Years
               </span>
             </div>
 
             <span className="hidden sm:block w-px h-7 bg-gray-200" />
 
             <span className="hidden md:block font-montserrat text-[10px] font-black uppercase tracking-[0.2em] text-gray-600">
-              All Wedding Packages
+              {offer}
             </span>
 
             <span className="hidden md:block w-px h-7 bg-gray-200" />
@@ -116,9 +112,9 @@ export default function ScarcityBar({ remainingDates, year }: ScarcityBarProps) 
 
           {/* Right: CTA */}
           <a
-            href="/weddings/contact"
-            onClick={() => trackDiscountCTAClick(percentage, 'scarcity_bar')}
-            data-ph-capture-attribute-cta="scarcity-book-now"
+            href={ctaHref}
+            onClick={() => trackDiscountCTAClick(0, 'anniversary_banner')}
+            data-ph-capture-attribute-cta="anniversary-book-now"
             className="shrink-0 flex items-center gap-1.5 font-montserrat text-[9px] font-black uppercase tracking-[0.3em] bg-rose-600 hover:bg-rose-700 text-white px-4 md:px-5 py-2.5 transition-colors duration-200"
           >
             <span className="hidden sm:inline">Book Now</span>

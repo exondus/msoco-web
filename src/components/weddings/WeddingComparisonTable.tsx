@@ -13,17 +13,21 @@ interface WeddingComparisonTableProps {
 export default function WeddingComparisonTable({ tiers }: WeddingComparisonTableProps) {
   const { isActive, percentage, discountedPrice } = useDiscount();
 
-  const getPriceDisplay = (priceStr: string) => {
-    const match = priceStr.match(/[\d,]+/);
-    if (!match) return { original: priceStr, discounted: priceStr, showDiscount: false };
+  const getPriceDisplay = (tier: Tier) => {
+    const match = tier.price.match(/[\d,]+/);
+    if (!match) return { original: tier.price, discounted: tier.price, showDiscount: false, savingsLabel: '' };
 
     const original = parseInt(match[0].replace(/,/g, ''), 10);
-    const discounted = isActive ? discountedPrice(original) : original;
+    // A tier-specific fixed sale price (e.g. Platinum) takes precedence over any global percentage discount.
+    const fixedSale = tier.salePrice ? parseInt(tier.salePrice.replace(/[^\d]/g, ''), 10) : null;
+    const discounted = fixedSale ?? (isActive ? discountedPrice(original) : original);
+    const savings = original - discounted;
 
     return {
       original: `R${original.toLocaleString()}`,
       discounted: `R${discounted.toLocaleString()}`,
-      showDiscount: isActive && discounted < original,
+      showDiscount: discounted < original,
+      savingsLabel: fixedSale != null ? `Save R${savings.toLocaleString()}` : `Save ${percentage}%`,
     };
   };
   return (
@@ -57,9 +61,14 @@ export default function WeddingComparisonTable({ tiers }: WeddingComparisonTable
                 )}
 
                 <div className="mb-8">
-                  <h3 className="font-playfair text-3xl text-wedding-charcoal mb-3">{tier.name}</h3>
+                  <h3 className="font-playfair text-3xl text-wedding-charcoal mb-1">{tier.name}</h3>
+                  {tier.subtitle && (
+                    <p className="font-montserrat text-[11px] font-black uppercase tracking-[0.3em] text-rose-500/80 mb-3">
+                      {tier.subtitle}
+                    </p>
+                  )}
                   {(() => {
-                    const priceData = getPriceDisplay(tier.price);
+                    const priceData = getPriceDisplay(tier);
                     return (
                       <div className="mb-4">
                         {/* Row 1: Discounted price + pill */}
@@ -71,7 +80,7 @@ export default function WeddingComparisonTable({ tiers }: WeddingComparisonTable
                           </span>
                           {priceData.showDiscount && (
                             <span className="bg-rose-600 text-white text-[9px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                              Save {percentage}%
+                              {priceData.savingsLabel}
                             </span>
                           )}
                         </div>
