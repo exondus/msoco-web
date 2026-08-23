@@ -14,7 +14,7 @@ export default function BridgeFAB() {
     setMode(currentTheme);
   }, [pathname]);
 
-  if (!mode || pathname === '/' || pathname === '/gateway') return null;
+  if (!mode || pathname === '/gateway') return null;
 
   const toggleMode = () => {
     const newMode = mode === 'wedding' ? 'corporate' : 'wedding';

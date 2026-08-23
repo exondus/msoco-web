@@ -206,7 +206,7 @@ export default function WeddingsPage() {
               </div>
               <div className="space-y-4">
                 <p className="font-montserrat text-[10px] font-black uppercase tracking-widest text-wedding-gold">Direct Contact</p>
-                <p className="font-playfair text-2xl text-wedding-charcoal italic">+${CONTACT_NUMBER}</p>
+                <p className="font-playfair text-2xl text-wedding-charcoal italic">+{CONTACT_NUMBER}</p>
                 <p className="font-playfair text-2xl text-wedding-charcoal italic">info@msocorockers.co.za</p>
               </div>
               <div className="flex justify-end space-x-8 pt-8 grayscale opacity-50">

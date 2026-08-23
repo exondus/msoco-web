@@ -15,7 +15,7 @@ export default function WeddingsNavbar({ isHero = false }: WeddingsNavbarProps) 
   const isActive = (path: string) => pathname === path || pathname.startsWith(path + '/');
 
   const navItems = [
-    { label: 'Overview', href: '/weddings', active: pathname === '/weddings' },
+    { label: 'Overview', href: '/weddings', active: pathname === '/' || pathname === '/weddings' },
     { label: 'Services', href: '/weddings/services', active: isActive('/weddings/services') },
     { label: 'Gallery', href: '/weddings/gallery', active: isActive('/weddings/gallery') },
     { label: 'Pricing', href: '/weddings/pricing', active: isActive('/weddings/pricing') },
