@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import ServicesGrid from '@/components/shared/ServicesGrid';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
-import ScarcityBar from '@/components/weddings/ScarcityBar';
 import { DiscountProvider } from '@/lib/discount-context';
 
 const WEDDING_SERVICES = [
@@ -25,8 +24,6 @@ export default function WeddingsServicesPage() {
   return (
     <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
-        {/* Scarcity/Discount Bar */}
-        <ScarcityBar remainingDates={4} year={2026} />
 
         {/* Navbar */}
         <WeddingsNavbar isHero={false} />

@@ -1,44 +1,24 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import HeroSlider from '@/components/weddings/HeroSlider';
 import WeddingLandingGallery from '@/components/weddings/WeddingLandingGallery';
-import WeddingLegacy from '@/components/weddings/WeddingLegacy';
-import TheVisionary from '@/components/weddings/TheVisionary';
-import KZNAuthority from '@/components/weddings/KZNAuthority';
 import WeddingTestimonials from '@/components/weddings/WeddingTestimonials';
-import ScarcityBar from '@/components/weddings/ScarcityBar';
-import PricingAnchor from '@/components/weddings/PricingAnchor';
+import PricingSpotlight from '@/components/weddings/PricingSpotlight';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
-import CompanyStats from '@/components/shared/CompanyStats';
-import WeddingPackages from '@/components/weddings/WeddingPackages';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
 import { trackCTAClick, trackGalleryView } from '@/lib/analytics';
-import { HERO_VIDEO } from '@/lib/media-registry';
-import { cloudinaryUrl, cloudinaryVideoUrl } from '@/lib/cloudinary';
-
-const WEDDING_STATS = [
-  { value: '500+', label: 'Ceremonies Captured' },
-  { value: '10 Yrs', label: 'In KwaZulu-Natal' },
-  { value: '170+', label: 'Ceremonial Productions' },
-  { value: '∞', label: 'Legacies Preserved' },
-];
 
 const WEDDING_SERVICES = [
-  { id: 'studio-photo', number: '01', title: 'Studio Photography', description: 'Professional engagement shoots, bridal portraits, and styled sessions', ctaText: 'View Packages' },
-  { id: 'studio-video', number: '02', title: 'Cinematic Videography', description: 'Highlight films, vow exchanges, and complete ceremony coverage', ctaText: 'View Packages' },
-  { id: 'live-stream', number: '03', title: 'Live Streaming', description: 'Global broadcast for family and loved ones who cannot attend', ctaText: 'View Packages' },
-  { id: 'drones', number: '04', title: 'Aerial Coverage', description: 'Drone cinematography of venue, entrance, and key moments', ctaText: 'View Packages' },
-  { id: 'sound', number: '05', title: 'Sound & Audio', description: 'Professional PA systems, microphone management, and audio mixing', ctaText: 'View Packages' },
-  { id: 'projection', number: '06', title: 'LED & Projection', description: 'Decorative displays, memory boards, and ambient lighting', ctaText: 'View Packages' },
-  { id: 'lighting', number: '07', title: 'Ambient & Stage Lighting', description: 'Venue lighting design, altar setup, and romantic ambiance', ctaText: 'View Packages' },
-  { id: 'product-photo', number: '08', title: 'Detail Photography', description: 'Rings, flowers, decor, fashion, and intimate detail captures', ctaText: 'View Packages' },
-];
-
-const STEPS = [
-  { title: 'Get in Touch', desc: `Call +${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER} or message us on WhatsApp to discuss your ceremony and photography needs` },
-  { title: 'The Ceremony', desc: 'Discrete, professional production handling everything from 4K film to intimate portraits.' },
-  { title: 'The Legacy', desc: 'A curated cinematic masterpiece and high-fidelity gallery delivered to preserve your story.' },
+  { id: 'studio-photo', number: '01', title: 'Photography', description: 'Full-day wedding photography, engagement shoots, and bridal portraits' },
+  { id: 'studio-video', number: '02', title: 'Videography', description: 'Cinematic highlight films and complete ceremony coverage in 4K' },
+  { id: 'live-stream', number: '03', title: 'Live Streaming', description: 'Broadcast your ceremony to family and friends who cannot attend' },
+  { id: 'drones', number: '04', title: 'Drone Coverage', description: 'Aerial footage of your venue, entrance, and key moments' },
+  { id: 'sound', number: '05', title: 'Sound & Audio', description: 'PA systems, microphones, and audio mixing for speeches and vows' },
+  { id: 'projection', number: '06', title: 'LED & Projection', description: 'Memory boards, decorative displays, and ambient screens' },
+  { id: 'lighting', number: '07', title: 'Lighting', description: 'Venue and stage lighting design for ceremony and reception' },
+  { id: 'product-photo', number: '08', title: 'Detail Shots', description: 'Rings, flowers, decor, and every detail you planned' },
 ];
 
 export default function WeddingsPage() {
@@ -47,54 +27,35 @@ export default function WeddingsPage() {
   return (
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
 
-        {/* Hero — Full screen, starts at top */}
+        {/* Hero — Full screen image slider */}
         <header className="relative w-full h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-wedding-charcoal">
 
-          {/* Navigation Overlay — Inside hero to guarantee transparency over video */}
+          {/* Navigation Overlay — Inside hero to guarantee transparency over slider */}
           <div className="absolute top-0 left-0 w-full z-[100] bg-transparent">
-            {/* Scarcity/Discount Bar — shows discount if active, otherwise scarcity info */}
-            <ScarcityBar remainingDates={4} year={2026} />
-
-            {/* Navbar */}
             <WeddingsNavbar isHero={true} />
           </div>
 
-          <div className="absolute inset-0 opacity-30">
-            {HERO_VIDEO ? (
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover grayscale"
-                poster={HERO_VIDEO.poster ? cloudinaryUrl(HERO_VIDEO.poster) : undefined}
-              >
-                <source src={cloudinaryVideoUrl(HERO_VIDEO.publicId)} type="video/mp4" />
-              </video>
-            ) : (
-              <div className="w-full h-full bg-wedding-charcoal" />
-            )}
-          </div>
+          <HeroSlider />
 
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 max-w-5xl space-y-12"
+            className="relative z-10 max-w-5xl space-y-10 px-6"
           >
             <span className="font-montserrat text-[10px] uppercase tracking-[0.6em] text-wedding-gold font-black">
-              KwaZulu-Natal&apos;s Premier Production House
+              Wedding Photography &amp; Videography — KwaZulu-Natal
             </span>
-            <h1 className="font-playfair text-7xl md:text-[11rem] text-white leading-[0.75] tracking-tighter">
-              Heritage <br />
-              <span className="italic font-light">Legacy.</span>
+            <h1 className="font-playfair text-6xl md:text-8xl lg:text-9xl text-white leading-[0.85] tracking-tighter">
+              Your Wedding. <br />
+              <span className="italic font-light">Captured Completely.</span>
             </h1>
-            <p className="font-playfair text-2xl md:text-3xl text-white/80 italic max-w-3xl mx-auto font-light leading-relaxed">
-              Preserving KwaZulu-Natal&apos;s most sacred unions. <br />
-              Umembeso. White Wedding. Both Flawless.
+            <p className="font-montserrat text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Photography, cinematic film, drone coverage, live streaming and sound —
+              one team for everything on your day. Traditional and white weddings across KwaZulu-Natal.
             </p>
-            <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-6">
-              <CoreButton onClick={() => { trackCTAClick('view_portfolio', { source: 'hero' }); window.location.hash = '#gallery'; }}>View the Portfolio</CoreButton>
+            <div className="pt-6 flex flex-col md:flex-row items-center justify-center gap-6">
+              <CoreButton onClick={() => { trackCTAClick('view_portfolio', { source: 'hero' }); window.location.hash = '#gallery'; }}>View Our Work</CoreButton>
               <a href="/weddings/contact" onClick={() => trackCTAClick('book_consultation', { source: 'hero' })}>
                 <CoreButton variant="outline" className="text-white border-white hover:bg-white hover:text-black">
                   Book a Consultation
@@ -105,27 +66,43 @@ export default function WeddingsPage() {
         </header>
 
         <main>
-          {/* 1. Zakes intro */}
-          <div id="vision">
-            <TheVisionary />
-          </div>
+          {/* 1. What we provide — one team, every wedding production need */}
+          <section id="services" className="py-32 px-8 bg-wedding-bg">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-20">
+                <span className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black mb-6 block">
+                  One Team. Complete Coverage.
+                </span>
+                <h2 className="font-playfair text-5xl md:text-7xl text-wedding-charcoal tracking-tighter leading-tight">
+                  Everything Your <span className="italic font-light">Wedding Needs.</span>
+                </h2>
+                <p className="font-montserrat text-sm text-wedding-charcoal/50 mt-8 max-w-xl mx-auto">
+                  No juggling separate vendors. We handle the full production so you can focus on the day itself.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-14">
+                {WEDDING_SERVICES.map((service, i) => (
+                  <motion.div
+                    key={service.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: (i % 4) * 0.08 }}
+                    viewport={{ once: true }}
+                  >
+                    <span className="text-wedding-gold/30 font-playfair italic text-4xl block mb-4">{service.number}</span>
+                    <h3 className="font-playfair text-2xl text-wedding-charcoal mb-3 tracking-tight">{service.title}</h3>
+                    <p className="font-montserrat text-sm text-wedding-charcoal/50 leading-relaxed">{service.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
 
-          {/* 1.5. Stats Section */}
-          <CompanyStats stats={WEDDING_STATS} theme="wedding" bgColor="bg-wedding-bg" textColor="text-wedding-charcoal" />
-
-          {/* 2. Wedding Packages — pricing options (moved higher per Zakes request) */}
-          <div id="packages">
-            <WeddingPackages />
-          </div>
-
-          {/* 3. Social proof — after pricing */}
-          <WeddingTestimonials />
-
-          {/* 3. Gallery — real images from WP */}
-          <section id="gallery" className="py-40 bg-wedding-bg">
-            <div className="max-w-7xl mx-auto px-8 mb-20 text-center">
-              <h2 className="font-playfair text-6xl md:text-[8rem] text-wedding-charcoal mb-6 tracking-tighter leading-none">The Art.</h2>
-              <p className="font-montserrat text-[10px] uppercase tracking-[0.4em] text-wedding-gold font-black">Curation of Culture & Elegance</p>
+          {/* 2. Gallery — real images from WP */}
+          <section id="gallery" className="py-32 bg-white">
+            <div className="max-w-7xl mx-auto px-8 mb-16 text-center">
+              <span className="font-montserrat text-[10px] uppercase tracking-[0.4em] text-wedding-gold font-black mb-6 block">Traditional & White Weddings</span>
+              <h2 className="font-playfair text-5xl md:text-7xl text-wedding-charcoal tracking-tighter leading-tight">Recent Weddings.</h2>
             </div>
             <div className="max-w-7xl mx-auto px-8">
               <WeddingLandingGallery />
@@ -139,62 +116,41 @@ export default function WeddingsPage() {
               >
                 <a
                   href="/weddings/gallery"
+                  onClick={() => trackGalleryView('landing_gallery_cta')}
                   className="inline-block font-montserrat text-[10px] font-black uppercase tracking-[0.4em] text-wedding-charcoal border border-wedding-charcoal px-12 py-4 hover:bg-wedding-charcoal hover:text-white transition-all duration-300"
                 >
-                  View All Gallery Images
+                  View Full Gallery
                 </a>
               </motion.div>
             </div>
           </section>
 
-          {/* 4. Authority + Legacy */}
-          <div id="heritage">
-            <KZNAuthority />
-            <WeddingLegacy />
+          {/* 3. Social proof */}
+          <WeddingTestimonials />
+
+          {/* 4. Pricing — one featured package, full range on /weddings/pricing */}
+          <div id="packages">
+            <PricingSpotlight />
           </div>
-
-          {/* 5. Process */}
-          <section className="py-40 bg-wedding-bg border-y border-wedding-gold/10">
-            <div className="max-w-7xl mx-auto px-8">
-              <div className="text-center mb-32">
-                <span className="font-montserrat text-[10px] uppercase tracking-[0.5em] text-wedding-gold font-black mb-6 block">Our Ceremonial Approach</span>
-                <h2 className="font-playfair text-6xl md:text-8xl text-wedding-charcoal tracking-tighter">The Journey.</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
-                {STEPS.map((step, i) => (
-                  <div key={step.title} className="text-center group">
-                    <div className="w-24 h-24 rounded-full border border-wedding-gold/20 flex items-center justify-center mx-auto mb-10 group-hover:bg-wedding-gold group-hover:text-white transition-all duration-500">
-                      <span className="font-playfair text-2xl italic">{i + 1}</span>
-                    </div>
-                    <h3 className="font-playfair text-3xl text-wedding-charcoal mb-6 uppercase tracking-tighter">{step.title}</h3>
-                    <p className="font-montserrat text-sm text-wedding-charcoal/50 leading-loose font-medium px-4">{step.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* 6. Pricing anchor — filters leads before final CTA */}
-          <PricingAnchor startingPrice="R12,000" premiumPrice="R30,000" />
         </main>
 
         {/* Footer */}
-        <footer id="contact" className="bg-wedding-bg py-40 px-12 border-t border-wedding-gold/10">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-32">
-            <div className="max-w-2xl space-y-12">
-              <MsocoLogo className="h-16 w-64 mb-16" invert={false} />
-              <h3 className="font-playfair text-6xl md:text-8xl text-wedding-charcoal tracking-tighter leading-none">
-                Your Legacy <br /><span className="italic font-light text-wedding-gold">Starts Here.</span>
+        <footer id="contact" className="bg-wedding-bg py-32 px-12 border-t border-wedding-gold/10">
+          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-24">
+            <div className="max-w-2xl space-y-10">
+              <MsocoLogo className="h-16 w-64 mb-12" invert={false} />
+              <h3 className="font-playfair text-5xl md:text-7xl text-wedding-charcoal tracking-tighter leading-none">
+                Ready to Book <br /><span className="italic font-light text-wedding-gold">Your Date?</span>
               </h3>
-              <p className="font-montserrat text-[10px] text-wedding-charcoal/50 uppercase tracking-[0.3em] font-bold max-w-md">
-                Secure KwaZulu-Natal&apos;s authority in traditional and modern wedding production.
+              <p className="font-montserrat text-sm text-wedding-charcoal/60 max-w-md leading-relaxed">
+                Tell us your wedding date and venue, and we&apos;ll put together the right package for your day.
               </p>
-              <div className="pt-8 flex flex-col sm:flex-row gap-6">
+              <div className="pt-6 flex flex-col sm:flex-row gap-6">
                 <a href="/weddings/contact" onClick={() => trackCTAClick('book_consultation', { source: 'footer' })}>
                   <CoreButton className="bg-wedding-gold text-white hover:bg-wedding-gold/90">Book a Consultation</CoreButton>
                 </a>
                 <a href="/weddings/gallery" onClick={() => trackGalleryView('footer_cta')}>
-                  <CoreButton variant="outline" className="border-wedding-gold/20 text-wedding-charcoal hover:bg-wedding-gold/5">View Full Portfolio</CoreButton>
+                  <CoreButton variant="outline" className="border-wedding-gold/20 text-wedding-charcoal hover:bg-wedding-gold/5">View Full Gallery</CoreButton>
                 </a>
               </div>
             </div>
@@ -217,7 +173,7 @@ export default function WeddingsPage() {
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto mt-40 pt-12 border-t border-wedding-gold/10 flex justify-between items-center">
+          <div className="max-w-7xl mx-auto mt-32 pt-12 border-t border-wedding-gold/10 flex justify-between items-center">
             <p className="font-montserrat text-[9px] font-bold text-wedding-charcoal/30 uppercase tracking-[0.2em]">© 2026 Msoco Rockers Production. All Rights Reserved.</p>
             <p className="font-montserrat text-[9px] font-bold text-wedding-charcoal/30 uppercase tracking-[0.2em]">Heirloom Quality. Durban Proud.</p>
           </div>

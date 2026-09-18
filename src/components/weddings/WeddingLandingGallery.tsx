@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { ALL_WEDDING_IMAGES } from '@/lib/media-registry';
 import { cloudinaryUrl } from '@/lib/cloudinary';
 
-const LANDING_IMAGES = ALL_WEDDING_IMAGES.filter((img) => img.orientation === 'portrait').slice(0, 9);
+const LANDING_IMAGES = ALL_WEDDING_IMAGES.filter((img) => img.orientation === 'portrait').slice(0, 6);
 
 export default function WeddingLandingGallery() {
   if (LANDING_IMAGES.length === 0) return null;

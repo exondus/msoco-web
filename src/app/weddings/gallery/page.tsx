@@ -5,7 +5,6 @@ import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import WeddingGalleryImproved from '@/components/weddings/WeddingGalleryImproved';
 import YouTubeGallery from '@/components/weddings/YouTubeGallery';
-import ScarcityBar from '@/components/weddings/ScarcityBar';
 import { DiscountProvider } from '@/lib/discount-context';
 
 export default function WeddingsGalleryPage() {
@@ -14,8 +13,6 @@ export default function WeddingsGalleryPage() {
   return (
     <DiscountProvider>
       <div className="flex flex-col min-h-screen bg-wedding-bg scroll-smooth">
-        {/* Scarcity/Discount Bar */}
-        <ScarcityBar remainingDates={4} year={2026} />
 
         {/* Navbar */}
         <WeddingsNavbar isHero={false} />

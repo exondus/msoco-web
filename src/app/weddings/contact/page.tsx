@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, MessageCircle, CheckCircle } from 'lucide-react';
 import WeddingsNavbar from '@/components/weddings/WeddingsNavbar';
-import ScarcityBar from '@/components/weddings/ScarcityBar';
 import MsocoLogo from '@/components/ui/MsocoLogo';
 import { trackPhoneCallClick, trackWhatsAppClick, trackEmailClick } from '@/lib/analytics';
 
@@ -12,7 +11,6 @@ const CONTACT_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 export default function ContactPage() {
   return (
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
-        <ScarcityBar remainingDates={4} year={2026} />
         <WeddingsNavbar isHero={false} />
 
         <main className="flex-1">

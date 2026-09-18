@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useDiscount } from '@/lib/discount-context';
 import { trackPackageCTAClick } from '@/lib/analytics';
 
-const STANDARD_PACKAGES = [
+export const STANDARD_PACKAGES = [
   {
     name: 'Bronze',
     price: 'R12000',
@@ -55,7 +55,7 @@ const STANDARD_PACKAGES = [
   },
 ];
 
-const EXCLUSIVE_PACKAGES = [
+export const EXCLUSIVE_PACKAGES = [
   {
     name: 'Platinum',
     price: 'R26000',
@@ -92,7 +92,7 @@ const EXCLUSIVE_PACKAGES = [
   },
 ];
 
-function PackageCard({
+export function PackageCard({
   pkg,
   idx,
   isActive,
@@ -112,9 +112,12 @@ function PackageCard({
   const discounted = fixedSale ?? (isActive ? discountedPrice(raw) : raw);
   const showDiscount = discounted < raw;
   const savings = raw - discounted;
-  const savingsLabel = fixedSale != null ? `Save R${savings.toLocaleString()}` : `Save ${percentage}%`;
 
-  const formatPrice = (n: number) => `R${n.toLocaleString()}`;
+  // Locale-independent thousands separator — toLocaleString() differs between
+  // server and browser locales and breaks hydration.
+  const formatPrice = (n: number) => `R${n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+
+  const savingsLabel = fixedSale != null ? `Save ${formatPrice(savings)}` : `Save ${percentage}%`;
 
   return (
     <motion.div

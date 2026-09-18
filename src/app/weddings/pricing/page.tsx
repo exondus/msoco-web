@@ -7,7 +7,6 @@ import MsocoLogo from '@/components/ui/MsocoLogo';
 import CoreButton from '@/components/ui/CoreButton';
 import WeddingComparisonTable from '@/components/weddings/WeddingComparisonTable';
 import WeddingPricingTabs from '@/components/weddings/WeddingPricingTabs';
-import ScarcityBar from '@/components/weddings/ScarcityBar';
 import { trackPricingTabChange, trackBespokeQuoteClick, trackCTAClick } from '@/lib/analytics';
 import { PRICING_DATA } from './pricingData';
 
@@ -52,8 +51,6 @@ export default function WeddingsPricingPage() {
 
   return (
       <div className="flex flex-col min-h-screen bg-wedding-bg text-wedding-charcoal font-inter scroll-smooth" data-theme="wedding">
-        {/* Scarcity/Discount Bar */}
-        <ScarcityBar remainingDates={4} year={2026} />
 
         {/* Navbar */}
         <WeddingsNavbar isHero={false} />
